@@ -1,0 +1,71 @@
+<h1>Editing Book #<%= @book.id %></h1>
+
+
+<%= form_tag(book_url(@book), method: 'put') do %>
+
+  <div>
+    <%= label_tag :captain_id %><br />
+    <%= number_field_tag :captain_id, @book.captain_id %>
+  </div>
+
+  <div>
+    <%= label_tag :recipient_fb_id %><br />
+    <%= number_field_tag :recipient_fb_id, @book.recipient_fb_id %>
+  </div>
+
+  <div>
+    <%= label_tag :occasion %><br />
+    <%= text_field_tag :occasion, @book.occasion %>
+  </div>
+
+  <div>
+    <%= label_tag :event_date %><br />
+    <%= date_select_tag :event_date, @book.event_date %>
+  </div>
+
+  <div>
+    <%= label_tag :reminder_1 %><br />
+    <%= date_select_tag :reminder_1, @book.reminder_1 %>
+  </div>
+
+  <div>
+    <%= label_tag :reminder_2 %><br />
+    <%= date_select_tag :reminder_2, @book.reminder_2 %>
+  </div>
+
+  <div>
+    <%= label_tag :final_reminder %><br />
+    <%= date_select_tag :final_reminder, @book.final_reminder %>
+  </div>
+
+  <div>
+    <%= label_tag :contribution_deadline %><br />
+    <%= date_select_tag :contribution_deadline, @book.contribution_deadline %>
+  </div>
+
+  <div>
+    <%= label_tag :book_size %><br />
+    <%= text_field_tag :book_size, @book.book_size %>
+  </div>
+
+  <div>
+    <%= label_tag :invite_message_subject %><br />
+    <%= text_field_tag :invite_message_subject, @book.invite_message_subject %>
+  </div>
+
+  <div>
+    <%= label_tag :invite_message_body %><br />
+    <%= text_field_tag :invite_message_body, @book.invite_message_body %>
+  </div>
+
+  <div>
+    <%= label_tag :sharing_preference %><br />
+    <%= text_field_tag :sharing_preference, @book.sharing_preference %>
+  </div>
+
+  
+  <div>
+    <%= submit_tag "Update Book" %>
+  </div>
+
+<% end %>

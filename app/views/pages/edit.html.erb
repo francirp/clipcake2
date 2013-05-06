@@ -1,0 +1,36 @@
+<h1>Editing Page #<%= @page.id %></h1>
+
+
+<%= form_tag(page_url(@page), method: 'put') do %>
+
+  <div>
+    <%= label_tag :book_id %><br />
+    <%= number_field_tag :book_id, @page.book_id %>
+  </div>
+
+  <div>
+    <%= label_tag :user_id %><br />
+    <%= number_field_tag :user_id, @page.user_id %>
+  </div>
+
+  <div>
+    <%= label_tag :layout %><br />
+    <%= text_field_tag :layout, @page.layout %>
+  </div>
+
+  <div>
+    <%= label_tag :background_color %><br />
+    <%= text_field_tag :background_color, @page.background_color %>
+  </div>
+
+  <div>
+    <%= label_tag :background_image_url %><br />
+    <%= text_field_tag :background_image_url, @page.background_image_url %>
+  </div>
+
+  
+  <div>
+    <%= submit_tag "Update Page" %>
+  </div>
+
+<% end %>

@@ -1,0 +1,36 @@
+<h1>Page #<%= @page.id %></h1>
+
+<div class="canvas">
+<% @page.photos.each do |photo| %>
+  <img src="<%= photo.source_url %>">
+<% end %>
+</div>
+
+<!--
+<p>
+  <b>Book:</b>
+  <%= @page.book_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @page.user_id %>
+</p>
+
+<p>
+  <b>Layout:</b>
+  <%= @page.layout %>
+</p>
+
+<p>
+  <b>Background color:</b>
+  <%= @page.background_color %>
+</p>
+
+<p>
+  <b>Background image url:</b>
+  <%= @page.background_image_url %>
+</p>
+
+
+ -->

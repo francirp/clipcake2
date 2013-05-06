@@ -1,0 +1,44 @@
+<h1>Photos</h1>
+
+<p><%= link_to 'Add a New Photo', new_photo_url %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Book</th>
+      <th>Page</th>
+      <th>Position</th>
+      <th>Source url</th>
+      <th>Caption</th>
+      <th>Fb created date</th>
+      <th>Fb object</th>
+      <th>Is picked</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @photos.each do |photo| %>
+    <tr>
+      <td><%= photo.user_id %></td>
+      <td><%= photo.book_id %></td>
+      <td><%= photo.page_id %></td>
+      <td><%= photo.position %></td>
+      <td><%= photo.source_url %></td>
+      <td><%= photo.caption %></td>
+      <td><%= photo.fb_created_date %></td>
+      <td><%= photo.fb_object_id %></td>
+      <td><%= photo.is_picked %></td>
+  
+      <td><%= link_to 'Show', photo_url(photo) %></td>
+      <td><%= link_to 'Edit', edit_photo_url(photo) %></td>
+      <td><%= link_to 'Destroy', photo_url(photo), method: 'delete', data: { confirm: "Do you really want to delete this photo?" } %></td>
+
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

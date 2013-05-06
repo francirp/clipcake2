@@ -1,0 +1,66 @@
+<h1><%= @book.name %></h1>
+
+<p>
+  <b>Captain:</b>
+  <%= @book.captain_id %>
+</p>
+
+<p>
+  <b>Recipient fb:</b>
+  <%= @book.recipient_fb_id %>
+</p>
+
+<p>
+  <b>Occasion:</b>
+  <%= @book.occasion %>
+</p>
+
+<p>
+  <b>Event date:</b>
+  <%= @book.event_date %>
+</p>
+
+<p>
+  <b>Reminder 1:</b>
+  <%= @book.reminder_1 %>
+</p>
+
+<p>
+  <b>Reminder 2:</b>
+  <%= @book.reminder_2 %>
+</p>
+
+<p>
+  <b>Final reminder:</b>
+  <%= @book.final_reminder %>
+</p>
+
+<p>
+  <b>Contribution deadline:</b>
+  <%= @book.contribution_deadline %>
+</p>
+
+<p>
+  <b>Book size:</b>
+  <%= @book.book_size %>
+</p>
+
+<p>
+  <b>Invite message subject:</b>
+  <%= @book.invite_message_subject %>
+</p>
+
+<p>
+  <b>Invite message body:</b>
+  <%= @book.invite_message_body %>
+</p>
+
+<p>
+  <b>Sharing preference:</b>
+  <%= @book.sharing_preference %>
+</p>
+<% i = 1 %>
+<% @book.pages.each do |page| %>
+  <p><a href="<%= page_url(page.id) %>">Page #<%= i %></a></p>
+  <% i += 1 %>
+<% end %>

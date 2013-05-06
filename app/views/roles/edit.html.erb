@@ -1,0 +1,26 @@
+<h1>Editing Role #<%= @role.id %></h1>
+
+
+<%= form_tag(role_url(@role), method: 'put') do %>
+
+  <div>
+    <%= label_tag :book_id %><br />
+    <%= number_field_tag :book_id, @role.book_id %>
+  </div>
+
+  <div>
+    <%= label_tag :user_id %><br />
+    <%= number_field_tag :user_id, @role.user_id %>
+  </div>
+
+  <div>
+    <%= label_tag :role_type %><br />
+    <%= text_field_tag :role_type, @role.role_type %>
+  </div>
+
+  
+  <div>
+    <%= submit_tag "Update Role" %>
+  </div>
+
+<% end %>

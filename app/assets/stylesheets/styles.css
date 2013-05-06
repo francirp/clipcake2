@@ -1,0 +1,40 @@
+.clearfix:before,
+        .clearfix:after {
+          content: ".";
+          display: block;
+          height: 0;
+          overflow: hidden;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            zoom: 1; /* IE < 8 */
+        }
+
+
+
+nav ul li {
+  float: left;
+  list-style: none;
+  padding: 0px 10px 0px 0px;
+}
+
+h1 {
+  padding: 20px 0 0 0;
+  clear: both;
+}
+
+.canvas {
+  width: 700px;
+  height: 500px;
+  border: thin solid black;
+}
+
+.canvas img {
+  height: 200px;
+  width: 200px;
+}
+

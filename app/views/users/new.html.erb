@@ -1,0 +1,86 @@
+<h1>New User</h1>
+
+
+<%= form_tag(users_url, method: 'post') do %>
+
+
+  <div>
+    <%= label_tag :email %><br />
+    <%= text_field_tag :email %>
+  </div>
+
+    <div>
+    <%= label_tag :first_name %><br />
+    <%= text_field_tag :first_name %>
+  </div>
+
+    <div>
+    <%= label_tag :last_name %><br />
+    <%= text_field_tag :last_name %>
+  </div>
+
+    <div>
+    <%= label_tag :password %><br />
+    <%= text_field_tag :password %>
+  </div>
+
+    <div>
+    <%= label_tag :billing_address %><br />
+    <%= text_field_tag :billing_address %>
+  </div>
+
+    <div>
+    <%= label_tag :billing_city %><br />
+    <%= text_field_tag :billing_city %>
+  </div>
+
+    <div>
+    <%= label_tag :billing_state %><br />
+    <%= text_field_tag :billing_state %>
+  </div>
+
+    <div>
+    <%= label_tag :billing_phone %><br />
+    <%= text_field_tag :billing_phone %>
+  </div>
+
+    <div>
+    <%= label_tag :shipping_address %><br />
+    <%= text_field_tag :shipping_address %>
+  </div>
+
+    <div>
+    <%= label_tag :shipping_city %><br />
+    <%= text_field_tag :shipping_city %>
+  </div>
+
+    <div>
+    <%= label_tag :shipping_state %><br />
+    <%= text_field_tag :shipping_state %>
+  </div>
+
+    <div>
+    <%= label_tag :shipping_phone %><br />
+    <%= text_field_tag :shipping_phone %>
+  </div>
+
+    <div>
+    <%= label_tag :access_token %><br />
+    <%= text_field_tag :access_token %>
+  </div>
+
+    <div>
+    <%= label_tag :facebook_id %><br />
+    <%= number_field_tag :facebook_id %>
+  </div>
+
+    <div>
+    <%= label_tag :is_activated %><br />
+    <%= check_box_tag :is_activated? %>
+  </div>
+
+  
+  <div>
+    <%= submit_tag "Create User" %>
+  </div>
+<% end %>

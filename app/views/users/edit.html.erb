@@ -1,0 +1,86 @@
+<h1>Editing User #<%= @user.id %></h1>
+
+
+<%= form_tag(user_url(@user), method: 'put') do %>
+
+  <div>
+    <%= label_tag :email %><br />
+    <%= text_field_tag :email, @user.email %>
+  </div>
+
+  <div>
+    <%= label_tag :first_name %><br />
+    <%= text_field_tag :first_name, @user.first_name %>
+  </div>
+
+  <div>
+    <%= label_tag :last_name %><br />
+    <%= text_field_tag :last_name, @user.last_name %>
+  </div>
+
+  <div>
+    <%= label_tag :password %><br />
+    <%= text_field_tag :password, @user.password %>
+  </div>
+
+  <div>
+    <%= label_tag :billing_address %><br />
+    <%= text_field_tag :billing_address, @user.billing_address %>
+  </div>
+
+  <div>
+    <%= label_tag :billing_city %><br />
+    <%= text_field_tag :billing_city, @user.billing_city %>
+  </div>
+
+  <div>
+    <%= label_tag :billing_state %><br />
+    <%= text_field_tag :billing_state, @user.billing_state %>
+  </div>
+
+  <div>
+    <%= label_tag :billing_phone %><br />
+    <%= text_field_tag :billing_phone, @user.billing_phone %>
+  </div>
+
+  <div>
+    <%= label_tag :shipping_address %><br />
+    <%= text_field_tag :shipping_address, @user.shipping_address %>
+  </div>
+
+  <div>
+    <%= label_tag :shipping_city %><br />
+    <%= text_field_tag :shipping_city, @user.shipping_city %>
+  </div>
+
+  <div>
+    <%= label_tag :shipping_state %><br />
+    <%= text_field_tag :shipping_state, @user.shipping_state %>
+  </div>
+
+  <div>
+    <%= label_tag :shipping_phone %><br />
+    <%= text_field_tag :shipping_phone, @user.shipping_phone %>
+  </div>
+
+  <div>
+    <%= label_tag :access_token %><br />
+    <%= text_field_tag :access_token, @user.access_token %>
+  </div>
+
+  <div>
+    <%= label_tag :facebook_id %><br />
+    <%= number_field_tag :facebook_id, @user.facebook_id %>
+  </div>
+
+  <div>
+    <%= label_tag :is_activated %><br />
+    <%= check_box_tag :is_activated, @user.is_activated? %>
+  </div>
+
+  
+  <div>
+    <%= submit_tag "Update User" %>
+  </div>
+
+<% end %>

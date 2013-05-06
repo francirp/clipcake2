@@ -1,0 +1,45 @@
+<h1>Create a New Clipcake Book!</h1>
+
+
+<%= form_tag(books_url, method: 'post') do %>
+
+  <div>
+    <%= label_tag :occasion %><br />
+    <%= select_tag :occasion, options_for_select(@occasions) %>
+  </div>
+
+  <div>
+    <%= label_tag :name, "Book Name" %><br />
+    <%= text_field_tag :name %>
+  </div>
+
+  <div>
+    <%= label_tag :recipient_fb_id, 'Recipient Facebook ID' %><br />
+    <%= number_field_tag :recipient_fb_id %>
+  </div>
+
+  <div>
+    <%= label_tag :book_size %><br />
+    <%= select_tag :book_size, options_for_select(@book_sizes) %>
+  </div>
+
+  <div>
+    <%= label_tag :invite_message_subject %><br />
+    <%= text_field_tag :invite_message_subject %>
+  </div>
+
+    <div>
+    <%= label_tag :invite_message_body %><br />
+    <%= text_area_tag :invite_message_body %>
+  </div>
+
+  <div>
+    <%= label_tag :sharing_preference %><br />
+    <%= select_tag :sharing_preference, "<option>Social</option><option>Private</option>".html_safe %>
+  </div>
+
+
+  <div>
+    <%= submit_tag "Create Book" %>
+  </div>
+<% end %>

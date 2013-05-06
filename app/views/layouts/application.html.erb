@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clipcake2</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="<%= books_url %>">Books</a></li>
+        <li><a href="<%= pages_url %>">Pages</a></li>
+        <li><a href="<%= roles_url %>">Roles</a></li>
+        <li><a href="<%= texts_url %>">Messages</a></li>
+        <li><a href="<%= photos_url %>">Photos</a></li>
+        <li><a href="<%= users_url %>">Users</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<%= yield %>
+
+</body>
+</html>
