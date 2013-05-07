@@ -6,44 +6,34 @@
 
   <div>
     <%= label_tag :user_id %><br />
-    <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :first_name) %>
+    <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :full_name) %>
   </div>
 
-    <div>
+  <div>
     <%= label_tag :book_id %><br />
     <%= select_tag :book_id, options_from_collection_for_select(Book.all, :id, :name) %>
   </div>
 
-    <div>
+  <div>
     <%= label_tag :page_id %><br />
     <%= number_field_tag :page_id %>
   </div>
 
-    <div>
+  <div>
     <%= label_tag :position %><br />
     <%= number_field_tag :position %>
   </div>
 
-    <div>
+  <div>
     <%= label_tag :source_url %><br />
     <%= text_field_tag :source_url %>
   </div>
 
-    <div>
+  <div>
     <%= label_tag :caption %><br />
     <%= text_field_tag :caption %>
   </div>
-
-    <div>
-    <%= label_tag :fb_object_id %><br />
-    <%= number_field_tag :fb_object_id %>
-  </div>
-
-    <div>
-    <%= label_tag :is_picked %><br />
-    <%= check_box_tag :is_picked? %>
-  </div>
-
+<br />
 
   <div>
     <%= submit_tag "Create Photo" %>

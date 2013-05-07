@@ -1,4 +1,5 @@
 Clipcake2::Application.routes.draw do
+  root :to => 'books#index'
   # Routes for the Role resource:
   # CREATE
   get '/roles/new', controller: 'roles', action: 'new', as: 'new_role'

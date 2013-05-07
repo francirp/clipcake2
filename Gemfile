@@ -7,6 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'fql'
 gem 'starter_generators'
+gem 'seed_dump'
 
 group :development do
   gem 'sqlite3'

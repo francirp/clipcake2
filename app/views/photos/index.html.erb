@@ -2,7 +2,7 @@
 
 <p><%= link_to 'Add a New Photo', new_photo_url %></p>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>User</th>
@@ -11,8 +11,6 @@
       <th>Position</th>
       <th>Source url</th>
       <th>Caption</th>
-      <th>Fb created date</th>
-      <th>Fb object</th>
       <th>Is picked</th>
       <th></th>
       <th></th>
@@ -23,16 +21,15 @@
   <tbody>
   <% @photos.each do |photo| %>
     <tr>
-      <td><%= photo.user_id %></td>
-      <td><%= photo.book_id %></td>
-      <td><%= photo.page_id %></td>
+      <td><%= photo.user.full_name %></td>
+      <td><%= photo.book.name %></td>
+      <td><%= photo.page.id %></td>
       <td><%= photo.position %></td>
-      <td><%= photo.source_url %></td>
+      <td><%= image_tag photo.source_url %></td>
       <td><%= photo.caption %></td>
       <td><%= photo.fb_created_date %></td>
       <td><%= photo.fb_object_id %></td>
-      <td><%= photo.is_picked %></td>
-  
+
       <td><%= link_to 'Show', photo_url(photo) %></td>
       <td><%= link_to 'Edit', edit_photo_url(photo) %></td>
       <td><%= link_to 'Destroy', photo_url(photo), method: 'delete', data: { confirm: "Do you really want to delete this photo?" } %></td>

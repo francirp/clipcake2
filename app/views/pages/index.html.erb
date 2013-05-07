@@ -2,17 +2,12 @@
 
 <p><%= link_to 'Add a New Page', new_page_url %></p>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Book</th>
       <th>User</th>
       <th>Layout</th>
-      <th>Background color</th>
-      <th>Background image url</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -22,8 +17,6 @@
       <td><%= page.book.name %></td>
       <td><%= page.user.full_name %></td>
       <td><%= page.layout %></td>
-      <td><%= page.background_color %></td>
-      <td><%= page.background_image_url %></td>
 
       <td><%= link_to 'Show', page_url(page) %></td>
       <td><%= link_to 'Edit', edit_page_url(page) %></td>

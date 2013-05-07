@@ -11,12 +11,12 @@
 
     <div>
     <%= label_tag :user_id %><br />
-    <%= number_field_tag :user_id %>
+    <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :full_name) %>
   </div>
 
     <div>
     <%= label_tag :role_type %><br />
-    <%= text_field_tag :role_type %>
+    <%= select_tag :role_type, options_for_select(["Captain", "Contributor"]) %>
   </div>
 
 

@@ -10,6 +10,7 @@ class PagesController < ApplicationController
 
   def new
     @page = Page.new
+    @layouts = ["layout1", "layout2", "layout3", "layout4"]
   end
 
   def create
@@ -19,7 +20,7 @@ class PagesController < ApplicationController
     @page.layout = params[:layout]
     @page.background_color = params[:background_color]
     @page.background_image_url = params[:background_image_url]
-    
+
     if @page.save
             redirect_to pages_url
           else
@@ -38,7 +39,7 @@ class PagesController < ApplicationController
     @page.layout = params[:layout]
     @page.background_color = params[:background_color]
     @page.background_image_url = params[:background_image_url]
-    
+
     if @page.save
             redirect_to pages_url
           else

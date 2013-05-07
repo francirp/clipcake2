@@ -9,14 +9,14 @@
 <body>
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="root_url">Title</a>
+    <a class="brand" href="http://localhost:3000">Clipcake</a>
     <ul class="nav">
-      <li><a href="<%= books_url %>">Books</a></li>
-      <li><a href="<%= pages_url %>">Pages</a></li>
-      <li><a href="<%= roles_url %>">Roles</a></li>
-      <li><a href="<%= texts_url %>">Messages</a></li>
-      <li><a href="<%= photos_url %>">Photos</a></li>
-      <li><a href="<%= users_url %>">Users</a></li>
+      <li class="<%= 'active' if current_page?(books_url) %>"><a href="<%= books_url %>">Books</a></li>
+      <li class="<%= 'active' if current_page?(users_url) %>"><a href="<%= users_url %>">Users</a></li>
+      <li class="<%= 'active' if current_page?(pages_url) %>"><a href="<%= pages_url %>">Pages</a></li>
+      <li class="<%= 'active' if current_page?(roles_url) %>"><a href="<%= roles_url %>">Roles</a></li>
+      <li class="<%= 'active' if current_page?(texts_url) %>"><a href="<%= texts_url %>">Messages</a></li>
+      <li class="<%= 'active' if current_page?(photos_url) %>"><a href="<%= photos_url %>">Photos</a></li>
     </ul>
   </div>
 </div>

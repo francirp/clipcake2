@@ -11,24 +11,15 @@
 
   <div>
     <%= label_tag :user_id %><br />
-    <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :first_name) %>
+    <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :full_name) %>
   </div>
 
     <div>
     <%= label_tag :layout %><br />
-    <%= text_field_tag :layout %>
+    <%= select_tag :layout, options_for_select(@layouts) %>
   </div>
 
-    <div>
-    <%= label_tag :background_color %><br />
-    <%= text_field_tag :background_color %>
-  </div>
-
-    <div>
-    <%= label_tag :background_image_url %><br />
-    <%= text_field_tag :background_image_url %>
-  </div>
-
+<br />
 
   <div>
     <%= submit_tag "Create Page" %>
