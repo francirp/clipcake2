@@ -1,41 +1,52 @@
-<h1>New User</h1>
+<h1 class="span4 offset5">New User</h1>
 
 
-<%= form_tag(users_url, method: 'post') do %>
+<%= form_tag(users_url, method: 'post', :class => 'clearfix form-horizontal span6 offset4') do %>
 
-
-  <div>
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email %>
+  <div class="control-group">
+    <%= label_tag :email, "Email", :class => "control-label"  %>
+      <div class="controls">
+        <%= text_field_tag :email %>
+      </div>
   </div>
+
+  <div class="control-group">
+    <%= label_tag :first_name, "First Name", :class => "control-label"  %>
+      <div class="controls">
+        <%= text_field_tag :first_name %>
+      </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag :last_name, "Last Name", :class => "control-label" %>
+      <div class="controls">
+        <%= text_field_tag :last_name %>
+      </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag :password, "Password", :class => "control-label" %>
+      <div class="controls">
+        <%= text_field_tag :password %>
+      </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag :facebook_id, "Facebook ID", :class => "control-label" %>
+      <div class="controls">
+        <%= number_field_tag :facebook_id %>
+      </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag :is_activated, "Activated?", :class => "control-label" %>
+      <div class="controls">
+        <%= check_box_tag :is_activated %>
+      </div>
+  </div>
+
 
     <div>
-    <%= label_tag :first_name %><br />
-    <%= text_field_tag :first_name %>
-  </div>
-
-    <div>
-    <%= label_tag :last_name %><br />
-    <%= text_field_tag :last_name %>
-  </div>
-
-    <div>
-    <%= label_tag :password %><br />
-    <%= text_field_tag :password %>
-  </div>
-
-    <div>
-    <%= label_tag :facebook_id %><br />
-    <%= number_field_tag :facebook_id %>
-  </div>
-
-    <div>
-    <%= label_tag :is_activated %><br />
-    <%= check_box_tag :is_activated %>
-  </div>
-
-
-  <div>
-    <%= submit_tag "Create User" %>
+    <button type="submit" class="btn btn-primary span2 offset2">Create User</button>
   </div>
 <% end %>

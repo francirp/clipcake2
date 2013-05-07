@@ -1,7 +1,7 @@
-<h2 class="span8 offset1">Create a New Clipcake Book!</h2>
+<h1 class="span10 offset2">Create a New Clipcake Book!</h1>
 
 
-<%= form_tag(books_url, method: 'post', :class => 'form-horizontal span8 offset1') do %>
+<%= form_tag(books_url, method: 'post', :class => 'clearfix form-horizontal span6 offset4') do %>
 
   <div class="control-group">
     <%= label_tag :occasion, "Occasion", :class => "control-label" %>
@@ -53,6 +53,6 @@
   </div>
 
   <div>
-    <button type="submit" class="btn offset2">Create Book</button>
+    <button type="submit" class="btn btn-primary span2 offset2">Create Book</button>
   </div>
 <% end %>
