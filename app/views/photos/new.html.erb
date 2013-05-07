@@ -14,6 +14,8 @@
     <%= select_tag :book_id, options_from_collection_for_select(Book.all, :id, :name) %>
   </div>
 
+  <%= hidden_field_tag :page_id, @page.id %>
+
   <div>
     <%= label_tag :position %><br />
     <%= number_field_tag :position %>

@@ -9,6 +9,7 @@ class PhotosController < ApplicationController
   end
 
   def new
+    @page = Page.find_by_id(params[:page_id])
     @photo = Photo.new
   end
 
@@ -23,7 +24,7 @@ class PhotosController < ApplicationController
     @photo.fb_created_date = params[:fb_created_date]
     @photo.fb_object_id = params[:fb_object_id]
     @photo.is_picked = params[:is_picked]
-    
+
     if @photo.save
             redirect_to photos_url
           else
@@ -46,7 +47,7 @@ class PhotosController < ApplicationController
     @photo.fb_created_date = params[:fb_created_date]
     @photo.fb_object_id = params[:fb_object_id]
     @photo.is_picked = params[:is_picked]
-    
+
     if @photo.save
             redirect_to photos_url
           else
