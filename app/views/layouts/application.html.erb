@@ -8,7 +8,7 @@
   <link href='http://fonts.googleapis.com/css?family=Sanchez|Open+Sans:400italic,400,700,600' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<div class="navbar">
+<!-- <div class="navbar">
   <div class="navbar-inner">
     <a class="brand" href="http://localhost:3000">Clipcake</a>
     <ul class="nav">
@@ -20,9 +20,49 @@
       <li class="<%= 'active' if current_page?(photos_url) %>"><a href="<%= photos_url %>">Photos</a></li>
     </ul>
   </div>
-</div>
+</div> -->
+<header>
+  <div class="row-fluid">
+    <div class="span4 offset1">
+      <div class="logo">
+        <a href="http://localhost:3000"><%= image_tag "Clipcake.png" %></a>
+      </div>
+    </div>
+    <div class="sign-in">
+      <a href="<%= books_url %>"><button class="btn btn-defaults btn-large">Sign-in</button></a>
+    </div>
+  </div>
+<ul class="nav nav-list">
+  <li class="divider"></li>
+</ul>
+  <!--
+  <div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="home.html">Clipcake</a>
+    <ul class="nav">
+      <li class="active"><a href="home.html">Home</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="learnmore.html">Learn More</a></li>
+    </ul>
+  </div>
+-->
+</header>
 
 <%= yield %>
+
+<!-- <div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="http://localhost:3000">Clipcake</a>
+    <ul class="nav"> -->
+      <li class="<%= 'active' if current_page?(books_url) %>"><a href="<%= books_url %>">Books</a></li>
+      <li class="<%= 'active' if current_page?(users_url) %>"><a href="<%= users_url %>">Users</a></li>
+      <li class="<%= 'active' if current_page?(pages_url) %>"><a href="<%= pages_url %>">Pages</a></li>
+      <li class="<%= 'active' if current_page?(roles_url) %>"><a href="<%= roles_url %>">Roles</a></li>
+      <li class="<%= 'active' if current_page?(texts_url) %>"><a href="<%= texts_url %>">Messages</a></li>
+      <li class="<%= 'active' if current_page?(photos_url) %>"><a href="<%= photos_url %>">Photos</a></li>
+<!--     </ul>
+  </div>
+</div> -->
 
 </body>
 </html>
