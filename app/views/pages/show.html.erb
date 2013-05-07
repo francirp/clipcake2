@@ -1,4 +1,4 @@
-<h1>Page #<%= @page.id %>: Add a <%= link_to 'Photo', "#{new_photo_url}?=#{@page.id}" %> or <%= link_to 'Text', "#{new_text_url}?=#{@page.id}" %></h1>
+<h1>Page #<%= @page.id %>: Add a <%= link_to 'Photo', "#{new_photo_url}?page_id=#{@page.id}" %> or <%= link_to 'Text', "#{new_text_url}?page_id=#{@page.id}" %></h1>
 
 <div class="canvas">
 <% @page.photos.each do |photo| %>
