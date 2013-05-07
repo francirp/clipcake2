@@ -1,0 +1,128 @@
+.clearfix:before,
+        .clearfix:after {
+          content: ".";
+          display: block;
+          height: 0;
+          overflow: hidden;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            zoom: 1; /* IE < 8 */
+        }
+
+.float-right {
+  float: right;
+}
+
+
+nav ul li {
+  float: left;
+  list-style: none;
+  padding: 0px 10px 0px 0px;
+}
+
+h1 {
+  padding: 20px 0 0 0;
+  clear: both;
+}
+
+.canvas {
+  width: 700px;
+  height: 500px;
+  border: thin solid black;
+}
+
+.canvas img {
+  height: 200px;
+  width: 200px;
+}
+
+
+
+
+
+
+
+
+body {background-color: white;}
+
+.logo {
+  margin-top: 10px;
+  margin-left: 60px;
+}
+
+.sign-in {
+  margin: 90px 100px 10px 0px;
+  text-align: right
+}
+
+header {}
+
+h1 {
+  padding: 15px;
+  font-size: 40px;
+  color: red;
+  letter-spacing: 3px;
+  font-family: 'Sanchez', serif;
+}
+h2 {color: black;
+  text-decoration: underline;
+  font-family: 'Open Sans', sans-serif;
+  }
+
+p {
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+aside {
+  float: right;
+  margin: 10px;
+  width: 320px;
+}
+
+.videoembed {
+  background-image: url(<%= asset_path "videoholder2.png" %>);
+  background-image: no-repeat;
+  width: 960px;
+  height: 346px;
+  margin: 50px;
+ }
+
+.player {
+  padding: 6px 7px;
+  float: left;
+}
+
+.intro {
+  text-align: center;
+  height: 280px;
+  width: 300px;
+  font: 300 28px 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 26px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 300;
+  line-height: normal;
+  color: black;
+  padding: 10px;
+  float: left;
+  line-height: 125%
+  }
+
+  .howitworks {
+    text-align: left;
+    font-size: 16pt;
+  }
+
+.control-label {
+  font-weight: bold;
+  font-size: 16px;
+}
+

@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user.full_name = "#{@user.first_name} #{@user.last_name}"
 
     if @user.save
-            redirect_to users_url
+            redirect_to books_url
           else
       render 'new'
     end
