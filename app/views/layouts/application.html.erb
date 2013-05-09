@@ -29,7 +29,11 @@
       </div>
     </div>
     <div class="sign-in">
-      <a href="<%= books_url %>"><button class="btn btn-defaults btn-large">Sign-in</button></a>
+      <% if current_user %>
+        <a href="<%= sign_out_url %>"><button class="btn btn-defaults btn-large">Sign Out</button></a>
+      <% else %>
+        <a href="<%= '/auth/facebook' %>"><button class="btn btn-defaults btn-large">Sign In with Facebook</button></a>
+      <% end %>
     </div>
   </div>
 <ul class="nav nav-list">

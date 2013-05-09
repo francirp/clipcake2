@@ -4,6 +4,19 @@
 <%= form_tag(photos_url, method: 'post') do %>
 
 
+<div class="row">
+  <ul class="thumbnails">
+    <% @fb_photos.each do |photo| %>
+    <li class="span4">
+    <a href="#" class="thumbnail">
+      <img data-src="holder.js/300x200">
+      <%= image_tag photo.source_url, :class => "new_photo" %>
+    </a>
+    </li>
+    <% end %>
+  </ul>
+</div>
+
   <div>
     <%= label_tag :user_id %><br />
     <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :full_name) %>
@@ -36,3 +49,4 @@
     <%= submit_tag "Create Photo" %>
   </div>
 <% end %>
+

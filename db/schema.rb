@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130505185734) do
+ActiveRecord::Schema.define(:version => 20130509152819) do
 
   create_table "books", :force => true do |t|
     t.integer "captain_id"
@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(:version => 20130505185734) do
     t.integer "facebook_id"
     t.boolean "is_activated"
     t.string  "full_name"
+    t.string  "provider"
+    t.integer "uid"
   end
 
 end

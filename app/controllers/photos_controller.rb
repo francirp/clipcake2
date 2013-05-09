@@ -11,6 +11,7 @@ class PhotosController < ApplicationController
   def new
     @page = Page.find_by_id(params[:page_id])
     @photo = Photo.new
+    @fb_photos = Photo.query_photos('7725454', User.find(session[:user_id]))
   end
 
   def create

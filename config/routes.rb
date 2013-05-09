@@ -1,5 +1,11 @@
 Clipcake2::Application.routes.draw do
 
+  match 'auth/:provider/callback', to: 'sessions#create'
+  match 'auth/failure', to: redirect('/')
+
+  get '/sign_in' => 'sessions#new', :as => 'sign_in'
+  get '/sign_out' => 'sessions#destroy', :as => 'sign_out'
+
   # Routes for Home Page
   get '/home', controller: 'static', action:'index'
   root :to => 'static#index'
