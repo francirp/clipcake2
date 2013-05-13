@@ -8,58 +8,33 @@
   <link href='http://fonts.googleapis.com/css?family=Sanchez|Open+Sans:400italic,400,700,600' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<!-- <div class="navbar">
-  <div class="navbar-inner">
-    <a class="brand" href="http://localhost:3000">Clipcake</a>
-    <ul class="nav">
-      <li class="<%= 'active' if current_page?(books_url) %>"><a href="<%= books_url %>">Books</a></li>
-      <li class="<%= 'active' if current_page?(users_url) %>"><a href="<%= users_url %>">Users</a></li>
-      <li class="<%= 'active' if current_page?(pages_url) %>"><a href="<%= pages_url %>">Pages</a></li>
-      <li class="<%= 'active' if current_page?(roles_url) %>"><a href="<%= roles_url %>">Roles</a></li>
-      <li class="<%= 'active' if current_page?(texts_url) %>"><a href="<%= texts_url %>">Messages</a></li>
-      <li class="<%= 'active' if current_page?(photos_url) %>"><a href="<%= photos_url %>">Photos</a></li>
-    </ul>
-  </div>
-</div> -->
-<header>
-  <div class="row-fluid">
-    <div class="span4 offset1">
-      <div class="logo">
-        <a href="<%= root_path %>"><%= image_tag "Clipcake.png" %></a>
-      </div>
-    </div>
-    <div class="sign-in">
-      <% if current_user %>
-        <a href="<%= sign_out_url %>"><button class="btn btn-defaults btn-large">Sign Out</button></a>
-      <% else %>
-        <a href="<%= '/auth/facebook' %>"><button class="btn btn-defaults btn-large">Sign In with Facebook</button></a>
-      <% end %>
-    </div>
-  </div>
-<ul class="nav nav-list">
-  <li class="divider"></li>
-</ul>
-  <!--
+
+<div class="container">
   <div class="navbar">
-  <div class="navbar-inner">
-    <a class="brand" href="home.html">Clipcake</a>
-    <ul class="nav">
-      <li class="active"><a href="home.html">Home</a></li>
-      <li><a href="aboutus.html">About Us</a></li>
-      <li><a href="learnmore.html">Learn More</a></li>
-    </ul>
-  </div>
--->
+    <a class="brand" href="<%= root_path %>"> <%= image_tag "wide-logo.png", :class => "logo" %></a>
+      <ul class="nav pull-right">
+        <% if current_user %>
+          <li class="<%= 'active' if current_page?(new_book_url) %>"><a href="<%= new_book_url %>">CREATE A BOOK</a></li>
+          <li class="<%= 'active' if current_page?(books_url) %>"><a href="<%= books_url %>">MY BOOKS</a></li>
+          <li class="<%= 'active' if current_page?(user_url(session[:user_id])) %>"><a href="<%= user_url(session[:user_id]) %>">MY ACCOUNT</a></li>
+        <% else %>
+        <% end %>
+        <% if current_user %>
+          <li><a href="<%= sign_out_url %>">SIGN OUT</a></li>
+        <% else %>
+          <li class="sign-in"><a href="<%= '/auth/facebook' %>">SIGN IN VIA FACEBOOK</a></li>
+        <% end %>
+      </ul>
+   </div>
+</div>
+<div class="container">
+
 </header>
 
 <%= yield %>
 
-<!-- <div class="navbar">
-  <div class="navbar-inner">
-    <a class="brand" href="http://localhost:3000">Clipcake</a>
-    <ul class="nav"> -->
-  <div class="footer">
-    <ul>
+  <!-- <div class="navbar navbar-fixed-bottom">
+    <ul class="nav">
       <li class="<%= 'active' if current_page?(books_url) %>"><a href="<%= books_url %>">Books</a></li>
       <li class="<%= 'active' if current_page?(users_url) %>"><a href="<%= users_url %>">Users</a></li>
       <li class="<%= 'active' if current_page?(pages_url) %>"><a href="<%= pages_url %>">Pages</a></li>
@@ -67,10 +42,7 @@
       <li class="<%= 'active' if current_page?(texts_url) %>"><a href="<%= texts_url %>">Messages</a></li>
       <li class="<%= 'active' if current_page?(photos_url) %>"><a href="<%= photos_url %>">Photos</a></li>
     </ul>
-  </div>
-<!--     </ul>
-  </div>
-</div> -->
-
+  </div> -->
+</div>
 </body>
 </html>

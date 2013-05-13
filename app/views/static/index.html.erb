@@ -1,13 +1,48 @@
-<div class="row-fluid">
-  <div class="span8 offset1">
-    <div class="videoembed">
-      <div class="player">
-        <p><iframe width="560" height="315" src="http://www.youtube.com/embed/K68qdNVwtY4?rel=0" frameborder="0" allowfullscreen></iframe></p>
-      </div>
-      <div class="intro">
-        <p>Create the most meaningful gift you have ever seen. A photobook made by you and your friends, for someone you care about.</p>
-        <p><a class="btn btn-primary btn-large" href="<%= new_user_url %>">Get Started with Clipcake</a></p>
-      </div>
+
+<div class="hero-unit">
+  <div class="media">
+    <a class="pull-left">
+      <%= image_tag "photobook_image.png", :class => "media-object border pull-left home_picture" %>
+    </a>
+    <div class="media-body">
+        <h2 class="media-heading home_callout">Community Created Photobooks</h2>
+        <p class="home_callout">Create a powerful gift for someone you care about - with the people that they care about.</p>
+        <div class="button_callout"><a href="<%= new_book_url %>"><button class="btn btn-success btn-large">Get Started Now</button></a></div>
     </div>
   </div>
 </div>
+
+<div class="row-fluid">
+  <ul class="thumbnails">
+    <li class="span4">
+      <div class="thumbnail">
+        <%= image_tag "photobook_image.png" %>
+        <div class="caption">
+          <h3>Birthday Photobook</h3>
+          <p>Create a photobook for a friend or family member's birthday.</p>
+          <div class="button_callout"><a href="<%= new_book_url %>"><button class="btn btn-success btn-large">Get Started Now</button></a></div>
+        </div>
+      </div>
+    </li>
+
+    <li class="span4">
+      <div class="thumbnail">
+        <%= image_tag "photobook_image.png" %>
+        <div class="caption">
+          <h3>Wedding Photobook</h3>
+          <p>Create a photobook for a friend or family member's wedding.</p>
+          <div class="button_callout"><a href="<%= new_book_url %>"><button class="btn btn-success btn-large">Get Started Now</button></a></div>
+        </div>
+      </div>
+    </li>
+
+    <li class="span4">
+      <div class="thumbnail">
+        <%= image_tag "photobook_image.png" %>
+        <div class="caption">
+          <h3>Graduation Photobook</h3>
+          <p>Create a photobook for a friend or family member's graduation.</p>
+          <div class="button_callout"><a href="<%= new_book_url %>"><button class="btn btn-success btn-large">Get Started Now</button></a></div>
+        </div>
+      </div>
+    </li>
