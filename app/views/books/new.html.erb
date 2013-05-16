@@ -1,6 +1,5 @@
 <h1 class="form span10">Create a New Clipcake Book!</h1>
 
-
 <%= form_tag(books_url, method: 'post', :class => 'clearfix form-horizontal span6 offset2') do %>
 
   <div class="control-group">
@@ -17,10 +16,11 @@
     </div>
   </div>
 
+
   <div class="control-group">
-    <%= label_tag :recipient_fb_id, 'Recipient Facebook ID', :class => "control-label" %>
+    <%= label_tag :recipient_fb_id, 'Recipient', :class => "control-label" %>
      <div class="controls">
-      <%= number_field_tag :recipient_fb_id %>
+      <%= select_tag :recipient_fb_id, options_from_collection_for_select(Friend.where(:user_id => current_user.id).sort_by!(&:name), :uid, :name) %>
     </div>
   </div>
 
@@ -31,28 +31,9 @@
     </div>
   </div>
 
-    <div class="control-group">
-    <%= label_tag :invite_message_subject, "Invite Subject", :class => "control-label" %>
-     <div class="controls">
-      <%= text_field_tag :invite_message_subject %>
-    </div>
-  </div>
-
-    <div class="control-group">
-    <%= label_tag :invite_message_body, "Invite Body", :class => "control-label" %>
-     <div class="controls">
-      <%= text_area_tag :invite_message_body %>
-    </div>
-  </div>
-
-    <div class="control-group">
-    <%= label_tag :sharing_preference, "Sharing Preference", :class => "control-label" %>
-     <div class="controls">
-      <%= select_tag :sharing_preference, "<option>Social</option><option>Private</option>".html_safe %>
-    </div>
-  </div>
-
   <div>
     <button type="submit" class="btn btn-primary span2 offset2">Create Book</button>
   </div>
 <% end %>
+
+

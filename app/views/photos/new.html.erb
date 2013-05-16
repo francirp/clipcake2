@@ -1,22 +1,20 @@
 <h1>New Photo</h1>
 
-
-<%= form_tag(photos_url, method: 'post') do %>
-
-
 <div class="row">
   <ul class="thumbnails">
     <% @fb_photos.each do |photo| %>
     <li class="span4">
-    <a href="#" class="thumbnail">
+    <a href="<%= photo_url(photo.fb_object_id) %>?book_id=<%= @book.id %>&page_id=<%= @page.id %>" class="thumbnail">
       <img data-src="holder.js/300x200">
-      <%= image_tag photo.source_url, :class => "new_photo" %>
+      <div class="new_photo" style="background-image: url(<%= photo.source_url %>); background-size: 290px auto">
+        </div>
     </a>
     </li>
     <% end %>
   </ul>
 </div>
 
+<%= form_tag(photos_url, method: 'post') do %>
   <div>
     <%= label_tag :user_id %><br />
     <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :full_name) %>

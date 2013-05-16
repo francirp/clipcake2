@@ -1,5 +1,22 @@
 Clipcake2::Application.routes.draw do
 
+  # Routes for the Friend resource:
+  # CREATE
+  get '/friends/new', controller: 'friends', action: 'new', as: 'new_friend'
+  post '/friends', controller: 'friends', action: 'create'
+
+  # READ
+  get '/friends', controller: 'friends', action: 'index', as: 'friends'
+  get '/friends/:id', controller: 'friends', action: 'show', as: 'friend'
+
+  # UPDATE
+  get '/friends/:id/edit', controller: 'friends', action: 'edit', as: 'edit_friend'
+  put '/friends/:id', controller: 'friends', action: 'update'
+
+  # DELETE
+  delete '/friends/:id', controller: 'friends', action: 'destroy'
+  #------------------------------
+
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
 
@@ -80,6 +97,8 @@ Clipcake2::Application.routes.draw do
   # Routes for the Book resource:
   # CREATE
   get '/books/new', controller: 'books', action: 'new', as: 'new_book'
+  get '/books/invite', controller: 'books', action: 'invite', as: 'new_invite'
+  get '/books/contributors', controller: 'books', action: 'contributor', as: 'new_contributor'
   post '/books', controller: 'books', action: 'create'
 
   # READ
@@ -89,6 +108,7 @@ Clipcake2::Application.routes.draw do
   # UPDATE
   get '/books/:id/edit', controller: 'books', action: 'edit', as: 'edit_book'
   put '/books/:id', controller: 'books', action: 'update'
+  put '/books/invite/:id', controller: 'books', action: 'update_invite', as: 'update_invite'
 
   # DELETE
   delete '/books/:id', controller: 'books', action: 'destroy'

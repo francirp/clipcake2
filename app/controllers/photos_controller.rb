@@ -5,13 +5,17 @@ class PhotosController < ApplicationController
   end
 
   def show
-    @photo = Photo.find_by_id(params[:id])
+    @photos = Photo.query_photo(params[:id],User.find(session[:user_id]))
+    @photo = @photos[0]
+    @page = Page.find_by_id(params[:page_id])
+    @book = Book.find_by_id(params[:book_id])
   end
 
   def new
     @page = Page.find_by_id(params[:page_id])
+    @book = Book.find_by_id(@page.book_id)
     @photo = Photo.new
-    @fb_photos = Photo.query_photos('7725454', User.find(session[:user_id]))
+    @fb_photos = Photo.query_photos(@book.recipient_fb_id, current_user)
   end
 
   def create
@@ -27,7 +31,7 @@ class PhotosController < ApplicationController
     @photo.is_picked = params[:is_picked]
 
     if @photo.save
-            redirect_to photos_url
+            redirect_to page_url(@photo.page_id)
           else
       render 'new'
     end

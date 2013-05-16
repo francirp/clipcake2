@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130509152819) do
+ActiveRecord::Schema.define(:version => 20130513184927) do
 
   create_table "books", :force => true do |t|
     t.integer "captain_id"
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(:version => 20130509152819) do
     t.string  "invite_message_subject"
     t.string  "invite_message_body"
     t.string  "sharing_preference"
+    t.string  "name"
+  end
+
+  create_table "friends", :force => true do |t|
+    t.integer "user_id"
+    t.integer "uid"
     t.string  "name"
   end
 

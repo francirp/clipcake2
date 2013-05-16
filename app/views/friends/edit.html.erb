@@ -1,0 +1,26 @@
+<h1>Editing Friend #<%= @friend.id %></h1>
+
+
+<%= form_tag(friend_url(@friend), method: 'put') do %>
+
+  <div>
+    <%= label_tag :friend.id %><br />
+    <%= number_field_tag :friend.id, @friend.friend.id %>
+  </div>
+
+  <div>
+    <%= label_tag :user_id %><br />
+    <%= number_field_tag :user_id, @friend.user_id %>
+  </div>
+
+  <div>
+    <%= label_tag :uid %><br />
+    <%= number_field_tag :uid, @friend.uid %>
+  </div>
+
+  
+  <div>
+    <%= submit_tag "Update Friend" %>
+  </div>
+
+<% end %>

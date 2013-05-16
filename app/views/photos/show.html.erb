@@ -1,48 +1,22 @@
-<h1>Photo #<%= @photo.id %></h1>
 
-<p>
-  <b>User:</b>
-  <%= @photo.user_id %>
-</p>
+<div class="hero-unit hero_unit_photo">
+  <center><%= image_tag @photo.source_url %></center>
 
-<p>
-  <b>Book:</b>
-  <%= @photo.book_id %>
-</p>
+  <%= form_tag(photos_url, method: 'post', :class => 'clearfix form-horizontal span8 offset1') do %>
 
-<p>
-  <b>Page:</b>
-  <%= @photo.page_id %>
-</p>
+    <%= hidden_field_tag :book_id, @book.id %>
+    <%= hidden_field_tag :page_id, @page.id %>
+    <%= hidden_field_tag :user_id, current_user.id %>
+    <%= hidden_field_tag :fb_object_id, @photo.fb_object_id %>
+    <%= hidden_field_tag :source_url, @photo.source_url %>
+    <p></p>
+    <div class="control-group">
+      <%= label_tag :caption, "Caption", :class => "control-label" %>
+       <div class="controls">
+        <%= text_field_tag :caption, @photo.try(:caption), :class => "pull-left" %><button type="submit" class="btn btn-primary span2 pull-left">Add Photo</button>
+      </div>
+    </div>
 
-<p>
-  <b>Position:</b>
-  <%= @photo.position %>
-</p>
-
-<p>
-  <b>Source url:</b>
-  <%= @photo.source_url %>
-</p>
-
-<p>
-  <b>Caption:</b>
-  <%= @photo.caption %>
-</p>
-
-<p>
-  <b>Fb created date:</b>
-  <%= @photo.fb_created_date %>
-</p>
-
-<p>
-  <b>Fb object:</b>
-  <%= @photo.fb_object_id %>
-</p>
-
-<p>
-  <b>Is picked:</b>
-  <%= @photo.is_picked %>
-</p>
-
-
+  <% end %>
+  <p></p>
+</div>

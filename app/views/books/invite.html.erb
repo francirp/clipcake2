@@ -1,0 +1,33 @@
+<h1 class="form span10">Create Invite</h1>
+
+<%= form_tag(update_invite_url(@book.id), method: 'put', :class => 'clearfix form-horizontal span6 offset2') do %>
+
+    <div class="control-group">
+    <%= label_tag :invite_message_subject, "Invite Subject", :class => "control-label" %>
+     <div class="controls">
+      <%= text_field_tag :invite_message_subject, @book.name %>
+    </div>
+  </div>
+
+    <div class="control-group">
+    <%= label_tag :invite_message_body, "Invite Body", :class => "control-label" %>
+     <div class="controls">
+      <%= text_area_tag :invite_message_body %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag :sharing_preference, "Sharing Preference", :class => "control-label" %>
+     <div class="controls">
+      <%= select_tag :sharing_preference, "<option>Social</option><option>Private</option>".html_safe %>
+    </div>
+  </div>
+
+  <%= hidden_field_tag :book_id, @book.id %>
+
+  <div>
+    <button type="submit" class="btn btn-primary span2 offset2">Save Invite</button>
+  </div>
+<% end %>
+
+

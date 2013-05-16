@@ -1,0 +1,32 @@
+<h1>Friends</h1>
+
+<p><%= link_to 'Add a New Friend', new_friend_url %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Friend.id</th>
+      <th>User</th>
+      <th>Uid</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @friends.each do |friend| %>
+    <tr>
+      <td><%= friend.friend.id %></td>
+      <td><%= friend.user_id %></td>
+      <td><%= friend.uid %></td>
+  
+      <td><%= link_to 'Show', friend_url(friend) %></td>
+      <td><%= link_to 'Edit', edit_friend_url(friend) %></td>
+      <td><%= link_to 'Destroy', friend_url(friend), method: 'delete', data: { confirm: "Do you really want to delete this friend?" } %></td>
+
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

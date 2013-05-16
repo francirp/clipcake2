@@ -7,7 +7,7 @@
     <div class="media-body">
         <h2 class="media-heading home_callout">Community Created Photobooks</h2>
         <p class="home_callout">Create a powerful gift for someone you care about - with the people that they care about.</p>
-        <div class="button_callout"><a href="<%= new_book_url %>"><button class="btn btn-success btn-large">Get Started Now</button></a></div>
+        <div class="button_callout"><a href="<%= if current_user.present? then new_book_url else '/auth/facebook' end %>"><button class="btn btn-success btn-large">Get Started Now</button></a></div>
     </div>
   </div>
 </div>
@@ -20,7 +20,7 @@
         <div class="caption">
           <h3>Birthday Photobook</h3>
           <p>Create a photobook for a friend or family member's birthday.</p>
-          <div class="button_callout"><a href="<%= new_book_url %>"><button class="btn btn-success btn-large">Get Started Now</button></a></div>
+          <div class="button_callout"><a href="<%= if current_user.present? then new_book_url else '/auth/facebook' end %>"><button class="btn btn-success btn-large">Get Started Now</button></a></div>
         </div>
       </div>
     </li>
@@ -31,7 +31,7 @@
         <div class="caption">
           <h3>Wedding Photobook</h3>
           <p>Create a photobook for a friend or family member's wedding.</p>
-          <div class="button_callout"><a href="<%= new_book_url %>"><button class="btn btn-success btn-large">Get Started Now</button></a></div>
+          <div class="button_callout"><a href="<%= if current_user.present? then new_book_url else '/auth/facebook' end %>"><button class="btn btn-success btn-large">Get Started Now</button></a></div>
         </div>
       </div>
     </li>
@@ -42,7 +42,7 @@
         <div class="caption">
           <h3>Graduation Photobook</h3>
           <p>Create a photobook for a friend or family member's graduation.</p>
-          <div class="button_callout"><a href="<%= new_book_url %>"><button class="btn btn-success btn-large">Get Started Now</button></a></div>
+          <div class="button_callout"><a href="<%= if current_user.present? then new_book_url else '/auth/facebook' end %>"><button class="btn btn-success btn-large">Get Started Now</button></a></div>
         </div>
       </div>
     </li>
