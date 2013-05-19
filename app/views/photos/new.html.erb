@@ -1,10 +1,40 @@
-<h1>New Photo</h1>
+<% friend_name = Friend.find_by_uid(@recipient_fb_id).name  %>
+
+<center><h1>Add a Photo for <%= friend_name %></h1></center>
+
+<%= form_tag(photos_url, method: 'post') do %>
+
+
+  <%= hidden_field_tag :page_id, @page.id %>
+  <%= hidden_field_tag :book_id, @book.id %>
+  <%= hidden_field_tag :position, @position %>
+
+  <div>
+    <%= label_tag :source_url %><br />
+    <%= text_field_tag :source_url %>
+  </div>
+
+  <div>
+    <%= label_tag :caption, "Caption (optional)" %><br />
+    <%= text_field_tag :caption %>
+  </div>
+<br />
+
+  <div>
+    <%= submit_tag "Create Photo" %>
+  </div>
+<% end %>
+
+<center><h3>Friendship Photos (<%= link_to "View on Facebook", "https://www.facebook.com/profile.php?id=#{current_user.uid}&and=#{@recipient_fb_id}&sk=photos", :target => "_blank" %>)</h3></center>
+
+
+<h5>Note: due to user privacy settings within Facebook, you may not be able to see all of your friendship photos with <%= friend_name %> on our website. You can visit the following link to see all of your friendship photos and to download the photos you would like to include on Facebook: <%= link_to "Facebook Friendship Photos", "https://www.facebook.com/profile.php?id=#{current_user.uid}&and=#{@recipient_fb_id}&sk=photos", :target => "_blank" %></h5>
 
 <div class="row">
   <ul class="thumbnails">
     <% @fb_photos.each do |photo| %>
     <li class="span4">
-    <a href="<%= photo_url(photo.fb_object_id) %>?book_id=<%= @book.id %>&page_id=<%= @page.id %>" class="thumbnail">
+    <a href="<%= photo_url(photo.fb_object_id) %>?book_id=<%= @book.id %>&page_id=<%= @page.id %>&position=<%= @position %>" class="thumbnail">
       <img data-src="holder.js/300x200">
       <div class="new_photo" style="background-image: url(<%= photo.source_url %>); background-size: 290px auto">
         </div>
@@ -14,37 +44,5 @@
   </ul>
 </div>
 
-<%= form_tag(photos_url, method: 'post') do %>
-  <div>
-    <%= label_tag :user_id %><br />
-    <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :full_name) %>
-  </div>
 
-  <div>
-    <%= label_tag :book_id %><br />
-    <%= select_tag :book_id, options_from_collection_for_select(Book.all, :id, :name) %>
-  </div>
-
-  <%= hidden_field_tag :page_id, @page.id %>
-
-  <div>
-    <%= label_tag :position %><br />
-    <%= number_field_tag :position %>
-  </div>
-
-  <div>
-    <%= label_tag :source_url %><br />
-    <%= text_field_tag :source_url %>
-  </div>
-
-  <div>
-    <%= label_tag :caption %><br />
-    <%= text_field_tag :caption %>
-  </div>
-<br />
-
-  <div>
-    <%= submit_tag "Create Photo" %>
-  </div>
-<% end %>
 

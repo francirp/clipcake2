@@ -3,16 +3,7 @@
 
 <%= form_tag(pages_url, method: 'post') do %>
 
-
-  <div>
-    <%= label_tag :book_id %><br />
-    <%= select_tag :book_id, options_from_collection_for_select(Book.all, :id, :name) %>
-  </div>
-
-  <div>
-    <%= label_tag :user_id %><br />
-    <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :full_name) %>
-  </div>
+<%= hidden_field_tag :book_id, @book.id %>
 
     <div>
     <%= label_tag :layout %><br />

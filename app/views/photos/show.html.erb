@@ -9,6 +9,7 @@
     <%= hidden_field_tag :user_id, current_user.id %>
     <%= hidden_field_tag :fb_object_id, @photo.fb_object_id %>
     <%= hidden_field_tag :source_url, @photo.source_url %>
+    <%= hidden_field_tag :position, @position %>
     <p></p>
     <div class="control-group">
       <%= label_tag :caption, "Caption", :class => "control-label" %>

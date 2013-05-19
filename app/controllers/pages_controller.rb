@@ -10,19 +10,20 @@ class PagesController < ApplicationController
 
   def new
     @page = Page.new
+    @book = Book.find_by_id(params[:book_id])
     @layouts = ["layout1", "layout2", "layout3", "layout4"]
   end
 
   def create
     @page = Page.new
     @page.book_id = params[:book_id]
-    @page.user_id = params[:user_id]
+    @page.user_id = session[:user_id]
     @page.layout = params[:layout]
     @page.background_color = params[:background_color]
     @page.background_image_url = params[:background_image_url]
 
     if @page.save
-            redirect_to pages_url
+            redirect_to @page
           else
       render 'new'
     end

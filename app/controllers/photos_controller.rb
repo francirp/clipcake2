@@ -7,6 +7,7 @@ class PhotosController < ApplicationController
   def show
     @photos = Photo.query_photo(params[:id],User.find(session[:user_id]))
     @photo = @photos[0]
+    @position = params[:position]
     @page = Page.find_by_id(params[:page_id])
     @book = Book.find_by_id(params[:book_id])
   end
@@ -15,12 +16,14 @@ class PhotosController < ApplicationController
     @page = Page.find_by_id(params[:page_id])
     @book = Book.find_by_id(@page.book_id)
     @photo = Photo.new
-    @fb_photos = Photo.query_photos(@book.recipient_fb_id, current_user)
+    @position = params[:position]
+    @recipient_fb_id = @book.recipient_fb_id
+    @fb_photos = Photo.query_photos(@recipient_fb_id, current_user)
   end
 
   def create
     @photo = Photo.new
-    @photo.user_id = params[:user_id]
+    @photo.user_id = session[:user_id]
     @photo.book_id = params[:book_id]
     @photo.page_id = params[:page_id]
     @photo.position = params[:position]

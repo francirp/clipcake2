@@ -1,51 +1,18 @@
-<h1>New Text</h1>
+<h1>Add a message for <%= Friend.find_by_uid(@book.recipient_fb_id).name %></h1>
 
 
 <%= form_tag(texts_url, method: 'post') do %>
 
+  <%= hidden_field_tag :book_id, @book.id %>
+  <%= hidden_field_tag :page_id, @page.id %>
+  <%= hidden_field_tag :position, @position %>
 
   <div>
-    <%= label_tag :user_id %><br />
-    <%= select_tag :user_id, options_from_collection_for_select(User.all, :id, :full_name) %>
-  </div>
-
-    <div>
-    <%= label_tag :book_id %><br />
-    <%= select_tag :book_id, options_from_collection_for_select(Book.all, :id, :name) %>
-  </div>
-
-    <div>
-    <%= label_tag :page_id %><br />
-    <%= number_field_tag :page_id %>
-  </div>
-
-    <div>
     <%= label_tag :message %><br />
-    <%= text_field_tag :message %>
+    <%= text_area_tag :message %>
   </div>
-
-    <div>
-    <%= label_tag :position %><br />
-    <%= number_field_tag :position %>
-  </div>
-
-    <div>
-    <%= label_tag :font_size %><br />
-    <%= text_field_tag :font_size %>
-  </div>
-
-    <div>
-    <%= label_tag :font_type %><br />
-    <%= text_field_tag :font_type %>
-  </div>
-
-    <div>
-    <%= label_tag :font_color %><br />
-    <%= text_field_tag :font_color %>
-  </div>
-
 
   <div>
-    <%= submit_tag "Create Text" %>
+    <%= submit_tag "Create Text", :class => "btn btn-primary" %>
   </div>
 <% end %>
