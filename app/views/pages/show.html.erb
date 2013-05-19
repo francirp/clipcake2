@@ -1,2 +1,4 @@
 <% page = @page %>
 <%= render :partial => "page_layouts/#{@page.layout}", :locals => { :page => page } %>
+<br />
+<center><a href="<%= book_url(@page.book.id) %>" class="btn btn-success">Back to the book "<%= @page.book.name %>"</a></center>

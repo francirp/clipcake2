@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513184927) do
+ActiveRecord::Schema.define(:version => 20130519033507) do
 
   create_table "books", :force => true do |t|
     t.integer "captain_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20130513184927) do
     t.string  "layout"
     t.string  "background_color"
     t.string  "background_image_url"
+    t.integer "position"
   end
 
   create_table "photos", :force => true do |t|
