@@ -10,7 +10,7 @@
   <%= hidden_field_tag :position, @position %>
 
   <div>
-    <%= label_tag :source_url %><br />
+    <%= label_tag :source_url, "Photo URL" %><br />
     <%= text_field_tag :source_url %>
   </div>
 
@@ -28,7 +28,7 @@
 <center><h3>Friendship Photos (<%= link_to "View on Facebook", "https://www.facebook.com/profile.php?id=#{current_user.uid}&and=#{@recipient_fb_id}&sk=photos", :target => "_blank" %>)</h3></center>
 
 
-<h5>Note: due to user privacy settings within Facebook, you may not be able to see all of your friendship photos with <%= friend_name %> on our website. You can visit the following link to see all of your friendship photos and to download the photos you would like to include on Facebook: <%= link_to "Facebook Friendship Photos", "https://www.facebook.com/profile.php?id=#{current_user.uid}&and=#{@recipient_fb_id}&sk=photos", :target => "_blank" %></h5>
+<h5>Note: due to user privacy settings within Facebook, you may not be able to see all (or any) of your friendship photos with <%= friend_name %> on our website. Click the "View on Facebook" link above to see your friendship photos with <%= friend_name %> on Facebook. When you find an image you like, right click the image and choose "copy image URL". Then paste that URL in the field above that says "Photo URL".</h5>
 
 <div class="row">
   <ul class="thumbnails">

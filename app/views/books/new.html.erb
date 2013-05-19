@@ -3,6 +3,13 @@
 <%= form_tag(books_url, method: 'post', :class => 'clearfix form-horizontal span6 offset2') do %>
 
   <div class="control-group">
+    <%= label_tag :recipient_fb_id, 'Recipient', :class => "control-label" %>
+     <div class="controls">
+      <%= select_tag :recipient_fb_id, options_from_collection_for_select(Friend.where(:user_id => current_user.id).sort_by!(&:name), :uid, :name) %>
+    </div>
+  </div>
+
+  <div class="control-group">
     <%= label_tag :occasion, "Occasion", :class => "control-label" %>
     <div class="controls">
       <%= select_tag :occasion, options_for_select(@occasions) %>
@@ -17,20 +24,15 @@
   </div>
 
 
-  <div class="control-group">
-    <%= label_tag :recipient_fb_id, 'Recipient', :class => "control-label" %>
-     <div class="controls">
-      <%= select_tag :recipient_fb_id, options_from_collection_for_select(Friend.where(:user_id => current_user.id).sort_by!(&:name), :uid, :name) %>
-    </div>
-  </div>
 
-  <div class="control-group">
+
+<!--   <div class="control-group">
     <%= label_tag :book_size, 'Book Size', :class => "control-label" %>
      <div class="controls">
       <%= select_tag :book_size, options_for_select(@book_sizes) %>
     </div>
   </div>
-
+ -->
   <div>
     <button type="submit" class="btn btn-primary span2 offset2">Create Book</button>
   </div>
