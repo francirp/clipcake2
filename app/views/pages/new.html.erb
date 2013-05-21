@@ -1,18 +1,16 @@
 <h1>New Page</h1>
 
+<div class="row">
+  <ul class="thumbnails">
+    <% i = 0 %>
+    <% @layouts.each do |layout| %>
+      <% i += 1 %>
+      <li class="span4">
+        <div class="thumbnail select-layout">
+          <%= link_to image_tag("/assets/#{layout}.png", :width => "300"), "#{pages_url}?book_id=#{@book.id}&layout=#{layout}", :method => 'post' %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
-<%= form_tag(pages_url, method: 'post') do %>
-
-<%= hidden_field_tag :book_id, @book.id %>
-
-    <div>
-    <%= label_tag :layout %><br />
-    <%= select_tag :layout, options_for_select(@layouts) %>
-  </div>
-
-<br />
-
-  <div>
-    <%= submit_tag "Create Page" %>
-  </div>
-<% end %>
