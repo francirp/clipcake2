@@ -1,4 +1,4 @@
-<% friend_name = Friend.find_by_uid(@recipient_fb_id).name  %>
+<% friend_name = Friend.find_by_uid(@recipient_fb_id.to_i).name  %>
 
 <center><h1>Add a Photo for <%= friend_name %></h1></center>
 
