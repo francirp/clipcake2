@@ -32,6 +32,7 @@ def self.create_from_omniauth(auth)
         u.full_name = auth.info.name
         u.email = auth.info.email
         u.is_activated = true
+        u.save
     end
   end
 end
