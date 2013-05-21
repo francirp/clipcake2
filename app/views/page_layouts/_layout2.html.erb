@@ -4,7 +4,7 @@
 <% @position_3 = page.photos.find_by_position("3") %>
 
 <div class="canvas">
-  <div class="quarter-box left">
+  <div class="quarter-box upleft left">
     <% if @position_0.present? %>
         <%= simple_format(@position_0.message) %>
     <% else %>
@@ -13,7 +13,7 @@
       </div>
     <% end %>
   </div>
-  <div class="quarter-box right">
+  <div class="quarter-box upright left">
     <% if @position_1.present? %>
       <a href="<%= edit_photo_url(@position_1.id) %>"><div class="background" style="background-image: url(<%= @position_1.source_url %>);"></div></a>
     <% else %>
@@ -22,7 +22,7 @@
       </div>
     <% end %>
   </div>
-  <div class="quarter-box left">
+  <div class="quarter-box lowleft left">
     <% if @position_2.present? %>
       <a href="<%= edit_photo_url(@position_2.id) %>"><div class="background" style="background-image: url(<%= @position_2.source_url %>);"></div></a>
     <% else %>
@@ -31,7 +31,7 @@
       </div>
     <% end %>
   </div>
-  <div class="quarter-box right">
+  <div class="quarter-box lowright left">
     <% if @position_3.present? %>
       <a href="<%= edit_photo_url(@position_3.id) %>"><div class="background" style="background-image: url(<%= @position_3.source_url %>);"></div></a>
     <% else %>
