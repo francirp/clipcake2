@@ -8,7 +8,7 @@ class Friend < ActiveRecord::Base
   uid = user.uid
   access_token = user.access_token
 
-  query1request = "SELECT name, uid FROM user WHERE uid IN (SELECT uid1 FROM friend WHERE uid2=#{uid.to_i})"
+  query1request = "SELECT name, uid FROM user WHERE uid IN (SELECT uid1 FROM friend WHERE uid2=#{uid})"
 
   options = { :access_token => "#{access_token}" }
     friends_api = Fql.execute({
@@ -22,7 +22,7 @@ class Friend < ActiveRecord::Base
     friends_clean_api.each do |friend|
       f = Friend.new
       f.name = friend["name"]
-      f.uid = friend["uid"]
+      f.uid = friend["uid"].to_s
       f.user_id = user.id
       f.save
     end
