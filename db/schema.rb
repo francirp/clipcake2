@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521035427) do
+ActiveRecord::Schema.define(:version => 20130521073435) do
 
   create_table "books", :force => true do |t|
     t.integer "captain_id"
-    t.integer "recipient_fb_id"
+    t.string  "recipient_fb_id"
     t.string  "occasion"
     t.date    "event_date"
     t.date    "reminder_1"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20130521035427) do
     t.string  "source_url"
     t.string  "caption"
     t.date    "fb_created_date"
-    t.integer "fb_object_id"
+    t.string  "fb_object_id"
     t.boolean "is_picked"
   end
 
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20130521035427) do
     t.string  "shipping_state"
     t.string  "shipping_phone"
     t.string  "access_token"
-    t.integer "facebook_id"
+    t.string  "facebook_id"
     t.boolean "is_activated"
     t.string  "full_name"
     t.string  "provider"
