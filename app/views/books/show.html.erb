@@ -7,7 +7,7 @@
       <li><%= role.user.full_name %>
         <% i = 1 %>
         <% Page.where(:user_id => role.user.id).where(:book_id => role.book_id).each do |page| %>
-          <%= link_to "Page #{i}", page_url(page.id) %>
+          <%= link_to "##{i}", page_url(page.id), :class => "btn btn-primary btn-mini" %>
           <% i += 1 %>
         <% end %>
       </li>

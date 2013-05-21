@@ -1,0 +1,93 @@
+<% @position_0 = page.photos.find_by_position("0") %>
+<% @position_1 = page.photos.find_by_position("1") %>
+<% @position_2 = page.photos.find_by_position("2") %>
+<% @position_3 = page.photos.find_by_position("3") %>
+<% @position_4 = page.photos.find_by_position("4") %>
+<% @position_5 = page.photos.find_by_position("5") %>
+<% @position_6 = page.photos.find_by_position("6") %>
+<% @position_7 = page.texts.find_by_position("7") %>
+<% @position_8 = page.photos.find_by_position("8") %>
+
+<div class="canvas">
+  <div class="six-box upleft left">
+    <% if @position_0.present? %>
+      <a href="<%= edit_photo_url(@position_0.id) %>"><div class="background" style="background-image: url(<%= @position_0.source_url %>);"></div></a>
+    <% else %>
+      <div class="new centered">
+        <%= link_to 'P', "#{new_photo_url}?page_id=#{page.id}&position=0" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="six-box upmid left">
+    <% if @position_1.present? %>
+      <a href="<%= edit_photo_url(@position_1.id) %>"><div class="background" style="background-image: url(<%= @position_1.source_url %>);"></div></a>
+    <% else %>
+      <div class="new centered">
+        <%= link_to 'P', "#{new_photo_url}?page_id=#{page.id}&position=1" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="six-box upright left">
+    <% if @position_2.present? %>
+      <a href="<%= edit_photo_url(@position_2.id) %>"><div class="background" style="background-image: url(<%= @position_2.source_url %>);"></div></a>
+    <% else %>
+      <div class="new centered">
+        <%= link_to 'P', "#{new_photo_url}?page_id=#{page.id}&position=2" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="six-box midleft left">
+    <% if @position_3.present? %>
+      <a href="<%= edit_photo_url(@position_3.id) %>"><div class="background" style="background-image: url(<%= @position_3.source_url %>);"></div></a>
+    <% else %>
+      <div class="new centered">
+        <%= link_to 'P', "#{new_photo_url}?page_id=#{page.id}&position=3" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="six-box midmid left">
+    <% if @position_4.present? %>
+      <a href="<%= edit_photo_url(@position_4.id) %>"><div class="background" style="background-image: url(<%= @position_4.source_url %>);"></div></a>
+    <% else %>
+      <div class="new centered">
+        <%= link_to 'P', "#{new_photo_url}?page_id=#{page.id}&position=4" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="six-box midright left">
+    <% if @position_5.present? %>
+      <a href="<%= edit_photo_url(@position_5.id) %>"><div class="background" style="background-image: url(<%= @position_5.source_url %>);"></div></a>
+    <% else %>
+      <div class="new centered">
+        <%= link_to 'P', "#{new_photo_url}?page_id=#{page.id}&position=5" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="six-box lowleft left">
+    <% if @position_6.present? %>
+      <a href="<%= edit_photo_url(@position_6.id) %>"><div class="background" style="background-image: url(<%= @position_6.source_url %>);"></div></a>
+    <% else %>
+      <div class="new centered">
+        <%= link_to 'P', "#{new_photo_url}?page_id=#{page.id}&position=6" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="six-box lowmid left">
+    <% if @position_7.present? %>
+        <%= simple_format(@position_7.message) %>
+    <% else %>
+      <div class="new centered">
+        <%= link_to 'T', "#{new_text_url}?page_id=#{page.id}&position=7" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="six-box lowright left">
+    <% if @position_8.present? %>
+      <a href="<%= edit_photo_url(@position_8.id) %>"><div class="background" style="background-image: url(<%= @position_8.source_url %>);"></div></a>
+    <% else %>
+      <div class="new centered">
+        <%= link_to 'P', "#{new_photo_url}?page_id=#{page.id}&position=8" %>
+      </div>
+    <% end %>
+  </div>
+</div>
