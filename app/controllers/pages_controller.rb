@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   def new
     @page = Page.new
     @book = Book.find_by_id(params[:book_id])
-    @layouts = ["layout1", "layout2", "layout3", "layout4"]
+    @layouts = ["layout1", "layout2", "layout3"]
   end
 
   def create
