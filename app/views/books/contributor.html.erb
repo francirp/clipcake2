@@ -3,7 +3,7 @@
 <%= form_tag(roles_url, method: 'post', :class => 'clearfix form-horizontal span6 offset2') do %>
 
   <div class="control-group">
-    <%= label_tag "recipient_fb_id[]", 'Recipient', :class => "control-label" %>
+    <%= label_tag "recipient_fb_id[]", 'Invitees', :class => "control-label" %>
      <div class="controls">
         <select size="20" multiple="multiple" name="recipient_fb_id[]">
           <% Friend.where(:user_id => current_user.id).sort_by!(&:name).each do |friend| %>
