@@ -8,7 +8,7 @@ class Friend < ActiveRecord::Base
   uid = user.uid
   access_token = user.access_token
 
-  query1request = "SELECT name, uid FROM user WHERE uid IN (SELECT uid1 FROM friend WHERE uid2=#{uid})"
+  query1request = "SELECT name, uid FROM user WHERE uid IN (SELECT uid1 FROM friend WHERE uid2=#{uid.to_i})"
 
   options = { :access_token => "#{access_token}" }
     friends_api = Fql.execute({
