@@ -13,14 +13,16 @@
 
   <tbody>
   <% @books.each do |book| %>
-    <tr>
-      <td><%= book.name %></td>
+    <% if book.users.find_by_id(current_user.id).present? %>
+      <tr>
+        <td><%= book.name %></td>
 
-      <td><%= link_to 'Show', book_url(book) %></td>
-      <td><%= link_to 'Edit', edit_book_url(book) %></td>
-      <td><%= link_to 'Destroy', book_url(book), method: 'delete', data: { confirm: "Do you really want to delete this book?" } %></td>
+        <td><%= link_to 'Show', book_url(book) %></td>
+        <td><%= link_to 'Edit', edit_book_url(book) %></td>
+        <td><%= link_to 'Destroy', book_url(book), method: 'delete', data: { confirm: "Do you really want to delete this book?" } %></td>
 
-    </tr>
+      </tr>
+    <% end %>
   <% end %>
   </tbody>
 </table>

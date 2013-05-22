@@ -19,6 +19,7 @@ class PhotosController < ApplicationController
     @position = params[:position]
     @recipient_fb_id = @book.recipient_fb_id
     @fb_photos = Photo.query_photos(@recipient_fb_id, current_user)
+    @fb_photos = @fb_photos[0]
   end
 
   def create

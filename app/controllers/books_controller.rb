@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-
+  # before_filter :authorize_user, :only => [:edit, :update, :destroy]
   def index
     @books = Book.all
   end

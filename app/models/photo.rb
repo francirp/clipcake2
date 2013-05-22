@@ -6,7 +6,9 @@ class Photo < ActiveRecord::Base
 
 
   def Photo.query_photos(friend_id, user)
-    if @photos.present? != true
+
+
+    if @final_photos.present? != true || @final_photos[1] != user.id
       uid = user.uid
       access_token = user.access_token
       recipient_id = friend_id
@@ -30,35 +32,36 @@ class Photo < ActiveRecord::Base
           s.fb_created_date = Date.strptime(photo["created"].to_s,'%s')
           @photos << s
         end
-        return @photos
+        @final_photos = [@photos, user.id]
+      return @final_photos
     else
-      return @photos
+      return @final_photos
     end
   end
 
   def Photo.query_photo(obj_id, user)
 
-  access_token = user.access_token
-  query1request = "SELECT src_big, caption, object_id, owner, aid, created FROM photo WHERE object_id=#{obj_id}"
+    access_token = user.access_token
+    query1request = "SELECT src_big, caption, object_id, owner, aid, created FROM photo WHERE object_id=#{obj_id}"
 
-  options = { :access_token => "#{access_token}" }
-    photos_api = Fql.execute({
-    :query1 => query1request
-    }, options)
+    options = { :access_token => "#{access_token}" }
+      photos_api = Fql.execute({
+      :query1 => query1request
+      }, options)
 
-  photos_clean_api = photos_api[0]["fql_result_set"]
+    photos_clean_api = photos_api[0]["fql_result_set"]
 
-    @picked_photos = []
+      @picked_photos = []
 
-    photos_clean_api.each do |photo|
-      s = Photo.new
-      s.source_url = photo["src_big"]
-      s.fb_object_id = photo["object_id"]
-      s.user_id = photo["owner"]
-      @picked_photos << s
-    end
+      photos_clean_api.each do |photo|
+        s = Photo.new
+        s.source_url = photo["src_big"]
+        s.fb_object_id = photo["object_id"]
+        s.user_id = photo["owner"]
+        @picked_photos << s
+      end
 
-    return @picked_photos
+      return @picked_photos
   end
 
 end
