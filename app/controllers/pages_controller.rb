@@ -16,8 +16,8 @@ class PagesController < ApplicationController
 
   def create
     @page = Page.new
-    @book = Book.find_by_id(@page.book_id)
-    @page.position = Book.where(:id => @page.book_id).count + 1
+    @book = Book.find_by_id(params[:book_id])
+    @page.position = @book.pages.count + 1
     @page.book_id = params[:book_id]
     @page.user_id = session[:user_id]
     @page.layout = params[:layout]
@@ -33,6 +33,8 @@ class PagesController < ApplicationController
 
   def edit
     @page = Page.find_by_id(params[:id])
+    @book = Book.find_by_id(params[:book_id])
+    @layouts = ["layout1", "layout2", "layout3"]
   end
 
   def update

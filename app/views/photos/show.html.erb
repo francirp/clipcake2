@@ -12,13 +12,13 @@
     <%= hidden_field_tag :position, @position %>
     <%= hidden_field_tag :oldphoto, @oldphoto %>
     <p></p>
-    <div class="control-group">
+<!--     <div class="control-group">
       <%= label_tag :caption, "Caption", :class => "control-label" %>
        <div class="controls">
         <%= text_field_tag :caption, @photo.try(:caption), :class => "pull-left" %><button type="submit" class="btn btn-primary span2 pull-left">Add Photo</button>
       </div>
-    </div>
-
+    </div> -->
+    <button type="submit" class="btn btn-primary span4 offset2">Add Photo</button>
   <% end %>
   <p></p>
 </div>

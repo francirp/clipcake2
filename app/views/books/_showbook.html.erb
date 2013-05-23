@@ -1,4 +1,4 @@
-<% @i += 1 %>
+
     <div class="book-show">
       <%= form_tag(page_url(page), :method => 'put') do %>
         <h4><%= page.user.full_name %> posted page #: <%= number_field_tag :position, page.position, :class => "input-mini" %>

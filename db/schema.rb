@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522212147) do
+ActiveRecord::Schema.define(:version => 20130523145115) do
 
   create_table "books", :force => true do |t|
     t.integer "captain_id"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20130522212147) do
     t.string  "full_name"
     t.string  "provider"
     t.string  "uid"
+    t.string  "avatar",           :default => "http://www.gravatar.com/avatar/8eac184149444324b77e478ff097386a?size=300&default=https://assets.github.com/images/gravatars/gravatar-140.png"
   end
 
 end

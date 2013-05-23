@@ -1,7 +1,4 @@
 
-
-
-
 <% pos0_photo = page.photos.where(:position => "0").sort_by(&:updated_at).last %>
 <% pos0_text = page.texts.where(:position => "0").sort_by(&:updated_at).last %>
 <% pos1_photo = page.photos.where(:position => "1").sort_by(&:updated_at).last %>
@@ -12,6 +9,14 @@
 <% pos3_text = page.texts.where(:position => "3").sort_by(&:updated_at).last %>
 <% pos4_photo = page.photos.where(:position => "4").sort_by(&:updated_at).last %>
 <% pos4_text = page.texts.where(:position => "4").sort_by(&:updated_at).last %>
+<% pos5_photo = page.photos.where(:position => "5").sort_by(&:updated_at).last %>
+<% pos5_text = page.texts.where(:position => "5").sort_by(&:updated_at).last %>
+<% pos6_photo = page.photos.where(:position => "6").sort_by(&:updated_at).last %>
+<% pos6_text = page.texts.where(:position => "6").sort_by(&:updated_at).last %>
+<% pos7_photo = page.photos.where(:position => "7").sort_by(&:updated_at).last %>
+<% pos7_text = page.texts.where(:position => "7").sort_by(&:updated_at).last %>
+<% pos8_photo = page.photos.where(:position => "8").sort_by(&:updated_at).last %>
+<% pos8_text = page.texts.where(:position => "8").sort_by(&:updated_at).last %>
 
 <!-- FIRST BOX -->
 
@@ -60,4 +65,65 @@
 <% else %>
   <% @position_3 = pos3_photo || pos3_text %>
 <% end %>
+
+<!-- FIFTH BOX -->
+
+<% if pos4_photo && pos4_text %>
+  <% if pos4_photo.updated_at > pos4_text.updated_at %>
+    <% @position_4 = pos4_photo %>
+  <% else %>
+    <% @position_4 = pos4_text %>
+  <% end %>
+<% else %>
+  <% @position_4 = pos4_photo || pos4_text %>
+<% end %>
+
+<!-- SIXTH BOX -->
+
+<% if pos5_photo && pos5_text %>
+  <% if pos5_photo.updated_at > pos5_text.updated_at %>
+    <% @position_5 = pos5_photo %>
+  <% else %>
+    <% @position_5 = pos5_text %>
+  <% end %>
+<% else %>
+  <% @position_5 = pos5_photo || pos5_text %>
+<% end %>
+
+<!-- SEVENTH BOX -->
+
+<% if pos6_photo && pos6_text %>
+  <% if pos6_photo.updated_at > pos6_text.updated_at %>
+    <% @position_6 = pos6_photo %>
+  <% else %>
+    <% @position_6 = pos6_text %>
+  <% end %>
+<% else %>
+  <% @position_6 = pos6_photo || pos6_text %>
+<% end %>
+
+<!-- EIGTH BOX -->
+
+<% if pos7_photo && pos7_text %>
+  <% if pos7_photo.updated_at > pos7_text.updated_at %>
+    <% @position_7 = pos7_photo %>
+  <% else %>
+    <% @position_7 = pos7_text %>
+  <% end %>
+<% else %>
+  <% @position_7 = pos7_photo || pos7_text %>
+<% end %>
+
+<!-- NINTH BOX -->
+
+<% if pos8_photo && pos8_text %>
+  <% if pos8_photo.updated_at > pos8_text.updated_at %>
+    <% @position_8 = pos8_photo %>
+  <% else %>
+    <% @position_8 = pos8_text %>
+  <% end %>
+<% else %>
+  <% @position_8 = pos8_photo || pos8_text %>
+<% end %>
+
 

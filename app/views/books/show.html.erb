@@ -2,30 +2,42 @@
 
 <center><h1><%= @book.name %></h1></center>
 
-
-<h2>Contributors</h2>
-  <ul>
-    <% @book.roles.each do |role| %>
-      <li><%= role.user.full_name %>
-        <% i = 1 %>
-        <% Page.where(:user_id => role.user.id).where(:book_id => role.book_id).each do |page| %>
-          <%= link_to "##{i}", page_url(page.id), :class => "btn btn-primary btn-mini" %>
-          <% i += 1 %>
+<div class="row-fluid">
+  <h2>Contributors</h2>
+    <ul>
+      <% i = 0 %>
+      <% @book.roles.each do |role| %>
+        <% if i%5 == 0 && i != 0 %>
+          </div>
+          <div class="row-fluid">
+        <% elsif i == 0 %>
+          <div class="row-fluid">
         <% end %>
-      </li>
-    <% end %>
-  </ul>
+        <li class="span2 left">
+          <img src="<%= role.user.avatar %>" class="img-circle contributor-list">
+          <center><h4> <%= role.user.full_name %> </h4></center>
+          <% x = 1 %>
+          <% Page.where(:user_id => role.user.id).where(:book_id => role.book_id).each do |page| %>
+            <%= link_to "#{x}", page_url(page.id) %>
+            <% x += 1 %>
+          <% end %>
+        </li>
+        <% i += 1 %>
+      <% end %>
+    </ul>
+</div>
 
-<h2>Pages</h2>
+<div class="row-fluid">
+<h2 class="clearfix">Pages</h2>
 <h3><%= link_to 'Add a New Page', "#{new_page_url}?book_id=#{@book.id}" %></h3>
 
-<% @i = 0 %>
 <% @book.pages.order("position asc").each do |page| %>
   <% if page.book.sharing_preference != "Social" %>
     <% if page.user.id == current_user.id %>
-        <%= render :partial => "showbook", :locals => { :page => page, :i => @i, :captain => @captain } %>
+        <%= render :partial => "showbook", :locals => { :page => page, :captain => @captain } %>
     <% end %>
   <% else %>
     <%= render :partial => "showbook", :locals => { :page => page, :i => @i, :captain => @captain } %>
   <% end %>
 <% end %>
+</div>
