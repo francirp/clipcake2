@@ -1,0 +1,63 @@
+
+
+
+
+<% pos0_photo = page.photos.where(:position => "0").sort_by(&:updated_at).last %>
+<% pos0_text = page.texts.where(:position => "0").sort_by(&:updated_at).last %>
+<% pos1_photo = page.photos.where(:position => "1").sort_by(&:updated_at).last %>
+<% pos1_text = page.texts.where(:position => "1").sort_by(&:updated_at).last %>
+<% pos2_photo = page.photos.where(:position => "2").sort_by(&:updated_at).last %>
+<% pos2_text = page.texts.where(:position => "2").sort_by(&:updated_at).last %>
+<% pos3_photo = page.photos.where(:position => "3").sort_by(&:updated_at).last %>
+<% pos3_text = page.texts.where(:position => "3").sort_by(&:updated_at).last %>
+<% pos4_photo = page.photos.where(:position => "4").sort_by(&:updated_at).last %>
+<% pos4_text = page.texts.where(:position => "4").sort_by(&:updated_at).last %>
+
+<!-- FIRST BOX -->
+
+<% if pos0_photo && pos0_text %>
+  <% if pos0_photo.updated_at > pos0_text.updated_at %>
+    <% @position_0 = pos0_photo %>
+  <% else %>
+    <% @position_0 = pos0_text %>
+  <% end %>
+<% else %>
+  <% @position_0 = pos0_photo || pos0_text %>
+<% end %>
+
+<!-- SECOND BOX -->
+
+<% if pos1_photo.present? && pos1_text.present? %>
+  <% if pos1_photo.updated_at > pos1_text.updated_at %>
+    <% @position_1 = pos1_photo %>
+  <% else %>
+    <% @position_1 = pos1_text %>
+  <% end %>
+<% else %>
+  <% @position_1 = pos1_photo || pos1_text %>
+<% end %>
+
+<!-- THIRD BOX -->
+
+<% if pos2_photo && pos2_text %>
+  <% if pos2_photo.updated_at > pos2_text.updated_at %>
+    <% @position_2 = pos2_photo %>
+  <% else %>
+    <% @position_2 = pos2_text %>
+  <% end %>
+<% else %>
+  <% @position_2 = pos2_photo || pos2_text %>
+<% end %>
+
+<!-- FOURTH BOX -->
+
+<% if pos3_photo && pos3_text %>
+  <% if pos3_photo.updated_at > pos3_text.updated_at %>
+    <% @position_3 = pos3_photo %>
+  <% else %>
+    <% @position_3 = pos3_text %>
+  <% end %>
+<% else %>
+  <% @position_3 = pos3_photo || pos3_text %>
+<% end %>
+

@@ -7,6 +7,7 @@ class PhotosController < ApplicationController
   def show
     @photos = Photo.query_photo(params[:id],User.find(session[:user_id]))
     @photo = @photos[0]
+    @oldphoto = params[:oldphoto]
     @position = params[:position]
     @page = Page.find_by_id(params[:page_id])
     @book = Book.find_by_id(params[:book_id])
@@ -16,6 +17,7 @@ class PhotosController < ApplicationController
     @page = Page.find_by_id(params[:page_id])
     @book = Book.find_by_id(@page.book_id)
     @photo = Photo.new
+    @oldphoto = params[:photo_id]
     @position = params[:position]
     @recipient_fb_id = @book.recipient_fb_id
     @fb_photos = Photo.query_photos(@recipient_fb_id, current_user)
@@ -23,16 +25,29 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = Photo.new
-    @photo.user_id = session[:user_id]
-    @photo.book_id = params[:book_id]
-    @photo.page_id = params[:page_id]
-    @photo.position = params[:position]
-    @photo.source_url = params[:source_url]
-    @photo.caption = params[:caption]
-    @photo.fb_created_date = params[:fb_created_date]
-    @photo.fb_object_id = params[:fb_object_id]
-    @photo.is_picked = params[:is_picked]
+    if Photo.find_by_id(params[:oldphoto]).present?
+      @photo = Photo.find_by_id(params[:oldphoto])
+      @photo.user_id = session[:user_id]
+      @photo.book_id = params[:book_id]
+      @photo.page_id = params[:page_id]
+      @photo.position = params[:position]
+      @photo.source_url = params[:source_url]
+      @photo.caption = params[:caption]
+      @photo.fb_created_date = params[:fb_created_date]
+      @photo.fb_object_id = params[:fb_object_id]
+      @photo.is_picked = params[:is_picked]
+    else
+      @photo = Photo.new
+      @photo.user_id = session[:user_id]
+      @photo.book_id = params[:book_id]
+      @photo.page_id = params[:page_id]
+      @photo.position = params[:position]
+      @photo.source_url = params[:source_url]
+      @photo.caption = params[:caption]
+      @photo.fb_created_date = params[:fb_created_date]
+      @photo.fb_object_id = params[:fb_object_id]
+      @photo.is_picked = params[:is_picked]
+    end
 
     if @photo.save
             redirect_to page_url(@photo.page_id)

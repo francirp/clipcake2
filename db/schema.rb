@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521073435) do
+ActiveRecord::Schema.define(:version => 20130522212147) do
 
   create_table "books", :force => true do |t|
     t.integer "captain_id"
@@ -45,15 +45,17 @@ ActiveRecord::Schema.define(:version => 20130521073435) do
   end
 
   create_table "photos", :force => true do |t|
-    t.integer "user_id"
-    t.integer "book_id"
-    t.integer "page_id"
-    t.integer "position"
-    t.string  "source_url"
-    t.string  "caption"
-    t.date    "fb_created_date"
-    t.string  "fb_object_id"
-    t.boolean "is_picked"
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.integer  "page_id"
+    t.integer  "position"
+    t.string   "source_url"
+    t.string   "caption"
+    t.date     "fb_created_date"
+    t.string   "fb_object_id"
+    t.boolean  "is_picked"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "roles", :force => true do |t|
@@ -63,14 +65,16 @@ ActiveRecord::Schema.define(:version => 20130521073435) do
   end
 
   create_table "texts", :force => true do |t|
-    t.integer "user_id"
-    t.integer "book_id"
-    t.integer "page_id"
-    t.string  "message"
-    t.integer "position"
-    t.string  "font_size"
-    t.string  "font_type"
-    t.string  "font_color"
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.integer  "page_id"
+    t.string   "message"
+    t.integer  "position"
+    t.string   "font_size"
+    t.string   "font_type"
+    t.string   "font_color"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

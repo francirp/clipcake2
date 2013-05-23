@@ -23,7 +23,7 @@
 <% @book.pages.order("position asc").each do |page| %>
   <% if page.book.sharing_preference != "Social" %>
     <% if page.user.id == current_user.id %>
-      <%= render :partial => "showbook", :locals => { :page => page, :i => @i, :captain => @captain } %>
+        <%= render :partial => "showbook", :locals => { :page => page, :i => @i, :captain => @captain } %>
     <% end %>
   <% else %>
     <%= render :partial => "showbook", :locals => { :page => page, :i => @i, :captain => @captain } %>

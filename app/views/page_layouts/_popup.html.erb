@@ -1,0 +1,52 @@
+<style>
+#overlay_form<%= "#{page.id}#{formnum}" %>{
+position: relative;
+border: 5px solid gray;
+padding: 10px;
+background: white;
+width: 100px;
+height: 150px;
+text-align: center;
+margin: -250px 0px 0px 150px;
+}
+
+#pop<%= "#{page.id}#{formnum}" %> {
+display: block;
+}
+
+#overlay_form<%= "#{page.id}#{formnum}" %> a {
+  margin: -70px 0px;
+  font-size: 14px;
+  color: red;
+}
+
+</style>
+
+<script type="text/javascript">
+
+
+// ******POPOUT #1 *******
+$(document).ready(function(){
+//open popup
+$("#pop<%= "#{page.id}#{formnum}" %>").click(function(){
+$("#overlay_form<%= "#{page.id}#{formnum}" %>").fadeIn(500);
+positionPopup();
+});
+
+//close popup
+$("#pop<%= "#{page.id}#{formnum}" %>close").click(function(){
+$("#overlay_form<%= "#{page.id}#{formnum}" %>").fadeOut(500);
+});
+});
+
+
+
+</script>
+
+<form id="overlay_form<%= "#{page.id}#{formnum}" %>" style="display:none">
+  <a href="<%= "#{new_photo_url}?page_id=#{page.id}&position=#{formnum}" %>" class="btn">Photo</a>
+  <p></p>
+  <a href="<%= "#{new_text_url}?page_id=#{page.id}&position=#{formnum}" %>" class="btn">Text</a>
+  <p></p>
+  <a href="#_" class="btn closebutton" id="pop<%= "#{page.id}#{formnum}" %>close">(Close)</a>
+</form>

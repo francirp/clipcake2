@@ -9,7 +9,7 @@
         <%= simple_format(@position_0.message) %>
     <% else %>
       <div class="new centered">
-        <%= link_to 'T', "#{new_text_url}?page_id=#{page.id}&position=0" %>
+        <%= link_to '+', "#{new_text_url}?page_id=#{page.id}&position=0" %>
       </div>
     <% end %>
   </div>
@@ -18,7 +18,7 @@
       <a href="<%= edit_photo_url(@position_1.id) %>"><div class="background" style="background-image: url(<%= @position_1.source_url %>);"></div></a>
     <% else %>
       <div class="new centered">
-        <%= link_to 'P', "#{new_photo_url}?page_id=#{page.id}&position=1" %>
+        <%= link_to '+', "#{new_photo_url}?page_id=#{page.id}&position=1" %>
       </div>
     <% end %>
   </div>
@@ -27,7 +27,7 @@
       <a href="<%= edit_photo_url(@position_2.id) %>"><div class="background" style="background-image: url(<%= @position_2.source_url %>);"></div></a>
     <% else %>
       <div class="new centered">
-        <%= link_to 'P', "#{new_photo_url}?page_id=#{page.id}&position=2" %>
+        <%= link_to '+', "#{new_photo_url}?page_id=#{page.id}&position=2" %>
       </div>
     <% end %>
   </div>
@@ -36,7 +36,7 @@
       <a href="<%= edit_photo_url(@position_3.id) %>"><div class="background" style="background-image: url(<%= @position_3.source_url %>);"></div></a>
     <% else %>
       <div class="new centered">
-        <%= link_to 'P', "#{new_photo_url}?page_id=#{page.id}&position=3" %>
+        <%= link_to '+', "#{new_photo_url}?page_id=#{page.id}&position=3" %>
       </div>
     <% end %>
   </div>
