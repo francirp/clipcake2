@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   # before_filter :authorize_user, :only => [:edit, :update, :destroy]
   def index
-    @books = Book.all
+    @books = current_user.books
   end
 
   def show

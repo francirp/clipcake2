@@ -7,13 +7,10 @@ class User < ActiveRecord::Base
     has_many :friends
 
 
-    def self.from_omniauth(auth)
-      create_from_omniauth(auth)
-    end
 
     def self.create_from_omniauth(auth)
         if User.where(:uid => auth.uid).present?
-            user = User.where(:uid => auth.uid.to_s).first
+                user = User.where(:uid => auth.uid).first
                 user.access_token = auth.credentials.token
                 user.provider = auth.provider
                 user.first_name = auth.info.first_name
@@ -35,7 +32,6 @@ class User < ActiveRecord::Base
                 user.email = auth.info.email
                 user.is_activated = true
                 user.avatar = "#{auth.info.image}&type=large"
-                return user
             end
         end
     end

@@ -8,7 +8,7 @@
     </div>
     <%= render :partial => "page_layouts/#{page.layout}", :locals => { :page => page } %>
     <div class="book-show">
-      <% if page.id == current_user.id || captain.id == current_user.id %>
+      <% if page.user == current_user || captain == current_user %>
         <%= link_to image_tag("iconmonstr-trash-can-15-icon.png", :class => 'edit-button right'), page_url(page.id), :method => 'delete', data: { confirm: "Do you really want to delete this page?" } %>
         <%= link_to image_tag("iconmonstr-edit-9-icon.png", :class => 'edit-button right'), edit_page_url(page.id) %>
       <% end %>

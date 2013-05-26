@@ -4,8 +4,8 @@ position: relative;
 border: 5px solid gray;
 padding: 10px;
 background: white;
-width: 100px;
-height: 150px;
+width: 150px;
+height: 225px;
 text-align: center;
 margin: -250px 0px 0px 150px;
 }
@@ -15,7 +15,7 @@ display: block;
 }
 
 #overlay_form<%= "#{page.id}#{formnum}" %> a {
-  margin: -70px 0px;
+  margin: -100px 0px;
   font-size: 14px;
   color: red;
 }
@@ -47,6 +47,8 @@ $("#overlay_form<%= "#{page.id}#{formnum}" %>").fadeOut(500);
   <a href="<%= "#{new_photo_url}?page_id=#{page.id}&position=#{formnum}" %>" class="btn">Photo</a>
   <p></p>
   <a href="<%= "#{new_text_url}?page_id=#{page.id}&position=#{formnum}" %>" class="btn">Text</a>
+  <p></p>
+  <%= link_to image_tag("iconmonstr-trash-can-15-icon.png", :class => 'edit-button'), delete_position_url(page.id,formnum), :method => 'delete', data: { confirm: "Do you really want to delete the content in this box?" } %>
   <p></p>
   <a href="#_" class="btn closebutton" id="pop<%= "#{page.id}#{formnum}" %>close">(Close)</a>
 </form>

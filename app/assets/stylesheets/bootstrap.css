@@ -4008,11 +4008,10 @@ input[type="submit"].btn.btn-mini {
 
 .nav-list .divider {
   *width: 100%;
-  height: 1px;
-  margin: 9px 1px;
+  height: 2px;
   *margin: -5px 0 5px;
   overflow: hidden;
-  background-color: #e5e5e5;
+  background-color: #AAAAAA;
   border-bottom: 1px solid #ffffff;
 }
 
@@ -4590,6 +4589,7 @@ input[type="submit"].btn.btn-mini {
   display: block;
   float: left;
   margin: 0 10px 0 0;
+  height: 60px;
 }
 
 .navbar .nav.pull-right {
@@ -4599,6 +4599,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar .nav > li {
   float: left;
+  height: 100%;
 }
 
 .navbar .nav > li > a {
@@ -4629,6 +4630,7 @@ input[type="submit"].btn.btn-mini {
   -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
      -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
           box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  height: 30px;
 }
 
 .navbar .btn-navbar {

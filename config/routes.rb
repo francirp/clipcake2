@@ -92,6 +92,7 @@ Clipcake2::Application.routes.draw do
 
   # DELETE
   delete '/pages/:id', controller: 'pages', action: 'destroy'
+  delete '/pages/:id/:position', controller: 'pages', action: 'destroy_position', as: 'delete_position'
   #------------------------------
 
   # Routes for the Book resource:

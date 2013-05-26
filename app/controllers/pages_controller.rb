@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   def new
     @page = Page.new
     @book = Book.find_by_id(params[:book_id])
-    @layouts = ["layout1", "layout2", "layout3"]
+    @layouts = ["layout1", "layout2", "layout3", "layout4", "layout5"]
   end
 
   def create
@@ -34,7 +34,7 @@ class PagesController < ApplicationController
   def edit
     @page = Page.find_by_id(params[:id])
     @book = Book.find_by_id(params[:book_id])
-    @layouts = ["layout1", "layout2", "layout3"]
+    @layouts = ["layout1", "layout2", "layout3", "layout4", "layout5"]
   end
 
   def update
@@ -57,5 +57,15 @@ class PagesController < ApplicationController
     @page = Page.find_by_id(params[:id])
     @page.destroy
         redirect_to book_url(@page.book.id)
-      end
+    end
+
+  def destroy_position
+  @page = Page.find_by_id(params[:id])
+  @photos = @page.photos.where(:position => params[:position])
+  @texts = @page.texts.where(:position => params[:position])
+  @photos.destroy_all
+  @texts.destroy_all
+      redirect_to book_url(@page.book.id)
+  end
+
 end

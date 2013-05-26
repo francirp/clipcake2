@@ -1,0 +1,8 @@
+<%= render :partial => "/page_layouts/positions", :locals => { :page => page } %>
+
+<div class="canvas">
+  <%= render :partial => "/page_layouts/box", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "quarter-box upleft" } %>
+  <%= render :partial => "/page_layouts/box", :locals => { :page => page, :formnum => 1, :position => @position_1, :styleclass => "quarter-box upright" } %>
+  <%= render :partial => "/page_layouts/box", :locals => { :page => page, :formnum => 2, :position => @position_2, :styleclass => "quarter-box lowleft" } %>
+  <%= render :partial => "/page_layouts/box", :locals => { :page => page, :formnum => 3, :position => @position_3, :styleclass => "quarter-box lowright" } %>
+</div>

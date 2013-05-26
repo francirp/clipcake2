@@ -1,56 +1,5 @@
 <%= render :partial => "/page_layouts/positions", :locals => { :page => page } %>
 
 <div class="canvas">
-  <% formnum = 0 %>
-  <div class="half-box soleleft left">
-    <a href="#_" class="fill-div" id="pop<%= "#{page.id}#{formnum}" %>">
-      <% if @position_0.present? %>
-          <% if @position_0.class == Photo %>
-            <div class="background" style="background-image: url(<%= @position_0.source_url %>);"></div>
-          <% else %>
-            <%= simple_format(@position_0.message) %>
-          <% end %>
-      <% else %>
-        <div class="new centered">
-          +
-        </div>
-      <% end %>
-      <%= render :partial => "/page_layouts/popup", :locals => { :page => page, :formnum => formnum } %>
-    </a>
-  </div>
-
-  <% formnum = 1 %>
-  <div class="quarter-box upright left">
-    <a href="#_" class="fill-div" id="pop<%= "#{page.id}#{formnum}" %>">
-      <% if @position_1.present? %>
-          <% if @position_1.class == Photo %>
-            <div class="background" style="background-image: url(<%= @position_1.source_url %>);"></div>
-          <% else %>
-            <%= simple_format(@position_1.message) %>
-          <% end %>
-      <% else %>
-        <div class="new centered">
-          +
-        </div>
-      <% end %>
-      <%= render :partial => "/page_layouts/popup", :locals => { :page => page, :formnum => formnum } %>
-    </a>
-  </div>
-  <% formnum = 2 %>
-  <div class="quarter-box lowright left">
-    <a href="#_" class="fill-div" id="pop<%= "#{page.id}#{formnum}" %>">
-      <% if @position_2.present? %>
-          <% if @position_2.class == Photo %>
-            <div class="background" style="background-image: url(<%= @position_2.source_url %>);"></div>
-          <% else %>
-            <%= simple_format(@position_2.message) %>
-          <% end %>
-      <% else %>
-        <div class="new centered">
-          +
-        </div>
-      <% end %>
-      <%= render :partial => "/page_layouts/popup", :locals => { :page => page, :formnum => formnum } %>
-    </a>
-  </div>
+  <%= render :partial => "/page_layouts/box", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "sole-box sole" } %>
 </div>

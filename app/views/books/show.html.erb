@@ -1,6 +1,19 @@
 <% @captain = @book.roles.where(:role_type => "captain").first.user %>
+<% @recipient = @captain.friends.where(:uid => @book.recipient_fb_id.to_s).first %>
 
-<center><h1><%= @book.name %></h1></center>
+<center>
+  <h2>
+    <%= image_tag "iconmonstr-quote-5-icon.png", :class => "quote-icon bottom" %>
+    <%= @book.name %>
+    <%= image_tag "iconmonstr-quote-6-icon.png", :class => "quote-icon bottom" %>
+  </h2>
+  <h4>A photobook gift for <%= @recipient.name %>.</h4>
+
+</center>
+
+<ul class="nav nav-list">
+  <li class="midpage_divider"></li>
+</ul>
 
 <div class="row-fluid">
   <h2>Contributors</h2>
@@ -15,25 +28,35 @@
         <% end %>
         <li class="span2 left">
           <img src="<%= role.user.avatar %>" class="img-circle contributor-list">
-          <center><h4> <%= role.user.full_name %> </h4></center>
+          <center><h5> <%= role.user.full_name %> </h5></center>
           <% x = 1 %>
+          <p class="page_nums">
           <% Page.where(:user_id => role.user.id).where(:book_id => role.book_id).each do |page| %>
             <%= link_to "#{x}", page_url(page.id) %>
             <% x += 1 %>
           <% end %>
+          </p>
         </li>
         <% i += 1 %>
       <% end %>
     </ul>
 </div>
 
+<ul class="nav nav-list">
+  <li class="midpage_divider"></li>
+</ul>
+
 <div class="row-fluid">
-<h2 class="clearfix">Pages</h2>
-<h3><%= link_to 'Add a New Page', "#{new_page_url}?book_id=#{@book.id}" %></h3>
+
+    <h2>
+    Pages
+    <%= link_to image_tag("add-button.png", :class => "add-button"), new_page_url(book_id: @book.id) %>
+    </h2>
+
 
 <% @book.pages.order("position asc").each do |page| %>
   <% if page.book.sharing_preference != "Social" %>
-    <% if page.user.id == current_user.id %>
+    <% if page.user == current_user %>
         <%= render :partial => "showbook", :locals => { :page => page, :captain => @captain } %>
     <% end %>
   <% else %>

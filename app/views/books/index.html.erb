@@ -13,6 +13,7 @@
 
   <tbody>
   <% @books.each do |book| %>
+
     <% if book.users.find_by_id(current_user.id).present? %>
       <tr>
         <td><%= book.name %></td>

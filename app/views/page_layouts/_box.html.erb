@@ -1,0 +1,16 @@
+<div class="<%= styleclass %> left">
+  <a href="#_" class="fill-div" id="pop<%= "#{page.id}#{formnum}" %>">
+    <% if position.present? %>
+        <% if position.class == Photo %>
+          <div class="background" style="background-image: url(<%= position.source_url %>);"></div>
+        <% else %>
+          <%= simple_format(position.message) %>
+        <% end %>
+    <% elsif page.user == current_user %>
+      <div class="new centered">
+        +
+      </div>
+      <%= render :partial => "/page_layouts/popup", :locals => { :page => page, :formnum => formnum } %>
+    <% end %>
+  </a>
+</div>
