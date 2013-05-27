@@ -40,7 +40,7 @@
       <div class="thumbnail">
         <%= image_tag "book.png" %>
         <div class="caption">
-          <h3>Graduation Photobook</h3>
+          <h3>Grad Photobook</h3>
           <p>Create a photobook for a friend or family member's graduation.</p>
           <div class="button_callout"><a href="<%= if current_user.present? then new_book_url else '/auth/facebook' end %>"><button class="btn btn-success btn-large">Get Started Now</button></a></div>
         </div>

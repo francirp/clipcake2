@@ -9,28 +9,29 @@
 
 </head>
 <body>
-
-<div class="container">
-  <div class="navbar">
-    <a class="brand" href="<%= root_path %>"> <%= image_tag "wide-logo.png", :class => "logo" %></a>
-      <ul class="nav pull-right">
-        <% if current_user %>
-          <li class="<%= 'active' if current_page?(new_book_url) %>"><a href="<%= new_book_url %>">CREATE A BOOK</a></li>
-          <li class="<%= 'active' if current_page?(books_url) %>"><a href="<%= books_url %>">MY BOOKS</a></li>
-          <li class="<%= 'active' if current_page?(user_url(session[:user_id])) %>"><a href="<%= user_url(session[:user_id]) %>">MY ACCOUNT</a></li>
-        <% else %>
-        <% end %>
-        <% if current_user %>
-          <li><a href="<%= sign_out_url %>">SIGN OUT</a></li>
-        <% else %>
-          <li class="sign-in"><a href="<%= '/auth/facebook' %>">SIGN IN VIA FACEBOOK</a></li>
-        <% end %>
-      </ul>
-   </div>
-</div>
+<header>
+  <div class="container">
+    <div class="navbar">
+      <a class="brand" href="<%= root_path %>"> <%= image_tag "wide-logo.png", :class => "logo" %></a>
+        <ul class="nav pull-right">
+          <% if current_user %>
+            <li class="<%= 'active' if current_page?(new_book_url) %>"><a href="<%= new_book_url %>">CREATE A BOOK</a></li>
+            <li class="<%= 'active' if current_page?(books_url) %>"><a href="<%= books_url %>">MY BOOKS</a></li>
+            <li class="<%= 'active' if current_page?(user_url(session[:user_id])) %>"><a href="<%= user_url(session[:user_id]) %>">MY ACCOUNT</a></li>
+          <% else %>
+          <% end %>
+          <% if current_user %>
+            <li><a href="<%= sign_out_url %>">SIGN OUT</a></li>
+          <% else %>
+            <li class="sign-in"><a href="<%= '/auth/facebook' %>">SIGN IN VIA FACEBOOK</a></li>
+          <% end %>
+        </ul>
+     </div>
+  </div>
 <ul class="nav nav-list">
   <li class="divider"></li>
 </ul>
+</header>
 <div class="container">
 
 </header>

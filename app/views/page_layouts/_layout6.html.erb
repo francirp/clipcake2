@@ -1,0 +1,6 @@
+<%= render :partial => "/page_layouts/positions", :locals => { :page => page } %>
+
+<div class="canvas">
+  <%= render :partial => "/page_layouts/box", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "wide-half-box soletop" } %>
+  <%= render :partial => "/page_layouts/box", :locals => { :page => page, :formnum => 1, :position => @position_1, :styleclass => "wide-half-box solebottom" } %>
+</div>

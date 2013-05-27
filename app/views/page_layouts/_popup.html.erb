@@ -1,11 +1,15 @@
 <style>
 #overlay_form<%= "#{page.id}#{formnum}" %>{
 position: relative;
-border: 5px solid gray;
+border: 5px solid red;
+-webkit-border-radius: 15px;
+border-radius: 15px;
 padding: 10px;
 background: white;
 width: 150px;
-height: 225px;
+height: 200px;
+background-color: none;
+background-repeat: no-repeat;
 text-align: center;
 margin: -250px 0px 0px 150px;
 }
@@ -15,7 +19,7 @@ display: block;
 }
 
 #overlay_form<%= "#{page.id}#{formnum}" %> a {
-  margin: -100px 0px;
+  margin: -105px 0px;
   font-size: 14px;
   color: red;
 }
@@ -39,16 +43,19 @@ $("#overlay_form<%= "#{page.id}#{formnum}" %>").fadeOut(500);
 });
 });
 
-
-
 </script>
 
 <form id="overlay_form<%= "#{page.id}#{formnum}" %>" style="display:none">
-  <a href="<%= "#{new_photo_url}?page_id=#{page.id}&position=#{formnum}" %>" class="btn">Photo</a>
-  <p></p>
-  <a href="<%= "#{new_text_url}?page_id=#{page.id}&position=#{formnum}" %>" class="btn">Text</a>
-  <p></p>
-  <%= link_to image_tag("iconmonstr-trash-can-15-icon.png", :class => 'edit-button'), delete_position_url(page.id,formnum), :method => 'delete', data: { confirm: "Do you really want to delete the content in this box?" } %>
-  <p></p>
-  <a href="#_" class="btn closebutton" id="pop<%= "#{page.id}#{formnum}" %>close">(Close)</a>
+  <%= link_to image_tag("iconmonstr-picture-add-icon.png", :class => 'popup-button'), new_photo_url(:page_id => page.id, :position => formnum) %>
+  <p class="add-buttons"></p>
+  <%= link_to image_tag("iconmonstr-text-file-4-icon.png", :class => 'popup-button'), new_text_url(:page_id => page.id, :position => formnum) %>
+  <p class="add-buttons"></p>
+  <%= link_to image_tag("iconmonstr-trash-can-15-icon.png", :class => 'popup-button'), delete_position_url(page.id,formnum), :method => 'delete', data: { confirm: "Do you really want to delete the content in this box?" } %>
+  <br />
+  <%= link_to image_tag("iconmonstr-x-mark-3-icon.png", :class => 'closebutton edit-button pull-right', :id => "pop#{page.id}#{formnum}close"), "#_" %>
+
 </form>
+
+
+
+

@@ -417,7 +417,7 @@ a:focus {
 }
 
 .row-fluid [class*="span"]:first-child {
-  margin-left: 2.127659574468085%;
+  margin-left: 0px;
 }
 
 .row-fluid .controls-row [class*="span"] + [class*="span"] {
