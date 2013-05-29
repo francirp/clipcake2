@@ -15,33 +15,36 @@ class RolesController < ApplicationController
   def create
 
     array = params[:recipient_fb_id]
-    array.each do |friend|
-      if User.where(:uid => friend).present? != true
-        @friend = Friend.find_by_uid(friend)
-        @user = User.new
-        @user.uid = @friend.uid
-        @user.full_name = @friend.name
-        @user.save
+    if array.present?
+      array.each do |friend|
+        if User.where(:uid => friend).present? != true
+          @friend = Friend.find_by_uid(friend)
+          @user = User.new
+          @user.uid = @friend.uid
+          @user.full_name = @friend.name
+          @user.avatar = "https://graph.facebook.com/#{friend}/picture?type=large"
+          @user.save
+        else
+          @user = User.find_by_uid(friend)
+        end
+
+        @role = Role.new
+        @role.book_id = params[:book_id]
+        @role.user_id = @user.id
+        @role.role_type = "contributor"
+        @role.save
       end
 
-      if @user != true
-        @user = User.find_by_uid(friend)
-      end
-
-      @role = Role.new
-      @role.book_id = params[:book_id]
-      @role.user_id = @user.id
-      @role.role_type = "contributor"
-      @role.save
-    end
       @role = Role.new
       @role.book_id = params[:book_id]
       @role.user_id = session[:user_id]
       @role.role_type = "captain"
       @role.save
-
-
-    redirect_to book_url(params[:book_id])
+      redirect_to book_url(params[:book_id])
+    else
+      @book = Book.find_by_id(params[:book_id])
+      render '/books/contributor'
+    end
   end
 
   def edit

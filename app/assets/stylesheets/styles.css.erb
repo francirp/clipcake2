@@ -44,6 +44,8 @@ h1 {
   height: 195px;
 }
 
+
+
 body {background-color: white; margin: 0px 0px 100px 0px;}
 
 
@@ -107,6 +109,25 @@ h3 a {
 p a {
   color: red;
   padding-right: 5px;
+}
+
+.fill-row-vertically {
+  height: 100%;
+}
+
+ul.thumbnails.per4 > li:nth-child(4n+1) {
+  clear: left;
+  margin-left: 0px;
+}
+
+ul.thumbnails.per5 > li:nth-child(5n+1) {
+  clear: left;
+  margin-left: 0px;
+}
+
+ul.thumbnails.per3 > li:nth-child(3n+1) {
+  clear: left;
+  margin-left: 0px;
 }
 
 .span2 .contributors {
@@ -203,9 +224,22 @@ padding: 0px 0px 0px 20px;
 padding: 20px 0px 0px 20px;
 }
 
+.media-body {
+  padding-left: 20px;
+}
+
+.hero-unit {
+  padding: 20px;
+}
+
 .edit-button {
   width: 32px;
   height: 32px;
+}
+
+.small-image {
+  width: 64px;
+  height: 64px;
 }
 
 .popup-button {
@@ -406,7 +440,6 @@ a.fill-div {
 .lowleft { margin: 4px 4px 8px 8px }
 .lowmid { margin: 4px 4px 8px 4px }
 .lowright { margin: 4px 8px 8px 4px }
-
 
 .new {
   font-size: 80px;

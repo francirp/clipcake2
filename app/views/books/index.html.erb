@@ -1,30 +1,31 @@
-<h1>Books</h1>
+<h1>Books
+<%= link_to image_tag("add-button.png", :class => "add-button"), new_book_url %>
+</h1>
 
-<p><%= link_to 'Add a New Book', new_book_url %></p>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Book Name</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-  <% @books.each do |book| %>
 
-    <% if book.users.find_by_id(current_user.id).present? %>
-      <tr>
-        <td><%= book.name %></td>
-
-        <td><%= link_to 'Show', book_url(book) %></td>
-        <td><%= link_to 'Edit', edit_book_url(book) %></td>
-        <td><%= link_to 'Destroy', book_url(book), method: 'delete', data: { confirm: "Do you really want to delete this book?" } %></td>
-
-      </tr>
-    <% end %>
+  <% current_user.books.each do |book| %>
+    <div class="hero-unit books">
+      <div class="media">
+        <a class="pull-left">
+          <%= link_to image_tag("https://graph.facebook.com/#{book.recipient_fb_id}/picture?type=large", :class => 'img-circle contributor-list pull-left'), book %>
+        </a>
+        <div class="media-body">
+          <h2 class="media-heading">
+            <%= book.name %>
+            <%= link_to image_tag("iconmonstr-trash-can-15-icon.png", :class => 'edit-button right'), book, :method => 'delete', data: { confirm: "Do you really want to delete this book?" } %>
+            <%= link_to image_tag("iconmonstr-edit-9-icon.png", :class => 'edit-button right'), book %>
+          </h2>
+          <p>
+            <%= book.pages.count %> pages and <%= book.roles.count %> contributors.
+          </p>
+          <p><% book.users.each do |user| %>
+            <%= image_tag user.avatar, :class => "img-circle small-image" %>
+          <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
   <% end %>
-  </tbody>
-</table>
 

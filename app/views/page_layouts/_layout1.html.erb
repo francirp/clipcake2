@@ -1,5 +1,5 @@
 <%= render :partial => "/page_layouts/positions", :locals => { :page => page } %>
 
-<div class="canvas">
+<div class="<%= canvas_css_property %>">
   <%= render :partial => "/page_layouts/box", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "sole-box sole" } %>
 </div>
