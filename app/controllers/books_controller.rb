@@ -31,6 +31,8 @@ class BooksController < ApplicationController
     @book.sharing_preference = params[:sharing_preference]
     @book.name = params[:name]
 
+    @role = @book.roles.build(:role_type => "captain", :user_id => current_user.id)
+
     if @book.save
             redirect_to "#{new_invite_url}?book_id=#{@book.id}"
           else

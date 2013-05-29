@@ -1,11 +1,15 @@
+<script>
+      $(document).ready(function() { $("#e9").select2(); });
+</script>
+
 <h1 class="form span10">Add Invitees</h1>
 
 <%= form_tag(roles_url, method: 'post', :class => 'clearfix form-horizontal span6 offset2') do %>
 
   <div class="control-group">
-    <%= label_tag "recipient_fb_id[]", 'Invitees', :class => "control-label" %>
+    <%= label_tag "friend_id[]", 'Invitees', :class => "control-label" %>
      <div class="controls">
-        <select size="20" multiple="multiple" name="recipient_fb_id[]">
+        <select id="e9" size="20" multiple="multiple" name="friend_id[]">
           <% Friend.where(:user_id => current_user.id).sort_by!(&:name).each do |friend| %>
             <option value="<%= friend.uid %>"><%= friend.name %></option>
           <% end %>

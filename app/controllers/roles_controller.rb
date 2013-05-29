@@ -14,7 +14,9 @@ class RolesController < ApplicationController
 
   def create
 
-    array = params[:recipient_fb_id]
+    @book = Book.find_by_id(params[:book_id])
+    array = params[:friend_id]
+
     if array.present?
       array.each do |friend|
         if User.where(:uid => friend).present? != true
@@ -28,21 +30,14 @@ class RolesController < ApplicationController
           @user = User.find_by_uid(friend)
         end
 
-        @role = Role.new
-        @role.book_id = params[:book_id]
-        @role.user_id = @user.id
-        @role.role_type = "contributor"
-        @role.save
+          @role = Role.new
+          @role.book_id = params[:book_id]
+          @role.user_id = @user.id
+          @role.role_type = "contributor"
+          @role.save
       end
-
-      @role = Role.new
-      @role.book_id = params[:book_id]
-      @role.user_id = session[:user_id]
-      @role.role_type = "captain"
-      @role.save
       redirect_to book_url(params[:book_id])
     else
-      @book = Book.find_by_id(params[:book_id])
       render '/books/contributor'
     end
   end
