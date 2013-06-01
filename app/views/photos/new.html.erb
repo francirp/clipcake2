@@ -30,7 +30,7 @@
 
 <div class="row" id="friendshipphotos">
   <center><h3>Friendship Photos (<%= link_to "View on Facebook", "https://www.facebook.com/profile.php?id=#{current_user.uid}&and=#{@recipient_fb_id}&sk=photos", :target => "_blank" %>)</h3></center>
-  <h5>Note: due to user privacy settings within Facebook, you may not be able to see all (or any) of your friendship photos with <%= friend_name %> on our website. Click the "View on Facebook" link above to see your friendship photos with <%= friend_name %> on Facebook. When you find an image you like, right click the image and choose "copy image URL". Then paste that URL in the field above that says "Photo URL".</h5>
+  <h5>Note: due to user privacy settings within Facebook, you may not be able to see all (or any) of your friendship photos with <%= friend_name %> on our website. Click the "View on Facebook" link above to see your friendship photos with <%= friend_name %> on Facebook. When you find an image you like, click the image to enlarge it and then right click and choose "copy image URL". Then paste that URL in the field above that says "Photo URL".</h5>
   <ul class="thumbnails">
     <% @fb_photos.each do |photo| %>
     <li class="span4">
