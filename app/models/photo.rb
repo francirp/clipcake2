@@ -8,7 +8,15 @@ class Photo < ActiveRecord::Base
   #pulls back friendship photos
   def Photo.query_photos(friend_id, user)
 
-    if @final_photos.present? != true || @final_photos[1] != user.id || @final_photos[2] != friend_id
+
+    uid = user.uid
+      access_token = user.access_token
+      recipient_id = friend_id
+      query1request = "SELECT src_big, caption, object_id, owner, aid, created FROM photo WHERE object_id IN(SELECT object_id FROM photo_tag WHERE subject = #{uid}) AND object_id IN(SELECT object_id FROM photo_tag WHERE subject=#{recipient_id})"
+logger.debug "Photo.query_photos #{query1request}"
+logger.debug "Photo.query_photos #{friend_id} #{access_token}"
+
+    #if @final_photos.present? != true || @final_photos[1] != user.id || @final_photos[2] != friend_id
       uid = user.uid
       access_token = user.access_token
       recipient_id = friend_id
@@ -22,7 +30,7 @@ class Photo < ActiveRecord::Base
       photos_clean_api = photos_api[0]["fql_result_set"]
 
         @photos = []
-
+logger.debug "getting photo"
         photos_clean_api.each do |photo|
           s = Photo.new
           s.source_url = photo["src_big"]
@@ -31,12 +39,13 @@ class Photo < ActiveRecord::Base
           s.user_id = photo["owner"]
           s.fb_created_date = Date.strptime(photo["created"].to_s,'%s')
           @photos << s
+          logger.debug "got photo"
         end
         @final_photos = [@photos, user.id, friend_id]
       return @final_photos
-    else
-      return @final_photos
-    end
+    #else
+      #return @final_photos
+    #end
   end
 
 
