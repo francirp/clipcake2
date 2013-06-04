@@ -1,13 +1,13 @@
 <ul id="gallery" class="gallery ui-helper-reset ui-helper-clearfix">
   <div class="ui-widget ui-helper-clearfix">
-    <%= paginate photos, :remote => true %>
+    <%= paginate photos, :remote => true, :params => {:photo_provider => photo_provider} %>
     <% i = 0 %>
     <% photos.each do |photo| %>
       <% i += 1 %>
       <li class="ui-widget-content ui-corner-tr">
         <img src="<%= photo.source_url %>" class="pic" id="draggable_<%= i %>" />
         <!-- Button to trigger modal -->
-        <a href="#myModal_<%= i %>" role="button" class="small-button" data-toggle="modal"><%= image_tag 'iconmonstr-magnifier.png' %></a>
+        <a href="#myModal_<%= i %>" role="button" class="small-button icon" data-toggle="modal"><%= image_tag 'iconmonstr-magnifier.png' %></a>
 
         <!-- Modal -->
         <div id="myModal_<%= i %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -15,7 +15,13 @@
             <%= image_tag photo.source_url %>
           </div>
           <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <h4>
+              <% if i > 1 %>
+                <a href="#myModal_<%= i - 1 %>" class="btn" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Previous</a>
+              <% end %>
+              <a href="#myModal_<%= i + 1 %>" data-dismiss="modal" aria-hidden="true" data-toggle="modal" class="btn">Next</a>
+              <a href="#_" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+            </h4>
           </div>
         </div>
       </li>

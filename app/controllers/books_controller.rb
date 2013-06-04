@@ -17,9 +17,15 @@ class BooksController < ApplicationController
     @user_photos = Photo.query_user_photos(current_user)
     @user_photos = @user_photos[0]
     @user_photos = Kaminari.paginate_array(@user_photos).page(params[:page]).per(10)
+    @pages = @book.pages
+    @pages = Kaminari.paginate_array(@pages).page(params[:pagina]).per(1)
 
     respond_to do |format|
-      format.js
+      if params[:photo_provider].blank?
+        format.js { render 'page' }
+      elsif params[:photo_provider].present?
+        format.js
+      end
       format.html
     end
   end
