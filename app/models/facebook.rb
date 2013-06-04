@@ -11,8 +11,9 @@ class Facebook
 
    #pulls back friendship photos
   def query_photos(friend_id)
-
-    Rails.cache.fetch("query_photos#{friend_id}") {
+    Rails.logger.debug "Facebook: query_photos"
+    Rails.cache.fetch("query_photos#{friend_id}_#{user_id}") {
+      Rails.logger.debug "Facebook: getting query_photos"
       recipient_id = friend_id
       query1request = "SELECT src_big, caption, object_id, owner, aid, created FROM photo WHERE object_id IN(SELECT object_id FROM photo_tag WHERE subject = #{uid}) AND object_id IN(SELECT object_id FROM photo_tag WHERE subject=#{recipient_id})"
       options = { :access_token => "#{access_token}" }
@@ -41,7 +42,7 @@ class Facebook
   def query_friend_photos(friend_id)
 
     Rails.logger.debug "Facebook: query_friend_photos"
-    Rails.cache.fetch("query_friend_photos#{friend_id}") {
+    Rails.cache.fetch("query_friend_photos#{friend_id}_#{user_id}") {
       Rails.logger.debug "Facebook: query_friend_photos - gettin from facebook"
       recipient_id = friend_id
       query1request = "SELECT src_big, caption, object_id, owner, aid, created FROM photo WHERE object_id IN(SELECT object_id FROM photo_tag WHERE subject=#{recipient_id})"
@@ -68,9 +69,11 @@ class Facebook
   end
 
   #pulls back individual photo selected by user
-  def query_photo(obj_id, user)
+  def query_photo(obj_id)
 
-    Rails.cache.fetch("query_photo#{friend_id}") {
+    Rails.logger.debug "Facebook: query_photo"
+    Rails.cache.fetch("query_photo#{obj_id}_#{obj_id}") {
+      Rails.logger.debug "Facebook: getting query_photo"
       query1request = "SELECT src_big, caption, object_id, owner, aid, created FROM photo WHERE object_id=#{obj_id}"
 
       options = { :access_token => "#{access_token}" }
@@ -96,10 +99,12 @@ class Facebook
   end
 
 
-  def query_user_photos(user)
+  def query_user_photos
 
-    Rails.cache.fetch("query_user_photos#{friend_id}") {
+    Rails.logger.debug "Facebook: query_user_photos"
+    Rails.cache.fetch("query_user_photos#{user_id}") {
 
+      Rails.logger.debug "Facebook: getting query_user_photos"
       query1request = "SELECT src_big, caption, object_id, owner, aid, created FROM photo WHERE object_id IN(SELECT object_id FROM photo_tag WHERE subject=#{uid})"
 
       options = { :access_token => "#{access_token}" }
@@ -120,7 +125,7 @@ class Facebook
         s.fb_created_date = Date.strptime(photo["created"].to_s,'%s')
         @user_photos << s
       end
-      @final_user_photos = [@user_photos, user.id]
+      @final_user_photos = [@user_photos, user_id]
     }
 
   end
