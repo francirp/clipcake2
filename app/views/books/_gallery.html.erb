@@ -1,11 +1,11 @@
 <ul id="gallery" class="gallery ui-helper-reset ui-helper-clearfix">
   <div class="ui-widget ui-helper-clearfix">
-    <%= paginate photos, :remote => true, :params => {:photo_provider => photo_provider} %>
+    <h4><%= paginate photos, :remote => true, :params => {:photo_provider => photo_provider} %></h4>
     <% i = 0 %>
     <% photos.each do |photo| %>
       <% i += 1 %>
-      <li class="ui-widget-content ui-corner-tr">
-        <img src="<%= photo.source_url %>" class="pic" id="draggable_<%= i %>" />
+      <li class="ui-widget-content ui-corner-tr" id="draggable_<%= i %>">
+        <img src="<%= photo.source_url %>" class="pic" />
         <!-- Button to trigger modal -->
         <a href="#myModal_<%= i %>" role="button" class="small-button icon" data-toggle="modal"><%= image_tag 'iconmonstr-magnifier.png' %></a>
 
@@ -25,6 +25,25 @@
           </div>
         </div>
       </li>
+        <script>
+
+        $( init );
+
+        function init() {
+          $('#draggable_<%= i %>').draggable({
+              cancel: "a.ui-icon", // clicking an icon won't initiate dragging
+              revert: "invalid", // when not dropped, the item will revert back to its initial position
+              containment: "document",
+              helper: "clone",
+              cursor: "move"
+            });
+            }
+
+        </script>
+
+
     <% end %>
   </div>
 </ul>
+
+

@@ -1,4 +1,4 @@
-<div class="<%= styleclass %> left">
+<div class="<%= styleclass %> left" id="<%= "#{page.id}#{formnum}" %>">
   <a href="#_" class="fill-div" id="pop<%= "#{page.id}#{formnum}" %>">
     <% if position.present? %>
         <% if position.class == Photo %>
@@ -12,3 +12,25 @@
     <%= render :partial => "/page_layouts/popup", :locals => { :page => page, :formnum => formnum } %>
   </a>
 </div>
+
+
+
+<script>
+
+          $( init );
+
+          function init() {
+                    $('.fill-div').droppable({
+                        accept: $("li.ui-draggable"),
+                        drop: function( event, ui ) {
+                          alert('yo')
+                        }
+                      });
+                      }
+
+          function addPicture( $item, $box ) {
+                  $box.replaceWith($item)
+                  }
+
+        </script>
+
