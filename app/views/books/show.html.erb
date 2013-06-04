@@ -1,3 +1,19 @@
+<style>
+  #gallery { float: left; width: 100%; min-height: 12em; }
+  .gallery.custom-state-active { background: #eee; }
+  .gallery li { float: left; width: 129px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
+  .gallery li h5 { margin: 0 0 0.4em; cursor: move; }
+  .gallery li img.pic { width: 100%; cursor: move; }
+  .gallery li a { float: left;}
+  .gallery li a.img.small-button { float: left; cursor: default; }
+
+  #trash { float: right; width: 32%; min-height: 18em; padding: 1%; }
+  #trash h4 { line-height: 16px; margin: 0 0 0.4em; }
+  #trash h4 .ui-icon { float: left; }
+  #trash .gallery h5 { display: none; }
+  </style>
+
+
 <% @captain = @book.roles.where(:role_type => "captain").first.user %>
 <% @recipient = @captain.friends.where(:uid => @book.recipient_fb_id.to_s).first %>
 
@@ -50,19 +66,165 @@
 
 <div class="row-fluid">
 
+
+</div>
+
+
+<div class="row-fluid">
+  <div class="left-col pull-left">
+    <h2>
+      Photos
+    </h2>
+    <div class="row-fluid">
+      <div class="btn-group" data-toggle="buttons-radio">
+        <%= link_to "Friendship", book_url(@book.id, :photo_provider => "friendship"), :class => 'btn btn-primary', :type => 'button', :method => :get, :remote => true %>
+        <%= link_to "Recipient", book_url(@book.id, :photo_provider => "friends"), :class => 'btn btn-primary', :type => 'button', :method => :get, :remote => true %>
+        <%= link_to "My Photos", book_url(@book.id, :photo_provider => "personal"), :class => 'btn btn-primary', :type => 'button', :method => :get, :remote => true %>
+      </div>
+    </div>
+    <br />
+
+    <%= render :partial => "gallery", :locals => { :photos => @fb_photos } %>
+  </div>
+
+  <div class="right-col pull-left">
     <h2>
     Pages
     <%= link_to image_tag("add-button.png", :class => "add-button"), new_page_url(book_id: @book.id) %>
     </h2>
 
+        <% i = 0 %>
+        <% @book.pages.order("position asc").each do |page| %>
+          <% i += 1 %>
+          <div>
+              <% if page.book.sharing_preference != "Social" %>
+                <% if page.user == current_user %>
+                    <%= render :partial => "showbook", :locals => { :page => page, :captain => @captain } %>
+                <% end %>
+              <% else %>
+                <%= render :partial => "showbook", :locals => { :page => page, :i => @i, :captain => @captain } %>
+              <% end %>
+          </div>
+        <% end %>
+      </div>
 
-<% @book.pages.order("position asc").each do |page| %>
-  <% if page.book.sharing_preference != "Social" %>
-    <% if page.user == current_user %>
-        <%= render :partial => "showbook", :locals => { :page => page, :captain => @captain } %>
-    <% end %>
-  <% else %>
-    <%= render :partial => "showbook", :locals => { :page => page, :i => @i, :captain => @captain } %>
-  <% end %>
-<% end %>
+  </div>
 </div>
+
+
+
+
+
+
+<script>
+  $(function() {
+    $( "#accordion" ).accordion();
+  });
+</script>
+
+<script>
+  $(function() {
+    // there's the gallery and the trash
+    var $gallery = $( "#gallery" ),
+      $trash = $( "#trash" );
+
+    // let the gallery items be draggable
+    $( "li", $gallery ).draggable({
+      cancel: "a.ui-icon", // clicking an icon won't initiate dragging
+      revert: "invalid", // when not dropped, the item will revert back to its initial position
+      containment: "document",
+      helper: "clone",
+      cursor: "move"
+    });
+
+    // let the trash be droppable, accepting the gallery items
+    $trash.droppable({
+      accept: "#gallery > li",
+      activeClass: "ui-state-highlight",
+      drop: function( event, ui ) {
+        deleteImage( ui.draggable );
+      }
+    });
+
+    // let the gallery be droppable as well, accepting items from the trash
+    $gallery.droppable({
+      accept: "#trash li",
+      activeClass: "custom-state-active",
+      drop: function( event, ui ) {
+        recycleImage( ui.draggable );
+      }
+    });
+
+    // image deletion function
+    var recycle_icon = "<a href='link/to/recycle/script/when/we/have/js/off' title='Recycle this image' class='ui-icon ui-icon-refresh'>Recycle image</a>";
+    function deleteImage( $item ) {
+      $item.fadeOut(function() {
+        var $list = $( "ul", $trash ).length ?
+          $( "ul", $trash ) :
+          $( "<ul class='gallery ui-helper-reset'/>" ).appendTo( $trash );
+
+        $item.find( "a.ui-icon-trash" ).remove();
+        $item.append( recycle_icon ).appendTo( $list ).fadeIn(function() {
+          $item
+            .animate({ width: "48px" })
+            .find( "img" )
+              .animate({ height: "36px" });
+        });
+      });
+    }
+
+    // image recycle function
+    var trash_icon = "<a href='link/to/trash/script/when/we/have/js/off' title='Delete this image' class='ui-icon ui-icon-trash'>Delete image</a>";
+    function recycleImage( $item ) {
+      $item.fadeOut(function() {
+        $item
+          .find( "a.ui-icon-refresh" )
+            .remove()
+          .end()
+          .css( "width", "96px")
+          .append( trash_icon )
+          .find( "img" )
+            .css( "height", "72px" )
+          .end()
+          .appendTo( $gallery )
+          .fadeIn();
+      });
+    }
+
+    // image preview function, demonstrating the ui.dialog used as a modal window
+    function viewLargerImage( $link ) {
+      var src = $link.attr( "href" ),
+        $modal = $( "img[src$='" + src + "']" );
+
+      if ( $modal.length ) {
+        $modal.dialog( "open" );
+      } else {
+        var img = $( "<img alt='" + "' width='384' height='288' style='display: none; padding: 8px;' />" )
+          .attr( "src", src ).appendTo( "body" );
+        setTimeout(function() {
+          img.dialog({
+            title: title,
+            width: 400,
+            modal: true
+          });
+        }, 1 );
+      }
+    }
+
+    // resolve the icons behavior with event delegation
+    $( "ul.gallery > li" ).click(function( event ) {
+      var $item = $( this ),
+        $target = $( event.target );
+
+      if ( $target.is( "a.ui-icon-trash" ) ) {
+        deleteImage( $item );
+      } else if ( $target.is( "a.ui-icon-zoomin" ) ) {
+        viewLargerImage( $target );
+      } else if ( $target.is( "a.ui-icon-refresh" ) ) {
+        recycleImage( $item );
+      }
+
+      return false;
+    });
+  });
+  </script>

@@ -7,9 +7,7 @@
           <%= simple_format(position.message) %>
         <% end %>
     <% elsif page.user == current_user || page.book.captain == current_user %>
-      <div class="new centered">
-        +
-      </div>
+
     <% end %>
     <%= render :partial => "/page_layouts/popup", :locals => { :page => page, :formnum => formnum } %>
   </a>

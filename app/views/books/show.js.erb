@@ -1,0 +1,9 @@
+<% if @photo_provider == "friendship" %>
+  <% photos = @fb_photos %>
+<% elsif @photo_provider == "friends" %>
+  <% photos = @friend_photos %>
+<% else %>
+  <% photos = @user_photos %>
+<% end %>
+
+$('ul#gallery').replaceWith("<%= j(render('gallery', photos: photos)) %>")
