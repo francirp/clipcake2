@@ -13,8 +13,10 @@ class BooksController < ApplicationController
     @fb_photos = Kaminari.paginate_array(@fb_photos).page(params[:page]).per(10)
     @friend_photos = Photo.query_friend_photos(@recipient_fb_id, current_user)
     @friend_photos = @friend_photos[0]
+    @friend_photos = Kaminari.paginate_array(@friend_photos).page(params[:page]).per(10)
     @user_photos = Photo.query_user_photos(current_user)
     @user_photos = @user_photos[0]
+    @user_photos = Kaminari.paginate_array(@user_photos).page(params[:page]).per(10)
 
     respond_to do |format|
       format.js

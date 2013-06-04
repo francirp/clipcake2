@@ -1,6 +1,6 @@
 <ul id="gallery" class="gallery ui-helper-reset ui-helper-clearfix">
   <div class="ui-widget ui-helper-clearfix">
-    <%= paginate photos %>
+    <%= paginate photos, :remote => true %>
     <% i = 0 %>
     <% photos.each do |photo| %>
       <% i += 1 %>
