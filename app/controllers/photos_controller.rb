@@ -5,6 +5,7 @@ class PhotosController < ApplicationController
   end
 
   def show
+    #@photos = Photo.query_photo(params[:id],User.find(session[:user_id]))
     @photos = Photo.query_photo(params[:id],User.find(session[:user_id]))
     @photo = @photos[0]
     @oldphoto = params[:oldphoto]
@@ -22,7 +23,9 @@ class PhotosController < ApplicationController
     @recipient_fb_id = @book.recipient_fb_id
     @fb_photos = Photo.query_photos(@recipient_fb_id, current_user)
     @fb_photos = @fb_photos[0]
-    @friend_photos = Photo.query_friend_photos(@recipient_fb_id, current_user)
+    #@friend_photos = Photo.query_friend_photos(@recipient_fb_id, current_user)
+    logger.debug "photo controller getting fb photos"
+    @friend_photos = current_user.facebook.query_friend_photos(@recipient_fb_id)
     @friend_photos = @friend_photos[0]
     @user_photos = Photo.query_user_photos(current_user)
     @user_photos = @user_photos[0]

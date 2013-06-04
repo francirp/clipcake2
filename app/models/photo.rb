@@ -79,7 +79,6 @@ logger.debug "getting photo"
 
   def Photo.query_friend_photos(friend_id, user)
 
-
     if @final_friend_photos.present? != true || @final_friend_photos[1] != user.id || @final_friend_photos[2] != friend_id
       uid = user.uid
       access_token = user.access_token
