@@ -12,6 +12,9 @@ class Facebook
    #pulls back friendship photos
   def query_photos(friend_id)
     Rails.logger.debug "Facebook: query_photos"
+    # create photo to avoid undefined class/module memcache error
+    # (this is not an optimal work around but it will do for now)
+    p = Photo.new
     Rails.cache.fetch("query_photos#{friend_id}_#{user_id}") {
       Rails.logger.debug "Facebook: getting query_photos"
       recipient_id = friend_id
@@ -42,6 +45,9 @@ class Facebook
   def query_friend_photos(friend_id)
 
     Rails.logger.debug "Facebook: query_friend_photos"
+    # create photo to avoid undefined class/module memcache error
+    # (this is not an optimal work around but it will do for now)
+    p = Photo.new
     Rails.cache.fetch("query_friend_photos#{friend_id}_#{user_id}") {
       Rails.logger.debug "Facebook: query_friend_photos - gettin from facebook"
       recipient_id = friend_id
@@ -72,6 +78,9 @@ class Facebook
   def query_photo(obj_id)
 
     Rails.logger.debug "Facebook: query_photo"
+    # create photo to avoid undefined class/module memcache error
+    # (this is not an optimal work around but it will do for now)
+    p = Photo.new
     Rails.cache.fetch("query_photo#{obj_id}") {
       Rails.logger.debug "Facebook: getting query_photo"
       query1request = "SELECT src_big, caption, object_id, owner, aid, created FROM photo WHERE object_id=#{obj_id}"
@@ -102,6 +111,9 @@ class Facebook
   def query_user_photos
 
     Rails.logger.debug "Facebook: query_user_photos"
+    # create photo to avoid undefined class/module memcache error
+    # (this is not an optimal work around but it will do for now)
+    p = Photo.new
     Rails.cache.fetch("query_user_photos#{user_id}") {
 
       Rails.logger.debug "Facebook: getting query_user_photos"
