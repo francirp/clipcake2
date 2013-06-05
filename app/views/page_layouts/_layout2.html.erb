@@ -1,6 +1,10 @@
 <%= render :partial => "/page_layouts/positions", :locals => { :page => page } %>
 
 <div class="canvas">
-  <%= render :partial => "/page_layouts/box", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "half-box soleleft" } %>
-  <%= render :partial => "/page_layouts/box", :locals => { :page => page, :formnum => 1, :position => @position_1, :styleclass => "half-box soleright" } %>
+  <div class="vertical-half pull-left">
+    <%= render :partial => "/page_layouts/box", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "half-box soleleft" } %>
+  </div>
+  <div class="vertical-half pull-left">
+    <%= render :partial => "/page_layouts/box", :locals => { :page => page, :formnum => 1, :position => @position_1, :styleclass => "half-box soleright" } %>
+  </div>
 </div>

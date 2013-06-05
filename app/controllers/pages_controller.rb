@@ -25,7 +25,7 @@ class PagesController < ApplicationController
     @page.background_image_url = params[:background_image_url]
 
     if @page.save
-            redirect_to @page
+            redirect_to @page.book
           else
       render 'new'
     end

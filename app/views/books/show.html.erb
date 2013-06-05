@@ -1,3 +1,19 @@
+<style>
+  #gallery { float: left; width: 100%; min-height: 12em; }
+  .gallery.custom-state-active { background: #eee; }
+  .gallery li { float: left; width: 129px; padding: 0.4em; margin: 0 0.4em 0.4em 0; text-align: center; }
+  .gallery li h5 { margin: 0 0 0.4em; cursor: move; }
+  .gallery li img.pic { width: 100%; cursor: move; }
+  .gallery li a.icon { float: left;}
+  .gallery li a.img.small-button { float: left; cursor: default; }
+
+  #trash { float: right; width: 32%; min-height: 18em; padding: 1%; }
+  #trash h4 { line-height: 16px; margin: 0 0 0.4em; }
+  #trash h4 .ui-icon { float: left; }
+  #trash .gallery h5 { display: none; }
+  </style>
+
+
 <% @captain = @book.roles.where(:role_type => "captain").first.user %>
 <% @recipient = @captain.friends.where(:uid => @book.recipient_fb_id.to_s).first %>
 
@@ -50,19 +66,35 @@
 
 <div class="row-fluid">
 
-    <h2>
-    Pages
-    <%= link_to image_tag("add-button.png", :class => "add-button"), new_page_url(book_id: @book.id) %>
-    </h2>
 
-
-<% @book.pages.order("position asc").each do |page| %>
-  <% if page.book.sharing_preference != "Social" %>
-    <% if page.user == current_user %>
-        <%= render :partial => "showbook", :locals => { :page => page, :captain => @captain } %>
-    <% end %>
-  <% else %>
-    <%= render :partial => "showbook", :locals => { :page => page, :i => @i, :captain => @captain } %>
-  <% end %>
-<% end %>
 </div>
+
+<h2>
+Pages
+<%= link_to image_tag("add-button.png", :class => "add-button"), new_page_url(book_id: @book.id) %>
+</h2>
+<div class="btn-group photo_provider_buttons" data-toggle="buttons-radio">
+  <%= link_to "Friendship", book_url(@book.id, :photo_provider => "friendship"), :class => 'btn btn-primary', :type => 'button', :method => :get, :remote => true %>
+  <%= link_to "Recipient", book_url(@book.id, :photo_provider => "friends"), :class => 'btn btn-primary', :type => 'button', :method => :get, :remote => true %>
+  <%= link_to "My Photos", book_url(@book.id, :photo_provider => "personal"), :class => 'btn btn-primary', :type => 'button', :method => :get, :remote => true %>
+</div>
+
+<div class="row-fluid ">
+  <div class="left-col pull-left">
+    <%= render :partial => "gallery", :locals => { :photos => @fb_photos, :photo_provider => "friendship" } %>
+  </div>
+  <div class="right-col pull-left">
+    <%= render :partial => "showbook", :locals => { :captain => @captain } %>
+  </div>
+</div>
+
+
+
+
+<script>
+  $(function() {
+    $( "#accordion" ).accordion();
+  });
+</script>
+
+

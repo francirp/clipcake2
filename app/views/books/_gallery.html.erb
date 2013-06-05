@@ -1,0 +1,49 @@
+<ul id="gallery" class="gallery ui-helper-reset ui-helper-clearfix">
+  <div class="ui-widget ui-helper-clearfix">
+    <h4><%= paginate photos, :remote => true, :params => {:photo_provider => photo_provider} %></h4>
+    <% i = 0 %>
+    <% photos.each do |photo| %>
+      <% i += 1 %>
+      <li class="ui-widget-content ui-corner-tr" id="draggable_<%= i %>">
+        <img src="<%= photo.source_url %>" class="pic" />
+        <!-- Button to trigger modal -->
+        <a href="#myModal_<%= i %>" role="button" class="small-button icon" data-toggle="modal"><%= image_tag 'iconmonstr-magnifier.png' %></a>
+
+        <!-- Modal -->
+        <div id="myModal_<%= i %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-body">
+            <%= image_tag photo.source_url %>
+          </div>
+          <div class="modal-footer">
+            <h4>
+              <% if i > 1 %>
+                <a href="#myModal_<%= i - 1 %>" class="btn" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Previous</a>
+              <% end %>
+              <a href="#myModal_<%= i + 1 %>" data-dismiss="modal" aria-hidden="true" data-toggle="modal" class="btn">Next</a>
+              <a href="#_" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
+            </h4>
+          </div>
+        </div>
+      </li>
+        <script>
+
+        $( init );
+
+        function init() {
+          $('#draggable_<%= i %>').draggable({
+              cancel: "a.ui-icon", // clicking an icon won't initiate dragging
+              revert: "invalid", // when not dropped, the item will revert back to its initial position
+              containment: "document",
+              helper: "clone",
+              cursor: "move"
+            });
+            }
+
+        </script>
+
+
+    <% end %>
+  </div>
+</ul>
+
+

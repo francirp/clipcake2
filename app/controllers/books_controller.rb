@@ -6,6 +6,28 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find_by_id(params[:id])
+    @recipient_fb_id = @book.recipient_fb_id
+    @photo_provider = params[:photo_provider]
+    @fb_photos = Photo.query_photos(@recipient_fb_id, current_user)
+    @fb_photos = @fb_photos[0]
+    @fb_photos = Kaminari.paginate_array(@fb_photos).page(params[:page]).per(8)
+    @friend_photos = Photo.query_friend_photos(@recipient_fb_id, current_user)
+    @friend_photos = @friend_photos[0]
+    @friend_photos = Kaminari.paginate_array(@friend_photos).page(params[:page]).per(8)
+    @user_photos = Photo.query_user_photos(current_user)
+    @user_photos = @user_photos[0]
+    @user_photos = Kaminari.paginate_array(@user_photos).page(params[:page]).per(8)
+    @pages = @book.pages
+    @pages = Kaminari.paginate_array(@pages).page(params[:pagina]).per(1)
+
+    respond_to do |format|
+      if params[:photo_provider].blank?
+        format.js { render 'page' }
+      elsif params[:photo_provider].present?
+        format.js
+      end
+      format.html
+    end
   end
 
   def new

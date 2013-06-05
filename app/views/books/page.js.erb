@@ -1,0 +1,3 @@
+<% @captain = @book.roles.where(:role_type => "captain").first.user %>
+
+$('.show_canvas').replaceWith("<%= j(render('showbook', pages: @pages, captain: @captain)) %>")

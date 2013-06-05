@@ -1,16 +1,13 @@
-    <div class="book-show">
-      <%= form_tag(page_url(page), :method => 'put') do %>
-        <h4><%= page.user.full_name %> posted page #: <%= number_field_tag :position, page.position, :class => "input-mini" %>
-          <button type="submit" class="btn btn-default">Update Position</button></h4>
-      <% end %>
-
-    </div>
+<div class="show_canvas">
+  <h4><%= paginate @pages, remote: true, param_name: :pagina %></h4>
+  <% @pages.each do |page| %>
     <%= render :partial => "page_layouts/#{page.layout}", :locals => { :page => page, :canvas_css_property => 'canvas' } %>
-    <div class="book-show">
-      <% if page.user == current_user || captain == current_user %>
-        <%= link_to image_tag("iconmonstr-trash-can-15-icon.png", :class => 'edit-button right'), page_url(page.id), :method => 'delete', data: { confirm: "Do you really want to delete this page?" } %>
-        <%= link_to image_tag("iconmonstr-edit-9-icon.png", :class => 'edit-button right'), edit_page_url(page.id) %>
-      <% end %>
+    <div class="row-fluid">
+    <% if page.user == current_user || captain == current_user %>
+      <%= link_to image_tag("iconmonstr-trash-can-15-icon.png", :class => 'edit-button left'), page_url(page.id), :method => 'delete', data: { confirm: "Do you really want to delete this page?" } %>
+      <%= link_to image_tag("iconmonstr-edit-9-icon.png", :class => 'edit-button left'), edit_page_url(page.id) %>
+      <h4 class="page_heading">Created By: <%= page.user.full_name %></h4>
+    <% end %>
     </div>
-    <br />
-    <br />
+  </div>
+<% end %>
