@@ -72,7 +72,7 @@ class Facebook
   def query_photo(obj_id)
 
     Rails.logger.debug "Facebook: query_photo"
-    Rails.cache.fetch("query_photo#{obj_id}_#{obj_id}") {
+    Rails.cache.fetch("query_photo#{obj_id}") {
       Rails.logger.debug "Facebook: getting query_photo"
       query1request = "SELECT src_big, caption, object_id, owner, aid, created FROM photo WHERE object_id=#{obj_id}"
 
