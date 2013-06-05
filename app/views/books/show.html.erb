@@ -23,7 +23,15 @@
     <%= @book.name %>
     <%= image_tag "iconmonstr-quote-6-icon.png", :class => "quote-icon bottom" %>
   </h2>
-  <h4>A photobook gift for <%= @recipient.name %>.</h4>
+  <h3>
+    A photobook gift for <%= @recipient.name %>.
+  </h3>
+  <h4>
+    <%= link_to 'Preview', "#{book_url(@book)}.pdf" %>
+     &nbsp;&nbsp;~&nbsp;&nbsp;
+    <%= link_to 'Print and Ship', "https://spb.io/VSTASsMN3I" %>
+  </h4>
+
 
 </center>
 
@@ -65,9 +73,8 @@
 </ul>
 
 <div class="row-fluid">
-
-
 </div>
+
 
 <h2>
 Pages

@@ -1,0 +1,3 @@
+<% page = @page %>
+
+<%= render :partial => "page_layouts/#{@page.layout}.html.erb", :locals => { :page => page, :canvas_css_property => 'canvas_print' } %>

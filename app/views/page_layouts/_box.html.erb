@@ -9,7 +9,7 @@
     <% elsif page.user == current_user || page.book.captain == current_user %>
 
     <% end %>
-    <%= render :partial => "/page_layouts/popup", :locals => { :page => page, :formnum => formnum } %>
+    <%= render :partial => "/page_layouts/popup.html.erb", :locals => { :page => page, :formnum => formnum } %>
   </a>
 </div>
 

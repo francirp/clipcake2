@@ -307,12 +307,28 @@ padding: 20px 0px 0px 20px;
 
 /* CSS FOR CANVAS ON SHOW PAGE */
 
+
+
 .canvas {
   width: 600px;
   height: 451.636364px;
   border: 4px solid #ccc;
   padding: 2.5px
 }
+.canvas_print {
+  width: 11in;
+  height: 8in;
+  border: 4px solid white;
+  padding: 2.5px
+}
+
+.canvas_thumbnail {
+  width: 430px;
+  height: 323.67px;
+  border: 1px solid #ccc;
+  padding: 2.5px
+}
+
 
 a.fill-div {
     display: block;
@@ -478,4 +494,8 @@ h4.page_heading {
   text-indent: 20px;
 }
 
-
+.page-break {
+  display: block;
+  clear: both;
+  page-break-after: always;
+}

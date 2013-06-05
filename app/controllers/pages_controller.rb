@@ -6,6 +6,18 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find_by_id(params[:id])
+
+    respond_to do |format|
+      format.pdf do
+          render :pdf => "show",
+          :template => 'pages/show.pdf.erb',
+          :show_as_html => params[:debug],
+          :layout => true,
+          :page_height => '8.5in',
+          :page_width => '11in'
+      end
+      format.html
+    end
   end
 
   def new

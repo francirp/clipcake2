@@ -138,6 +138,8 @@ GEM
     uglifier (2.0.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    wicked_pdf (0.9.6)
+      rails
 
 PLATFORMS
   ruby
@@ -159,3 +161,4 @@ DEPENDENCIES
   sqlite3
   starter_generators
   uglifier (>= 1.0.3)
+  wicked_pdf
