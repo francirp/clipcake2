@@ -15,7 +15,11 @@
 
 
 <% @captain = @book.roles.where(:role_type => "captain").first.user %>
-<% @recipient = @captain.friends.where(:uid => @book.recipient_fb_id.to_s).first %>
+<% @recipient = @captain.facebook.friends.find { |f| f["uid"] == @book.recipient_fb_id.to_s } %>
+<%= logger.debug "Contrib Show"%>
+<%= logger.debug @recipient%>
+
+
 
 <center>
   <h2>
@@ -23,7 +27,7 @@
     <%= @book.name %>
     <%= image_tag "iconmonstr-quote-6-icon.png", :class => "quote-icon bottom" %>
   </h2>
-  <h4>A photobook gift for <%= @recipient.name %>.</h4>
+  <h4>A photobook gift for <%= @recipient["name"] %>.</h4>
 
 </center>
 

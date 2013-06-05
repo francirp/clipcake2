@@ -31,7 +31,8 @@ class BooksController < ApplicationController
   end
 
   def new
-    @friends = Friend.query_friends(current_user)
+    @friends = current_user.facebook.friends
+
     @occasions = ["Birthday", "Wedding", "Graduation", "Get Well Soon", "Holiday", "Just to be Awesome!", "Baby Shower", "Engagement", "Going Away", "Military Appreciation", "Encouragement", "Religious Event"]
     @book_sizes = ['6" x 9"', '8.5" x 11"']
     @book = Book.new

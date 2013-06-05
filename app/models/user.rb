@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
     has_many :friends
 
     def facebook
-      puts "in facebook"
       @facebook ||= Facebook.new(access_token,uid,id)
     end
 

@@ -9,9 +9,9 @@
   <div class="control-group">
     <%= label_tag :recipient_fb_id, 'Recipient', :class => "control-label" %>
      <div class="controls">
-      <select id="e1" name="recipient_fb_id">
-        <% Friend.where(:user_id => current_user.id).sort_by!(&:name).each do |friend| %>
-          <option value="<%= friend.uid %>"><%= friend.name %></option>
+      <select id="e1" size="20" name="recipient_fb_id">
+        <% @friends.each do |friend| %>
+          <option value="<%= friend["uid"] %>"><%= friend["name"] %></option>
         <% end %>
       </select>
     </div>
