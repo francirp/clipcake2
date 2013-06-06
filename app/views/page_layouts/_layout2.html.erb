@@ -1,10 +1,12 @@
 <%= render :partial => "/page_layouts/positions.html.erb", :locals => { :page => page } %>
 
-<div class="<%= canvas_css_property %>">
-  <div class="vertical-half pull-left">
-    <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "half-box soleleft" } %>
+<center>
+  <div class="<%= canvas_css_property %>">
+    <div class="vertical-half pull-left">
+      <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "half-box #{margin_option} #{border_choice}" } %>
+    </div>
+    <div class="vertical-half pull-left">
+      <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 1, :position => @position_1, :styleclass => "half-box #{margin_option} #{border_choice}" } %>
+    </div>
   </div>
-  <div class="vertical-half pull-left">
-    <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 1, :position => @position_1, :styleclass => "half-box soleright" } %>
-  </div>
-</div>
+</center>

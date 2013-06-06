@@ -32,6 +32,8 @@
     A photobook gift for <%= @recipient["name"] %>.
   </h3>
   <h4>
+    <%= link_to 'Settings', edit_book_url(@book) %>
+     &nbsp;&nbsp;~&nbsp;&nbsp;
     <%= link_to 'Preview', "#{book_url(@book)}.pdf" %>
      &nbsp;&nbsp;~&nbsp;&nbsp;
     <%= link_to 'Print and Ship', "https://spb.io/VSTASsMN3I" %>
@@ -100,17 +102,29 @@
 Pages
 <%= link_to image_tag("add-button.png", :class => "add-button"), new_page_url(book_id: @book.id) %>
 </h2>
-<div class="btn-group photo_provider_buttons" data-toggle="buttons-radio">
-  <%= link_to "Friendship", book_url(@book.id, :photo_provider => "friendship"), :class => 'btn btn-primary', :type => 'button', :method => :get, :remote => true %>
-  <%= link_to "Recipient", book_url(@book.id, :photo_provider => "friends"), :class => 'btn btn-primary', :type => 'button', :method => :get, :remote => true %>
-  <%= link_to "My Photos", book_url(@book.id, :photo_provider => "personal"), :class => 'btn btn-primary', :type => 'button', :method => :get, :remote => true %>
-</div>
+<ul class="nav nav-pills">
+    <li class="active"><%= link_to "Friendship", book_url(@book.id, :photo_provider => "friendship"), :class => 'btn btn-primary', :type => 'button', :method => :get, :remote => true %></li>
+    <li class="<%= 'active' if @photo_provider == "friendship" %>"><%= link_to "Recipient", book_url(@book.id, :photo_provider => "friends"), :class => 'btn btn-primary', :type => 'button', :method => :get, :remote => true %></li>
+    <li class="<%= 'active' if @photo_provider == "friendship" %>"><%= link_to "My Photos", book_url(@book.id, :photo_provider => "personal"), :class => 'btn btn-primary', :type => 'button', :method => :get, :remote => true %></li>
+</ul>
 
 <div class="row-fluid ">
   <div class="left-col pull-left">
     <%= render :partial => "gallery", :locals => { :photos => @fb_photos, :photo_provider => "friendship" } %>
   </div>
   <div class="right-col pull-left">
+    <% if @book.pages.count == 0 %>
+      <h3>
+        Add The First Page
+        <%= link_to image_tag("add-button.png", :class => "add-button"), new_page_url(book_id: @book.id) %>
+      </h3>
+    <% end %>
+    <% if @book.pages.count == 1 %>
+      <h3>
+        Add Another Page
+        <%= link_to image_tag("add-button.png", :class => "add-button"), new_page_url(book_id: @book.id) %>
+      </h3>
+    <% end %>
     <%= render :partial => "showbook", :locals => { :captain => @captain } %>
   </div>
 </div>

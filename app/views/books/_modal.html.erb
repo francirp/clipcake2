@@ -1,6 +1,11 @@
 <script>
   $(document).ready(function() { $("#e1").select2(); });
 </script>
+<script>
+  $(document).ready(function() { $("#share_pref").popover(); });
+</script>
+
+
 <% @friends = current_user.facebook.friends %>
     <% @occasions = ["Birthday", "Wedding", "Graduation", "Get Well Soon", "Holiday", "Just to be Awesome!", "Baby Shower", "Engagement", "Going Away", "Military Appreciation", "Encouragement", "Religious Event"] %>
 
@@ -25,18 +30,29 @@
             </select>
           </div>
         </div>
-
+<!--
         <div class="control-group">
           <%= label_tag :occasion, "Occasion", :class => "control-label" %>
           <div class="controls">
             <%= select_tag :occasion, options_for_select(@occasions) %>
           </div>
-        </div>
+        </div> -->
 
         <div class="control-group">
           <%= label_tag :name, "Book Name", :class => "control-label" %>
            <div class="controls">
             <%= text_field_tag :name %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= label_tag :name, "Social Setting", :class => "control-label" %>
+           <div class="controls">
+            <% sharing_options = ["Social", "Private"] %>
+            <%= select_tag :sharing_preference, options_for_select(sharing_options) %>
+            <br />
+            <%= link_to "What's this?", "#", :id => "share_pref", :data => {:toggle => 'popover', :content => "This determines whether or not contributors can see the full book.", :placement => "bottom"} %>
+            <p></p>
           </div>
         </div>
     </p>

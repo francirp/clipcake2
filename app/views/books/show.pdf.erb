@@ -1,4 +1,7 @@
 <% @book.pages.each do |page| %>
-  <%= render :partial => "page_layouts/#{page.layout}.html.erb", :locals => { :page => page, :canvas_css_property => 'canvas_print' } %>
+  <center>
+  <%= render :partial => "page_layouts/#{page.layout}.html.erb", :locals => { :page => page, :canvas_css_property => 'canvas_print', :border_choice => 'no_border', :margin_option => 'print-margin' } %>
+  <h3 class="pdf">Created By: <%= page.user.full_name %></h3>
+  </center>
   <div class="page-break"></div>
 <% end %>

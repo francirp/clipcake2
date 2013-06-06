@@ -1,84 +1,8 @@
-.clearfix:before,
-        .clearfix:after {
-          content: ".";
-          display: block;
-          height: 0;
-          overflow: hidden;
-        }
-
-        .clearfix:after {
-            clear: both;
-        }
-
-        .clearfix {
-            zoom: 1; /* IE < 8 */
-        }
-
-#fb-root {
-}
-
-.clearfix {
-  clear: both;
-}
-
-.right {
-  float: right;
-}
-
-.left {
-  float: left;
-}
-
-
-h1 {
-  margin: 40px 0 40px 10px;
-  clear: both;
-}
-
-.border {
-  border: thin solid #ccc;
-}
-
-.new_photo {
-  width: 295px;
-  height: 195px;
-}
-
-.small_photo {
-  width: 140px;
-  height: 140px;
-  margin: 2.5px;
-}
-
-
-body {background-color: white; margin: 0px 0px 100px 0px;}
-
-
-.logo {
-  max-height: 150px;
-  max-width: 150px;
-}
+/* CHANGES TO SELECTORS */
 
 header {
   margin-bottom: 20px;
 }
-
-.nav-list .midpage_divider {
-  *width: 100%;
-  height: 1px;
-  margin: 9px -15px;
-  *margin: -5px 0 5px;
-  overflow: hidden;
-  background-color: red;
-  border-bottom: 0px solid red;
-}
-
-.nav-list .divider {
-  margin-left: -15px;
-  margin-right: -15px;
-}
-
-.modal form {margin-bottom: 0px;}
 
 header {}
 
@@ -114,14 +38,100 @@ h6 {
   font-family: 'Sanchez', sans-serif;
 }
 
-h3 a {
-  color: red;
-}
-
 p a {
-  color: red;
   padding-right: 5px;
 }
+
+p {
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+aside {
+  float: right;
+  margin: 10px;
+  width: 320px;
+}
+
+.clearfix:before,
+        .clearfix:after {
+          content: ".";
+          display: block;
+          height: 0;
+          overflow: hidden;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            zoom: 1; /* IE < 8 */
+        }
+
+#fb-root {
+}
+
+.clearfix {
+  clear: both;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.border {
+  border: 1px solid #ccc;
+}
+
+.no_border {
+  border: none;
+}
+
+.new_photo {
+  width: 295px;
+  height: 195px;
+}
+
+.small_photo {
+  width: 140px;
+  height: 140px;
+  margin: 2.5px;
+}
+
+.logo {
+  max-height: 150px;
+  max-width: 150px;
+}
+
+
+
+.nav-list .midpage_divider {
+  *width: 100%;
+  height: 1px;
+  margin: 9px -15px;
+  *margin: -5px 0 5px;
+  overflow: hidden;
+  background-color: red;
+  border-bottom: 0px solid red;
+}
+
+.nav-list .divider {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.modal form {margin-bottom: 0px;}
+
+
 
 .fill-row-vertically {
   height: 100%;
@@ -151,20 +161,7 @@ img.img-circle.contributor-list {
   height: 140px;
 }
 
-p {
-  padding: 10px;
-  font-family: 'Open Sans', sans-serif;
-}
 
-li {
-  list-style: none;
-}
-
-aside {
-  float: right;
-  margin: 10px;
-  width: 320px;
-}
 
 .videoembed {
   background-image: url(<%= asset_path "videoholder2.png" %>);
@@ -324,9 +321,19 @@ padding: 20px 0px 0px 20px;
 }
 .canvas_print {
   width: 11in;
-  height: 8in;
-  border: 4px solid white;
-  padding: 2.5px
+  height: 8.2in;
+  border: 5px solid white;
+  padding: 5px;
+}
+
+h3.pdf {
+  margin-top: -15px;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
+.pdfpage {
+  margin-top: -7px;
 }
 
 .canvas_thumbnail {
@@ -347,7 +354,6 @@ a.fill-div {
 .sole-box {
   width: 98.858075040783%;
   height: 98.4500805151731%;
-  border: 1px solid #ccc;
 }
 
 .sole-box .background {
@@ -355,13 +361,12 @@ a.fill-div {
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 99.2555831265509% auto;
+  background-size: 100% auto;
 }
 
 .half-box {
   width: 97.6549413735343%;
   height: 98.4500805151731%;
-  border: 1px solid #ccc;
 }
 
 .half-box .background {
@@ -369,13 +374,12 @@ a.fill-div {
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 97.9899497487437% auto;
+  background-size: 100% auto;
 }
 
 .big-box {
   width: 97.5278121137206%;
   height: 64.6269457863661%;
-  border: 1px solid #ccc;
 }
 
 .big-box .background {
@@ -383,13 +387,12 @@ a.fill-div {
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 98.3358547655068% auto;
+  background-size: 100% auto;
 }
 
 .wide-half-box {
   width: 98.858075040783%;
   height: 48.4500805151731%;
-  border: 1px solid #ccc;
 }
 
 .wide-half-box .background {
@@ -397,13 +400,12 @@ a.fill-div {
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 99.2555831265509% auto;
+  background-size: 100% auto;
 }
 
 .quarter-box {
   width: 97.6549413735343%;
   height: 48.4500805151731%;
-  border: 1px solid #ccc;
 }
 
 .quarter-box .background {
@@ -411,7 +413,7 @@ a.fill-div {
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 98.7405541561713% auto;
+  background-size: 100% auto;
 }
 
 .vertical-half {
@@ -423,7 +425,6 @@ a.fill-div {
 .small-box {
   width: 47.5278121137206%;
   height: 32.1524422973698%;
-  border: 1px solid #ccc;
 }
 
 .small-box .background {
@@ -431,13 +432,12 @@ a.fill-div {
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 98.4455958549223% auto;
+  background-size: 100% auto;
 }
 
 .nine-box {
   width: 32.1587819467102%;
   height: 31.7834138485064%;
-  border: 1px solid #ccc;
 }
 
 .nine-box .background {
@@ -445,24 +445,11 @@ a.fill-div {
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 96.178392631941% auto;
+  background-size: 100% auto;
 }
 
-.sole { margin: 2.5px;}
-.soletop { margin: 2.5px 2.5px 2.5px 2.5px }
-.solebottom { margin: 2.5px 2.5px 2.5px 2.5px }
-.soleleft { margin: 2.5px 2.5px 2.5px 2.5px }
-.soleright { margin: 2.5px 2.5px 2.5px 2.5px }
-
-.upleft { margin: 2.5px 2.5px 2.5px 2.5px }
-.upmid { margin: 2.5px 2.5px 2.5px 2.5px }
-.upright { margin: 2.5px 2.5px 2.5px 2.5px }
-.midleft { margin: 2.5px 2.5px 2.5px 2.5px }
-.midmid { margin: 2.5px 2.5px 2.5px 2.5px }
-.midright { margin: 2.5px 2.5px 2.5px 2.5px }
-.lowleft { margin: 2.5px 2.5px 2.5px 2.5px }
-.lowmid { margin: 2.5px 2.5px 2.5px 2.5px }
-.lowright { margin: 2.5px 2.5px 2.5px 2.5px }
+.small-margin { margin: 2.5px;}
+.print-margin {margin: 5px;}
 
 .new {
   font-size: 80px;
@@ -505,4 +492,24 @@ h4.page_heading {
   display: block;
   clear: both;
   page-break-after: always;
+}
+
+.book-index-thumbnail {
+  height: 250px;
+}
+
+.delete_book_index {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+
+.relative {
+  position: relative;
+}
+
+.radius {
+-webkit-border-radius: 5px;
+border-radius: 5px;
 }
