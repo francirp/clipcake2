@@ -1,0 +1,50 @@
+<script>
+  $(document).ready(function() { $("#e1").select2(); });
+</script>
+
+<%  @friends = Friend.query_friends(current_user) %>
+    <% @occasions = ["Birthday", "Wedding", "Graduation", "Get Well Soon", "Holiday", "Just to be Awesome!", "Baby Shower", "Engagement", "Going Away", "Military Appreciation", "Encouragement", "Religious Event"] %>
+
+<!-- Modal -->
+<div id="create_book_modal" class="modal hide fade" role="dialog" aria-labelledby="CREATE BOOK" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">New Clipcake Book</h3>
+  </div>
+  <!-- FORM START -->
+  <%= form_tag(books_url, method: 'post', :class => 'clearfix form-horizontal') do %>
+  <div class="modal-body">
+    <p>
+      <!-- FORM FIELDS -->
+        <div class="control-group">
+          <%= label_tag :recipient_fb_id, 'Recipient', :class => "control-label" %>
+           <div class="controls">
+            <select id="e1" name="recipient_fb_id">
+              <% Friend.where(:user_id => current_user.id).sort_by!(&:name).each do |friend| %>
+                <option value="<%= friend.uid %>"><%= friend.name %></option>
+              <% end %>
+            </select>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= label_tag :occasion, "Occasion", :class => "control-label" %>
+          <div class="controls">
+            <%= select_tag :occasion, options_for_select(@occasions) %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= label_tag :name, "Book Name", :class => "control-label" %>
+           <div class="controls">
+            <%= text_field_tag :name %>
+          </div>
+        </div>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button type="submit" class="btn btn-primary">Create Book</button>
+  </div>
+  <% end %>
+</div>

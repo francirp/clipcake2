@@ -41,8 +41,11 @@
 
 <div class="row-fluid">
   <h2>Contributors
-  <%= link_to image_tag("add-button.png", :class => "add-button"), new_contributor_url(book_id: @book.id) %>
+    <% if current_user == @captain || @book.sharing_preference == "Social" %>
+      <%= link_to image_tag("add-button.png", :class => "add-button"), "#contributormodal", :data => {:toggle=>"modal"} %>
+    <% end %>
   </h2>
+  <%= render partial: "books/invitemodal" %>
     <ul>
       <% i = 0 %>
       <% @book.users.each do |user| %>
@@ -72,9 +75,22 @@
   <li class="midpage_divider"></li>
 </ul>
 
-<div class="row-fluid">
-</div>
+  <% if current_user == @captain %>
+    <div class="row-fluid">
+      <h2>Prepare Invite
+      <%= link_to image_tag("add-button.png", :class => "add-button"), "#invitemodal", :data => {:toggle=>"modal"} %>
+      </h2>
+      <%= render partial: "books/contributormodal" %>
 
+    </div>
+
+    <ul class="nav nav-list">
+      <li class="midpage_divider"></li>
+    </ul>
+
+    <div class="row-fluid">
+    </div>
+  <% end %>
 
 <h2>
 Pages

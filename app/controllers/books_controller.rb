@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  # before_filter :authorize_user, :only => [:edit, :update, :destroy]
+
   def index
     @books = current_user.books
   end
@@ -66,7 +66,7 @@ class BooksController < ApplicationController
     @role = @book.roles.build(:role_type => "captain", :user_id => current_user.id)
 
     if @book.save
-            redirect_to "#{new_invite_url}?book_id=#{@book.id}"
+            redirect_to @book
           else
       render 'new'
     end
