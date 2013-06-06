@@ -20,13 +20,13 @@ class BooksController < ApplicationController
 
       @recipient_fb_id = @book.recipient_fb_id
       @photo_provider = params[:photo_provider]
-      @fb_photos = Photo.query_photos(@recipient_fb_id, current_user)
+      @fb_photos = current_user.facebook.query_photos(@recipient_fb_id)
       @fb_photos = @fb_photos[0]
       @fb_photos = Kaminari.paginate_array(@fb_photos).page(params[:page]).per(8)
-      @friend_photos = Photo.query_friend_photos(@recipient_fb_id, current_user)
+      @friend_photos = current_user.facebook.query_friend_photos(@recipient_fb_id)
       @friend_photos = @friend_photos[0]
       @friend_photos = Kaminari.paginate_array(@friend_photos).page(params[:page]).per(8)
-      @user_photos = Photo.query_user_photos(current_user)
+      @user_photos = current_user.facebook.query_user_photos
       @user_photos = @user_photos[0]
       @user_photos = Kaminari.paginate_array(@user_photos).page(params[:page]).per(8)
       @pages = Kaminari.paginate_array(@pages).page(params[:pagina]).per(1)
@@ -41,7 +41,8 @@ class BooksController < ApplicationController
   end
 
   def new
-    @friends = Friend.query_friends(current_user)
+    @friends = current_user.facebook.friends
+
     @occasions = ["Birthday", "Wedding", "Graduation", "Get Well Soon", "Holiday", "Just to be Awesome!", "Baby Shower", "Engagement", "Going Away", "Military Appreciation", "Encouragement", "Religious Event"]
     @book_sizes = ['6" x 9"', '8.5" x 11"']
     @book = Book.new
