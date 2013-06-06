@@ -1,8 +1,7 @@
 <script>
   $(document).ready(function() { $("#e1").select2(); });
 </script>
-
-<%  @friends = Friend.query_friends(current_user) %>
+<% @friends = current_user.facebook.friends %>
     <% @occasions = ["Birthday", "Wedding", "Graduation", "Get Well Soon", "Holiday", "Just to be Awesome!", "Baby Shower", "Engagement", "Going Away", "Military Appreciation", "Encouragement", "Religious Event"] %>
 
 <!-- Modal -->
@@ -20,8 +19,8 @@
           <%= label_tag :recipient_fb_id, 'Recipient', :class => "control-label" %>
            <div class="controls">
             <select id="e1" name="recipient_fb_id">
-              <% Friend.where(:user_id => current_user.id).sort_by!(&:name).each do |friend| %>
-                <option value="<%= friend.uid %>"><%= friend.name %></option>
+              <% @friends.each do |friend| %>
+                <option value="<%= friend["uid"] %>"><%= friend["name"] %></option>
               <% end %>
             </select>
           </div>

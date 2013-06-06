@@ -1,4 +1,7 @@
-<h1>Add a message for <%= Friend.find_by_uid(@book.recipient_fb_id).name %></h1>
+<% @captain = @book.roles.where(:role_type => "captain").first.user %>
+<% @recipient = @captain.facebook.friends.find { |f| f["uid"] == @book.recipient_fb_id.to_s } %>
+
+<h1>Add a message for <%= @recipient["name"] %></h1>
 
 
 <%= form_tag(texts_url, method: 'post') do %>
