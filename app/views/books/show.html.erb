@@ -16,8 +16,8 @@
 
 <% @captain = @book.roles.where(:role_type => "captain").first.user %>
 <% @recipient = @captain.facebook.friends.find { |f| f["uid"] == @book.recipient_fb_id.to_s } %>
-<%= logger.debug "Contrib Show"%>
-<%= logger.debug @recipient%>
+<% logger.debug "Contrib Show"%>
+<% logger.debug @recipient%>
 
 
 
