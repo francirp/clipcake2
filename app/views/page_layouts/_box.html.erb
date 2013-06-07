@@ -6,26 +6,19 @@
         <% else %>
           <%= simple_format(position.message) %>
         <% end %>
+        <%= form_tag("/page/#{page.id}/position/#{position.position}", :id => "photo_submit#{position.position}", :method => "post", remote: true) do %>
+          <%= hidden_field_tag "inputPhotoTarget#{position.position}"%>
+        <% end %>
     <% elsif page.user == current_user || page.book.captain == current_user %>
 
     <% end %>
     <%= render :partial => "/page_layouts/popup.html.erb", :locals => { :page => page, :formnum => formnum } %>
   </a>
-  <% if position.present? %>
-    <%= form_tag("/page/#{page.id}/position/#{position.position}", :id => "photo_submit#{position.position}", :method => "post", remote: true) do %>
-      <%= hidden_field_tag "inputPhotoTarget"%>
-    <% end %>
-  <% end %>
 </div>
 
 <%= javascript_tag do %>
 
           $( init );
-
-          <% logger.debug "IN SCRIPT" %>
-          <% if position.present? %>
-            <% logger.debug "position: #{position.position}" %>
-          <% end %>
 
           function init() {
                     $('.fill-div').droppable({
@@ -38,10 +31,13 @@
 
           function addPicture($item_draggable,$item_droppable) {
             var img_src = $item_draggable.find("img").attr("src")
+            alert(img_src)
             var new_background = 'url('  + img_src + ')'
             var result = ($item_droppable).find(".background").css("background-image",new_background)
-            $("#inputPhotoTarget").val(img_src);
+            var input_photo_target = ($item_droppable).find("form").find(":first-child").attr("id");
+            alert(input_photo_target)
+            var submit_target = ($item_droppable).find("form").attr("id")
+            $("#" + submit_target).submit()
           }
 
 <% end %>
-
