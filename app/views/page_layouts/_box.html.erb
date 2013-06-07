@@ -12,15 +12,20 @@
     <%= render :partial => "/page_layouts/popup.html.erb", :locals => { :page => page, :formnum => formnum } %>
   </a>
   <% if position.present? %>
-    <%= form_tag("/page/#{page.id}/position/#{position.position}", :id => "photo_submit", :method => "post", remote: true) do %>
-      <%= hidden_field_tag "inputPhotoTarget", "image_url" %>
+    <%= form_tag("/page/#{page.id}/position/#{position.position}", :id => "photo_submit#{position.position}", :method => "post", remote: true) do %>
+      <%= hidden_field_tag "inputPhotoTarget"%>
     <% end %>
   <% end %>
 </div>
 
-<script>
+<%= javascript_tag do %>
 
           $( init );
+
+          <% logger.debug "IN SCRIPT" %>
+          <% if position.present? %>
+            <% logger.debug "position: #{position.position}" %>
+          <% end %>
 
           function init() {
                     $('.fill-div').droppable({
@@ -32,10 +37,11 @@
                       }
 
           function addPicture($item_draggable,$item_droppable) {
-            var $img_src = $item_draggable.find("img").attr("src")
-            var $new_background = 'url('  + $img_src + ')'
-            var $result = ($item_droppable).find(".background").css("background-image",$new_background)
+            var img_src = $item_draggable.find("img").attr("src")
+            var new_background = 'url('  + img_src + ')'
+            var result = ($item_droppable).find(".background").css("background-image",new_background)
+            $("#inputPhotoTarget").val(img_src);
           }
 
-</script>
+<% end %>
 

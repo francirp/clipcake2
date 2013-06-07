@@ -65,6 +65,7 @@ Clipcake2::Application.routes.draw do
   get '/photos/new', controller: 'photos', action: 'new', as: 'new_photo'
   post '/photos', controller: 'photos', action: 'create'
 
+
   # READ
   get '/photos', controller: 'photos', action: 'index', as: 'photos'
   get '/photos/:id', controller: 'photos', action: 'show', as: 'photo'
@@ -81,6 +82,10 @@ Clipcake2::Application.routes.draw do
   # CREATE
   get '/pages/new', controller: 'pages', action: 'new', as: 'new_page'
   post '/pages', controller: 'pages', action: 'create'
+
+
+  # CREATE or UPDATE as result of drag and drop
+  post '/page/:page_id/position/:position', to: 'pages#drop_photo'
 
   # READ
   get '/pages', controller: 'pages', action: 'index', as: 'pages'

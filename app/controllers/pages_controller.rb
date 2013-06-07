@@ -26,6 +26,22 @@ class PagesController < ApplicationController
     @layouts = ["layout1", "layout2", "layout6", "layout3", "layout9", "layout4", "layout7", "layout8", "layout5"]
   end
 
+
+  def drop_photo
+    position = params[:position]
+    new_img_url = params[:inputPhotoTarget]
+
+    page = Page.find_by_id(params[:page_id])
+    photo = page.photos.where(:position => params[:position]).first
+    photo.source_url = new_img_url
+    photo.save
+
+    respond_to do |format|
+      format.js {} # nothing to do; photo has already been updated via drag scripting
+    end
+
+  end
+
   def create
     @page = Page.new
     @book = Book.find_by_id(params[:book_id])
