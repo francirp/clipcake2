@@ -1,6 +1,6 @@
 <div class="show_canvas">
   <div class="pagination-area-canvas">
-    <center><p><%= paginate @pages, window: 1, remote: true, param_name: :pagina %></p></center>
+    <center><p><%= paginate @pages, window: 3, remote: true, param_name: :pagina %></p></center>
   </div>
   <% @pages.each do |page| %>
     <%= render :partial => "page_layouts/#{page.layout}", :locals => { :page => page, :canvas_css_property => 'canvas', :border_choice => 'border', :margin_option => 'small-margin' } %>
