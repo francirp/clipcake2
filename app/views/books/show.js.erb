@@ -6,4 +6,4 @@
   <% photos = @user_photos %>
 <% end %>
 
-$('ul#gallery').replaceWith("<%= j(render('gallery', photos: photos, photo_provider: @photo_provider)) %>")
+$('#photo_gallery').replaceWith("<%= j(render('gallery', photos: photos, photo_provider: @photo_provider)) %>")

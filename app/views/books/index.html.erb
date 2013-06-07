@@ -1,11 +1,12 @@
 <div class="row-fluid">
   <h2>Books
-  <%= link_to image_tag("add-button.png", :class => "add-button"), new_book_url %>
+  <%= link_to image_tag("add-button.png", :class => "add-button"), "#create_book_modal", :data => {:toggle=>"modal"} %>
+  <%= render partial: "modal" %>
   </h2>
     <ul>
       <% i = 0 %>
       <% current_user.books.each do |book| %>
-        <% if i%5 == 0 && i != 0 %>
+        <% if i%4 == 0 && i != 0 %>
           </div>
           <br />
           <br />
@@ -13,9 +14,15 @@
         <% elsif i == 0 %>
           <div class="row-fluid">
         <% end %>
-        <li class="span2 left">
-          <%= link_to image_tag("https://graph.facebook.com/#{book.recipient_fb_id}/picture?type=large", :class => 'img-circle contributor-list pull-left'), book %>
-          <center><h5> <%= book.name %> </h5></center>
+        <li class="span3 right border book-index-thumbnail relative radius">
+          <br />
+          <center><%= link_to image_tag("https://graph.facebook.com/#{book.recipient_fb_id}/picture?type=large", :class => 'img-circle contributor-list'), book %></center>
+          <center>
+            <h4>
+              <%= link_to book.name, book %>
+            </h4>
+          </center>
+          <%= link_to image_tag("iconmonstr-trash-can-15-icon.png", :class => 'edit-button delete_book_index'), book, :method => 'delete', data: { confirm: "Do you really want to delete this book? It will not be recoverable." } %>
         </li>
         <% i += 1 %>
       <% end %>

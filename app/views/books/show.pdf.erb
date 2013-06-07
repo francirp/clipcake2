@@ -1,4 +1,7 @@
 <% @book.pages.each do |page| %>
-  <%= render :partial => "page_layouts/#{page.layout}.html.erb", :locals => { :page => page, :canvas_css_property => 'canvas_print' } %>
-  <div class="page-break"></div>
+  <%= render :partial => "page_layouts/#{page.layout}.html.erb", :locals => { :page => page, :canvas_css_property => 'canvas_print', :border_choice => 'no_border', :margin_option => 'print-margin' } %>
+  <h3 class="pdf right">
+  <%= wicked_pdf_image_tag 'heart-icon2.png', :class => 'edit-button pdfpage' %>
+  <%= page.user.full_name %>
+  </h3>
 <% end %>

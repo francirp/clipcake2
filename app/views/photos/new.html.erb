@@ -1,4 +1,4 @@
-<% friend_name = Friend.where(:uid => @recipient_fb_id).first.name  %>
+<% friend_name = (current_user.facebook.friends.find { |f| f["uid"] == @recipient_fb_id.to_s })["name"]  %>
 
 
 <center><h3><%= link_to "Friendship Photos", '#friendshipphotos' %> | <%= link_to "#{friend_name}'s Photos", '#friendphotos' %> | <%= link_to "My Photos", '#myphotos' %></h3><center>

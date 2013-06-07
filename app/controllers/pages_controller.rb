@@ -14,7 +14,11 @@ class PagesController < ApplicationController
           :show_as_html => params[:debug],
           :layout => true,
           :page_height => '8.5in',
-          :page_width => '11in'
+          :page_width => '11in',
+          :margin => {:top => '1mm',
+                      :bottom => '1mm',
+                      :left => '4mm',
+                      :right => '1mm'}
       end
       format.html
     end

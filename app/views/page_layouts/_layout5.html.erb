@@ -1,13 +1,15 @@
 <%= render :partial => "/page_layouts/positions.html.erb", :locals => { :page => page } %>
 
-<div class="<%= canvas_css_property %>">
-  <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "nine-box upleft" } %>
-  <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 1, :position => @position_1, :styleclass => "nine-box upmid" } %>
-  <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 2, :position => @position_2, :styleclass => "nine-box upright" } %>
-  <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 3, :position => @position_3, :styleclass => "nine-box midleft" } %>
-  <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 4, :position => @position_4, :styleclass => "nine-box midmid" } %>
-  <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 5, :position => @position_5, :styleclass => "nine-box midright" } %>
-  <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 6, :position => @position_6, :styleclass => "nine-box lowleft" } %>
-  <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 7, :position => @position_7, :styleclass => "nine-box lowmid" } %>
-  <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 8, :position => @position_8, :styleclass => "nine-box lowright" } %>
-</div>
+<center>
+  <div class="<%= canvas_css_property %>">
+    <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "nine-box #{margin_option} #{border_choice}" } %>
+    <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 1, :position => @position_1, :styleclass => "nine-box #{margin_option} #{border_choice}" } %>
+    <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 2, :position => @position_2, :styleclass => "nine-box #{margin_option} #{border_choice}" } %>
+    <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 3, :position => @position_3, :styleclass => "nine-box #{margin_option} #{border_choice}" } %>
+    <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 4, :position => @position_4, :styleclass => "nine-box #{margin_option} #{border_choice}" } %>
+    <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 5, :position => @position_5, :styleclass => "nine-box #{margin_option} #{border_choice}" } %>
+    <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 6, :position => @position_6, :styleclass => "nine-box #{margin_option} #{border_choice}" } %>
+    <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 7, :position => @position_7, :styleclass => "nine-box #{margin_option} #{border_choice}" } %>
+    <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 8, :position => @position_8, :styleclass => "nine-box #{margin_option} #{border_choice}" } %>
+  </div>
+</center>

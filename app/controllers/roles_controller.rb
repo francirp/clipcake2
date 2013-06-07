@@ -20,10 +20,10 @@ class RolesController < ApplicationController
     if array.present?
       array.each do |friend|
         if User.where(:uid => friend).present? != true
-          @friend = Friend.find_by_uid(friend)
+          @friend = current_user.facebook.friends.find { |f| f["uid"] == friend.to_s }
           @user = User.new
-          @user.uid = @friend.uid
-          @user.full_name = @friend.name
+          @user.uid = @friend["uid"]
+          @user.full_name = @friend["name"]
           @user.avatar = "https://graph.facebook.com/#{friend}/picture?type=large"
           @user.save
         else

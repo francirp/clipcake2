@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
     has_many :pages
     has_many :friends
 
-
+    def facebook
+      @facebook ||= Facebook.new(access_token,uid,id)
+    end
 
     def self.create_from_omniauth(auth)
         if User.where(:uid => auth.uid).present?

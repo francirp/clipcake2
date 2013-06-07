@@ -1,5 +1,7 @@
 <%= render :partial => "/page_layouts/positions.html.erb", :locals => { :page => page } %>
 
-<div class="<%= canvas_css_property %>">
-  <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "sole-box sole" } %>
-</div>
+<center>
+  <div class="<%= canvas_css_property %>">
+  <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "sole-box #{margin_option} #{border_choice}" } %>
+  </div>
+</center>

@@ -1,6 +1,8 @@
 <%= render :partial => "/page_layouts/positions.html.erb", :locals => { :page => page } %>
 
-<div class="<%= canvas_css_property %>">
-  <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "wide-half-box soletop" } %>
-  <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 1, :position => @position_1, :styleclass => "wide-half-box solebottom" } %>
-</div>
+<center>
+  <div class="<%= canvas_css_property %>">
+    <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 0, :position => @position_0, :styleclass => "wide-half-box #{margin_option} #{border_choice}" } %>
+    <%= render :partial => "/page_layouts/box.html.erb", :locals => { :page => page, :formnum => 1, :position => @position_1, :styleclass => "wide-half-box #{margin_option} #{border_choice}" } %>
+  </div>
+</center>
