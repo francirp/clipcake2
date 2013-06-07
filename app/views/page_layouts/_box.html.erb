@@ -11,9 +11,12 @@
     <% end %>
     <%= render :partial => "/page_layouts/popup.html.erb", :locals => { :page => page, :formnum => formnum } %>
   </a>
+  <% if position.present? %>
+    <%= form_tag("/page/#{page.id}/position/#{position.position}", :id => "photo_submit", :method => "post", remote: true) do %>
+      <%= hidden_field_tag "inputPhotoTarget", "image_url" %>
+    <% end %>
+  <% end %>
 </div>
-
-
 
 <script>
 
@@ -21,16 +24,18 @@
 
           function init() {
                     $('.fill-div').droppable({
-                        accept: $("li.ui-draggable"),
+                        accept: "li.ui-draggable",
                         drop: function( event, ui ) {
-                          alert('hi')
+                          addPicture(ui.draggable,$(this));
                         }
                       });
                       }
 
-          function addPicture( $item, $box ) {
-                  $box.replaceWith($item)
-                  }
+          function addPicture($item_draggable,$item_droppable) {
+            var $img_src = $item_draggable.find("img").attr("src")
+            var $new_background = 'url('  + $img_src + ')'
+            var $result = ($item_droppable).find(".background").css("background-image",$new_background)
+          }
 
-        </script>
+</script>
 
