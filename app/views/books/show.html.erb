@@ -101,17 +101,16 @@
           <%= link_to image_tag("add-button.png", :class => "edit-button"), new_page_url(book_id: @book.id) %>
         </h3>
       </div>
-      <% if @book.pages.count == 0 %>
-        <h3>
-          Add The First Page
-          <%= link_to image_tag("add-button.png", :class => "add-button"), new_page_url(book_id: @book.id) %>
-        </h3>
-      <% end %>
-      <% if @book.pages.count == 1 %>
-        <h3>
-          Add Another Page
-          <%= link_to image_tag("add-button.png", :class => "add-button"), new_page_url(book_id: @book.id) %>
-        </h3>
+      <% if @book.pages.count <= 1 %>
+        <div class="add-first-page-area">
+          <h3>
+            <% if @book.pages.count == 0 %>
+              <%= link_to "Add The First Page", new_page_url(book_id: @book.id) %>
+            <% else %>
+              <%= link_to "Add Another Page", new_page_url(book_id: @book.id) %>
+            <% end %>
+          </h3>
+        </div>
       <% end %>
       <%= render :partial => "showbook", :locals => { :captain => @captain } %>
     </div>
