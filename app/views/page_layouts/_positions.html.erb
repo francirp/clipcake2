@@ -28,6 +28,11 @@
 <% else %>
   <% @position_0 = pos0_photo || pos0_text %>
 <% end %>
+<% if (not @position_0.present?) %>
+  <% @position_0 = Photo.new %>
+  <% @position_0.position = 0 %>
+<% end %>
+
 
 <!-- SECOND BOX -->
 
@@ -39,6 +44,10 @@
   <% end %>
 <% else %>
   <% @position_1 = pos1_photo || pos1_text %>
+<% end %>
+<% if (not @position_1.present?) %>
+  <% @position_1 = Photo.new %>
+  <% @position_1.position = 1 %>
 <% end %>
 
 <!-- THIRD BOX -->
@@ -52,6 +61,10 @@
 <% else %>
   <% @position_2 = pos2_photo || pos2_text %>
 <% end %>
+<% if (not @position_2.present?) %>
+  <% @position_2 = Photo.new %>
+  <% @position_2.position = 2 %>
+<% end %>
 
 <!-- FOURTH BOX -->
 
@@ -63,6 +76,10 @@
   <% end %>
 <% else %>
   <% @position_3 = pos3_photo || pos3_text %>
+<% end %>
+<% if (not @position_3.present?) %>
+  <% @position_3 = Photo.new %>
+  <% @position_3.position = 3 %>
 <% end %>
 
 <!-- FIFTH BOX -->
@@ -76,6 +93,10 @@
 <% else %>
   <% @position_4 = pos4_photo || pos4_text %>
 <% end %>
+<% if (not @position_4.present?) %>
+  <% @position_4 = Photo.new %>
+  <% @position_4.position = 4 %>
+<% end %>
 
 <!-- SIXTH BOX -->
 
@@ -87,6 +108,10 @@
   <% end %>
 <% else %>
   <% @position_5 = pos5_photo || pos5_text %>
+<% end %>
+<% if (not @position_5.present?) %>
+  <% @position_5 = Photo.new %>
+  <% @position_5.position = 5 %>
 <% end %>
 
 <!-- SEVENTH BOX -->
@@ -100,6 +125,11 @@
 <% else %>
   <% @position_6 = pos6_photo || pos6_text %>
 <% end %>
+<% if (not @position_6.present?) %>
+  <% @position_6 = Photo.new %>
+  <% @position_6.position = 6 %>
+<% end %>
+
 
 <!-- EIGTH BOX -->
 
@@ -111,6 +141,10 @@
   <% end %>
 <% else %>
   <% @position_7 = pos7_photo || pos7_text %>
+<% end %>
+<% if (not @position_7.present?) %>
+  <% @position_7 = Photo.new %>
+  <% @position_7.position = 7 %>
 <% end %>
 
 <!-- NINTH BOX -->
@@ -124,5 +158,10 @@
 <% else %>
   <% @position_8 = pos8_photo || pos8_text %>
 <% end %>
+<% if (not @position_8.present?) %>
+  <% @position_8 = Photo.new %>
+  <% @position_8.position = 8 %>
+<% end %>
+
 
 

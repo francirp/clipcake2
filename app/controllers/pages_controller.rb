@@ -34,10 +34,20 @@ class PagesController < ApplicationController
   def drop_photo
     logger.debug("drop_photo")
     position = params[:position]
-    new_img_url = params[:inputPhotoTarget]
+    input_target = "inputPhotoTarget-#{position}"
+    puts "input target:"
+    puts input_target
+    new_img_url = params[input_target]
 
     page = Page.find_by_id(params[:page_id])
     photo = page.photos.where(:position => params[:position]).first
+    if (not photo.present?)
+      photo = Photo.new
+      photo.position = position
+      photo.user_id = page.user_id
+      photo.book_id = page.book_id
+      page.photos << photo
+    end
 
     logger.debug photo
     logger.debug photo.id
