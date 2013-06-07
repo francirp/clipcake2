@@ -1,6 +1,7 @@
 <div class="row-fluid">
   <h2>Books
-  <%= link_to image_tag("add-button.png", :class => "add-button"), new_book_url %>
+  <%= link_to image_tag("add-button.png", :class => "add-button"), "#create_book_modal", :data => {:toggle=>"modal"} %>
+  <%= render partial: "modal" %>
   </h2>
     <ul>
       <% i = 0 %>
