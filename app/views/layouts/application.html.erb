@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
   <title>Clipcake2</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -13,6 +14,7 @@
   </style>
 </head>
 <body>
+
 <header>
   <div class="container">
     <div class="navbar">
@@ -40,20 +42,9 @@
 </header>
 <div class="container">
 
-</header>
 
 <%= yield %>
 
-  <!-- <div class="navbar navbar-fixed-bottom">
-    <ul class="nav">
-      <li class="<%= 'active' if current_page?(books_url) %>"><a href="<%= books_url %>">Books</a></li>
-      <li class="<%= 'active' if current_page?(users_url) %>"><a href="<%= users_url %>">Users</a></li>
-      <li class="<%= 'active' if current_page?(pages_url) %>"><a href="<%= pages_url %>">Pages</a></li>
-      <li class="<%= 'active' if current_page?(roles_url) %>"><a href="<%= roles_url %>">Roles</a></li>
-      <li class="<%= 'active' if current_page?(texts_url) %>"><a href="<%= texts_url %>">Messages</a></li>
-      <li class="<%= 'active' if current_page?(photos_url) %>"><a href="<%= photos_url %>">Photos</a></li>
-    </ul>
-  </div> -->
 </div>
 </body>
 </html>

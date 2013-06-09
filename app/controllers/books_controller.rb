@@ -122,7 +122,7 @@ class BooksController < ApplicationController
     @book.sharing_preference = params[:sharing_preference]
 
     if @book.save
-            redirect_to "#{new_contributor_url}?book_id=#{@book.id}"
+            redirect_to @book
           else
       render 'edit'
     end

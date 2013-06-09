@@ -4,16 +4,12 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Create Invite</h3>
   </div>
-  <!-- FORM START -->
+
+
+      <!-- FORM START -->
     <%= form_tag(update_invite_url(@book.id), method: 'put', :class => 'clearfix form-horizontal') do %>
     <div class="modal-body">
         <p>
-        <div class="control-group">
-        <%= label_tag :invite_message_subject, "Invite Subject", :class => "control-label" %>
-         <div class="controls">
-          <%= text_field_tag :invite_message_subject, @book.name %>
-        </div>
-      </div>
 
         <div class="control-group">
         <%= label_tag :invite_message_body, "Invite Body", :class => "control-label" %>
@@ -36,7 +32,6 @@
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
     <button type="submit" class="btn btn-primary">Save Invite</button>
-    <%= link_to "Send Invite to #{@book.roles.count - 1} Contributors", "#", :class => "btn btn-danger", :data => { :confirm => "Are you sure you want to send the invite?"} %>
   </div>
   <% end %>
 </div>

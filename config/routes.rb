@@ -1,5 +1,6 @@
 Clipcake2::Application.routes.draw do
 
+  post '/:provider/authorize' => 'static#authorize'
   # Routes for the Friend resource:
   # CREATE
   get '/friends/new', controller: 'friends', action: 'new', as: 'new_friend'
