@@ -21,7 +21,7 @@ display: block;
 }
 
 #overlay_form<%= "#{page.id}#{formnum}" %> a {
-  margin: -105px 0px;
+  margin: -80px 0px;
   font-size: 14px;
   color: red;
 }
@@ -36,7 +36,6 @@ $(document).ready(function(){
 //open popup
 $("#pop<%= "#{page.id}#{formnum}" %>").click(function(){
 $("#overlay_form<%= "#{page.id}#{formnum}" %>").fadeIn(500);
-positionPopup();
 });
 
 //close popup
@@ -48,14 +47,15 @@ $("#overlay_form<%= "#{page.id}#{formnum}" %>").fadeOut(500);
 </script>
 
 <form id="overlay_form<%= "#{page.id}#{formnum}" %>" style="display:none">
-  <%= link_to image_tag("iconmonstr-picture-add-icon.png", :class => 'popup-button'), new_photo_url(:page_id => page.id, :position => formnum) %>
-  <p class="add-buttons"></p>
-  <%= link_to image_tag("iconmonstr-text-file-4-icon.png", :class => 'popup-button'), new_text_url(:page_id => page.id, :position => formnum) %>
-  <p class="add-buttons"></p>
-  <%= link_to image_tag("iconmonstr-trash-can-15-icon.png", :class => 'popup-button'), delete_position_url(page.id,formnum), :method => 'delete', data: { confirm: "Do you really want to delete the content in this box?" } %>
-  <br />
-  <%= link_to image_tag("iconmonstr-x-mark-3-icon.png", :class => 'closebutton edit-button pull-right', :id => "pop#{page.id}#{formnum}close"), "#_" %>
-
+    <% if text_present == true %>
+      <%= link_to "Edit Text", edit_text_url(position.id, :position => formnum) %>
+    <% else %>
+      <%= link_to "Add Text", new_text_url(:page_id => page.id, :position => formnum) %>
+    <% end %>
+    <p class="add-buttons"></p>
+    <%= link_to image_tag("iconmonstr-trash-can-15-icon.png", :class => 'popup-button'), delete_position_url(page.id,formnum), :method => 'delete', data: { confirm: "Do you really want to delete the content in this box?" } %>
+    <br />
+    <%= link_to image_tag("iconmonstr-x-mark-3-icon.png", :class => 'closebutton edit-button pull-right', :id => "pop#{page.id}#{formnum}close"), "#_" %>
 </form>
 
 

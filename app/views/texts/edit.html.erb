@@ -1,49 +1,27 @@
-<h1>Editing Text #<%= @text.id %></h1>
+<script type="text/javascript">
+    $(document).ready(
+      function()
+      {
+        $('#redactor_content').redactor();
+      }
+    );
+    </script>
 
+<% @captain = @book.roles.where(:role_type => "captain").first.user %>
+<% @recipient = @captain.facebook.friends.find { |f| f["uid"] == @book.recipient_fb_id.to_s } %>
+
+<h2>Edit message for <%= @recipient["name"] %></h2>
 
 <%= form_tag(text_url(@text), method: 'put') do %>
 
-  <div>
-    <%= label_tag :user_id %><br />
-    <%= number_field_tag :user_id, @text.user_id %>
-  </div>
+  <%= hidden_field_tag :book_id, @book.id %>
+  <%= hidden_field_tag :page_id, @page.id %>
+  <%= hidden_field_tag :position, @position %>
 
   <div>
-    <%= label_tag :book_id %><br />
-    <%= number_field_tag :book_id, @text.book_id %>
+    <%= text_area_tag :redactor_content, @text.message.html_safe %>
   </div>
 
-  <div>
-    <%= label_tag :page_id %><br />
-    <%= number_field_tag :page_id, @text.page_id %>
-  </div>
-
-  <div>
-    <%= label_tag :message %><br />
-    <%= text_field_tag :message, @text.message %>
-  </div>
-
-  <div>
-    <%= label_tag :position %><br />
-    <%= number_field_tag :position, @text.position %>
-  </div>
-
-  <div>
-    <%= label_tag :font_size %><br />
-    <%= text_field_tag :font_size, @text.font_size %>
-  </div>
-
-  <div>
-    <%= label_tag :font_type %><br />
-    <%= text_field_tag :font_type, @text.font_type %>
-  </div>
-
-  <div>
-    <%= label_tag :font_color %><br />
-    <%= text_field_tag :font_color, @text.font_color %>
-  </div>
-
-  
   <div>
     <%= submit_tag "Update Text" %>
   </div>

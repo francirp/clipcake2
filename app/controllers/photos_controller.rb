@@ -55,7 +55,7 @@ class PhotosController < ApplicationController
     end
 
     if @photo.save
-            redirect_to page_url(@photo.page_id)
+            redirect_to book_url(@photo.book_id)
           else
       render 'new'
     end

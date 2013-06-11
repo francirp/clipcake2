@@ -20,14 +20,14 @@ class TextsController < ApplicationController
     @text.user_id = session[:user_id]
     @text.book_id = params[:book_id]
     @text.page_id = params[:page_id]
-    @text.message = params[:message]
+    @text.message = params[:redactor_content]
     @text.position = params[:position]
     @text.font_size = params[:font_size]
     @text.font_type = params[:font_type]
     @text.font_color = params[:font_color]
 
     if @text.save
-            redirect_to Page.find_by_id(params[:page_id])
+            redirect_to Book.find_by_id(params[:book_id])
           else
       render 'new'
     end
@@ -35,6 +35,9 @@ class TextsController < ApplicationController
 
   def edit
     @text = Text.find_by_id(params[:id])
+    @page = @text.page
+    @book = @page.book
+    @position = params[:position]
   end
 
   def update
@@ -42,14 +45,14 @@ class TextsController < ApplicationController
     @text.user_id = params[:user_id]
     @text.book_id = params[:book_id]
     @text.page_id = params[:page_id]
-    @text.message = params[:message]
+    @text.message = params[:redactor_content]
     @text.position = params[:position]
     @text.font_size = params[:font_size]
     @text.font_type = params[:font_type]
     @text.font_color = params[:font_color]
 
     if @text.save
-            redirect_to texts_url
+            redirect_to Book.find_by_id(params[:book_id])
           else
       render 'edit'
     end
