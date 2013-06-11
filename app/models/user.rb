@@ -6,10 +6,10 @@ class User < ActiveRecord::Base
     has_many :pages
     has_many :friends
 
-    after_create do |user|
-        email = UserMailer.welcome(@user)
-        email.deliver
-    end
+    # after_create do |user|
+    #     email = UserMailer.welcome(@user)
+    #     email.deliver
+    # end
 
     def facebook
       @facebook ||= Facebook.new(access_token,uid,id)
