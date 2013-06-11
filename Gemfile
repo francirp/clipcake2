@@ -22,6 +22,7 @@ end
 
 group :production do
   gem 'pg'
+  gem "wkhtmltopdf-heroku", :git => 'git://github.com/camdez/wkhtmltopdf-heroku.git'
 end
 
 # Gems used only for assets and not required

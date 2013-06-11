@@ -3,8 +3,11 @@
 <% @recipient = @captain.facebook.friends.find { |f| f["uid"] == @book.recipient_fb_id.to_s } %>
 <% logger.debug "Contrib Show"%>
 <% logger.debug @recipient%>
+<% if @book.invite_message_body.blank? || @book.invite_message_body.length < 1 %>
+  <% invite_message_body = "Help me create a book for #{@recipient["name"]} on Clipcake." %>
+<% else %>
 <% invite_message_body = @book.invite_message_body %>
-
+<% end %>
 
 
 <center>
