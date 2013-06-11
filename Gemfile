@@ -6,7 +6,6 @@ gem 'omniauth-facebook'
 gem 'select2-rails'
 gem 'kaminari'
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-heroku'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
