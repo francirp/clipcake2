@@ -10,7 +10,7 @@
       <%= link_to image_tag("iconmonstr-edit-9-icon.png", :class => 'edit-button left'), edit_page_url(page.id) %>
       <%=  %>
       <h4 class="page_heading">
-        <%= link_to "Preview Page", "#{page_url(page.id)}.pdf" %>
+        <%= link_to "Preview Page", "#{page_url(page.id)}.pdf", :target => '_blank' %>
         <div class="right signature">Created By: <%= page.user.full_name %></div>
       </h4>
     <% end %>

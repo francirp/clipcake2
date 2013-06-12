@@ -23,7 +23,7 @@
   <h4>
     <%= link_to 'Settings', edit_book_url(@book) %>
      &nbsp;&nbsp;~&nbsp;&nbsp;
-    <%= link_to 'Preview', "#{book_url(@book)}.pdf" %>
+    <%= link_to 'Preview', "#{book_url(@book)}.pdf", :target => '_blank' %>
      &nbsp;&nbsp;~&nbsp;&nbsp;
     <%= link_to 'Print and Ship', "https://spb.io/VSTASsMN3I" %>
   </h4>
