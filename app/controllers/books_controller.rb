@@ -34,6 +34,11 @@ class BooksController < ApplicationController
       @user_photos = @user_photos[0]
       @user_photos = Kaminari.paginate_array(@user_photos).page(params[:page]).per(8)
       @pages = Kaminari.paginate_array(@pages).page(params[:pagina]).per(1)
+      @page_number = params[:page]
+      logger.debug "BooksController: @page_number: #{params[:page]} #{@page_number}"
+      if (not @page_number)
+        @page_number = 1
+      end
 
       if params[:photo_provider].blank?
         format.js { render 'page' }

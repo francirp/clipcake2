@@ -31,11 +31,9 @@
 
           function addPicture($item_draggable,$item_droppable) {
             var img_src = $item_draggable.find("img").attr("src")
-            //alert(img_src)
             var new_background = 'url('  + img_src + ')'
             var result = ($item_droppable).find(".background").css("background-image",new_background)
             var input_photo_target = ($item_droppable).find('input[id|="inputPhotoTarget"]').attr("id");
-            //alert(input_photo_target)
             result = ($item_droppable).find("#" + input_photo_target).val(img_src)
             var submit_target = ($item_droppable).find("form").attr("id")
             $("#" + submit_target).submit()

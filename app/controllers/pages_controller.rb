@@ -32,11 +32,8 @@ class PagesController < ApplicationController
 
 
   def drop_photo
-    logger.debug("drop_photo")
     position = params[:position]
     input_target = "inputPhotoTarget-#{position}"
-    puts "input target:"
-    puts input_target
     new_img_url = params[input_target]
 
     page = Page.find_by_id(params[:page_id])
@@ -49,11 +46,6 @@ class PagesController < ApplicationController
       page.photos << photo
     end
 
-    logger.debug photo
-    logger.debug photo.id
-    logger.debug photo.page_id
-    logger.debug photo.source_url
-    logger.debug new_img_url
     photo.source_url = new_img_url
     photo.save
 

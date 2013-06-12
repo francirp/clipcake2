@@ -92,7 +92,8 @@
 <div class="row-fluid">
   <div class="editor">
     <div class="left-col container-border radius pull-left">
-      <%= render :partial => "gallery", :locals => { :photos => @fb_photos, :photo_provider => "friendship" } %>
+      <% logger.debug "render gallery: page_number #{@page_number}"%>
+      <%= render :partial => "gallery", :locals => { :photos => @fb_photos, :photo_provider => "friendship", :page_number => @page_number } %>
     </div>
     <div class="right-col container-border radius pull-left">
       <div class="canvas-heading">

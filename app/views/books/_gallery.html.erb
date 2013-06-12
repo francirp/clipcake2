@@ -16,40 +16,52 @@
         <% i = 0 %>
         <% photos.each do |photo| %>
           <% i += 1 %>
-          <li class="ui-widget-content ui-corner-tr" id="draggable_<%= i %>">
+          <li class="ui-widget-content ui-corner-tr" id="draggable_<%= i %>_<%= page_number %>">
             <img src="<%= photo.source_url %>" class="pic" />
-            <!-- Button to trigger modal -->
-            <a href="#myModal_<%= i %>" role="button" class="small-button icon" data-toggle="modal"><%= image_tag 'iconmonstr-magnifier.png' %></a>
 
             <!-- Modal -->
-            <div id="myModal_<%= i %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-body">
+            <div id="myModal_<%= i %>_<%= page_number %>">
                 <%= image_tag photo.source_url %>
-              </div>
-              <div class="modal-footer">
-                <h4>
-                  <a href="#myModal_<%= i - 1 %>" class="btn" data-dismiss="modal" aria-hidden="true" role="button" data-toggle="modal">Previous</a>
-                  <a href="#myModal_<%= i + 1 %>" data-dismiss="modal" aria-hidden="true" data-toggle="modal" class="btn">Next</a>
-                  <a href="#_" class="btn" data-dismiss="modal" aria-hidden="true">Close</a>
-                </h4>
-              </div>
             </div>
           </li>
-            <script>
+          <script>
 
-            $( init );
+          $( init );
 
             function init() {
-              $('#draggable_<%= i %>').draggable({
+              $('#draggable_<%= i %>_<%= page_number %>').draggable({
                   cancel: "a.ui-icon", // clicking an icon won't initiate dragging
                   revert: "invalid", // when not dropped, the item will revert back to its initial position
                   containment: "document",
                   helper: "clone",
                   cursor: "move"
                 });
-                }
 
-            </script>
+              $( "#myModal_<%= i %>_<%= page_number %>" ).dialog({ autoOpen: false });
+
+              $("#draggable_<%= i %>_<%= page_number %>").hover(
+                function () {
+                  $( "#myModal_<%= i %>_<%= page_number %>" ).dialog( "open" );
+                  //alert("hover on");
+                  //$(this).find('a').click();
+                  //var id = $(this).find('a').attr("data-id");
+                  //var my_modal = '#myModal_' + id;
+                  //alert(my_modal);
+                  //$(my_modal).modal('show')
+                  //alert(id)
+                },
+                function () {
+                  $( "#myModal_<%= i %>_<%= page_number %>" ).dialog( "close" );
+                  //alert("hover off");
+                  //var id = $(this).find('a').attr("data-id");
+                  //var my_modal = '#myModal_' + id;
+                  //alert(my_modal);
+                  //$(my_modal).modal('hide')
+                }
+              );
+            }
+
+          </script>
 
 
         <% end %>
