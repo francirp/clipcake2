@@ -142,12 +142,15 @@ class Facebook
   end
 
   def delete_friends
-    Rails.cache.delete("friends_#{user_id}")
+    if (Rails.cache.delete("friends_#{user_id}"))
+      Rails.logger.debug "Facebook::delete_friends deleted friends cache for user: #{user_id}"
+    end
   end
 
   def friends
 
     Rails.cache.fetch("friends_#{user_id}") {
+      Rails.logger.debug "Facebook::friends getting friends from facebook"
       @friends = []
       if @access_token
         query1request = "SELECT name, uid FROM user WHERE uid IN (SELECT uid1 FROM friend WHERE uid2=#{uid})"
@@ -160,7 +163,6 @@ class Facebook
         friends_clean_api = friends_api[0]["fql_result_set"]
 
         friends_clean_api.sort! do |a,b|
-          puts "in facebook sort"
           if a["name"] < b["name"]
             -1
           elsif a["name"] > b["name"]
