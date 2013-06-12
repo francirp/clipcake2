@@ -9,14 +9,33 @@ class Facebook
     @query_friends_photos_hash = {}
   end
 
+  def track_cache_ids(cache_id)
+    @user_cache_array = Rails.cache.read("#{user_id}_cache_array")
+    if (not @user_cache_array)
+      @user_cache_array = []
+    end
+    @user_cache_array << cache_id
+    Rails.cache.write("#{user_id}_cache_array", @user_cache_array)
+  end
+
+  def delete_caches
+    @user_cache_array = Rails.cache.read("#{user_id}_cache_array")
+    @user_cache_array.each do |cache_id|
+      Rails.cache.delete(cache_id)
+    end
+    Rails.cache.delete("#{user_id}_cache_array")
+  end
+
    #pulls back friendship photos
   def query_photos(friend_id)
     Rails.logger.debug "Facebook: query_photos"
     # create photo to avoid undefined class/module memcache error
     # (this is not an optimal work around but it will do for now)
     p = Photo.new
-    Rails.cache.fetch("query_photos#{friend_id}_#{user_id}") {
+    cache_id = "query_photos#{friend_id}_#{user_id}"
+    Rails.cache.fetch(cache_id) {
       Rails.logger.debug "Facebook: getting query_photos"
+      track_cache_ids(cache_id)
       recipient_id = friend_id
       query1request = "SELECT src_big, caption, object_id, owner, aid, created FROM photo WHERE object_id IN(SELECT object_id FROM photo_tag WHERE subject = #{uid}) AND object_id IN(SELECT object_id FROM photo_tag WHERE subject=#{recipient_id})"
       options = { :access_token => "#{access_token}" }
@@ -48,7 +67,9 @@ class Facebook
     # create photo to avoid undefined class/module memcache error
     # (this is not an optimal work around but it will do for now)
     p = Photo.new
-    Rails.cache.fetch("query_friend_photos#{friend_id}_#{user_id}") {
+    cache_id = "query_friend_photos#{friend_id}_#{user_id}"
+    Rails.cache.fetch(cache_id) {
+      track_cache_ids(cache_id)
       Rails.logger.debug "Facebook: query_friend_photos - gettin from facebook"
       recipient_id = friend_id
       query1request = "SELECT src_big, caption, object_id, owner, aid, created FROM photo WHERE object_id IN(SELECT object_id FROM photo_tag WHERE subject=#{recipient_id})"
@@ -81,7 +102,9 @@ class Facebook
     # create photo to avoid undefined class/module memcache error
     # (this is not an optimal work around but it will do for now)
     p = Photo.new
-    Rails.cache.fetch("query_photo#{obj_id}") {
+    cache_id = "query_photo#{obj_id}"
+    Rails.cache.fetch(cache_id) {
+      track_cache_ids(cache_id)
       Rails.logger.debug "Facebook: getting query_photo"
       query1request = "SELECT src_big, caption, object_id, owner, aid, created FROM photo WHERE object_id=#{obj_id}"
 
@@ -114,8 +137,9 @@ class Facebook
     # create photo to avoid undefined class/module memcache error
     # (this is not an optimal work around but it will do for now)
     p = Photo.new
-    Rails.cache.fetch("query_user_photos#{user_id}") {
-
+    cache_id = "query_user_photos#{user_id}"
+    Rails.cache.fetch(cache_id) {
+      track_cache_ids(cache_id)
       Rails.logger.debug "Facebook: getting query_user_photos"
       query1request = "SELECT src_big, caption, object_id, owner, aid, created FROM photo WHERE object_id IN(SELECT object_id FROM photo_tag WHERE subject=#{uid})"
 
@@ -149,7 +173,9 @@ class Facebook
 
   def friends
 
-    Rails.cache.fetch("friends_#{user_id}") {
+    cache_id = "friends_#{user_id}"
+    Rails.cache.fetch(cache_id) {
+      track_cache_ids(cache_id)
       Rails.logger.debug "Facebook::friends getting friends from facebook"
       @friends = []
       if @access_token
