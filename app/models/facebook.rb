@@ -141,6 +141,10 @@ class Facebook
     }
   end
 
+  def delete_friends
+    Rails.cache.delete("friends_#{user_id}")
+  end
+
   def friends
 
     Rails.cache.fetch("friends_#{user_id}") {
