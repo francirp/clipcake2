@@ -13,6 +13,12 @@ class User < ActiveRecord::Base
 
     def facebook
       @facebook ||= Facebook.new(access_token,uid,id)
+      refresh_caches_after = 7200 # default is 2 hours
+      if (ENV['REFRESH_CACHE_AT'])
+        refresh_caches_after = ENV['REFRESH_CACHE_AT'].to_i
+      end
+      @facebook.force_cache_refresh_after(refresh_caches_after)
+      @facebook
     end
 
     def self.create_from_omniauth(auth)
