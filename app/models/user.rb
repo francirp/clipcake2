@@ -21,18 +21,6 @@ class User < ActiveRecord::Base
     #     email.deliver
     # end
 
-    def facebook__
-      oauth_token = self.facebook.oauth_token
-      uid = self.facebook.uid
-      @facebook ||= FacebookModel.new(oauth_token,uid,id)
-      refresh_caches_after = 7200 # default is 2 hours
-      if (ENV['REFRESH_CACHE_AT'])
-        refresh_caches_after = ENV['REFRESH_CACHE_AT'].to_i
-      end
-      @facebook.force_cache_refresh_after(refresh_caches_after)
-      @facebook
-    end
-
     def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
       if (signed_in_resource)
         logger.debug "current user #{signed_in_resource.id}"
