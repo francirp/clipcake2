@@ -1,5 +1,7 @@
 Clipcake2::Application.routes.draw do
 
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
   post '/:provider/authorize' => 'static#authorize'
   # Routes for the Friend resource:
   # CREATE
@@ -18,8 +20,10 @@ Clipcake2::Application.routes.draw do
   delete '/friends/:id', controller: 'friends', action: 'destroy'
   #------------------------------
 
-  match 'auth/:provider/callback', to: 'sessions#create'
+  match 'auth/:provider/callback', to: 'services#create'
   match 'auth/failure', to: redirect('/')
+
+  resources :services, :only => [:index, :create]
 
   get '/sign_in' => 'sessions#new', :as => 'sign_in'
   get '/sign_out' => 'sessions#destroy', :as => 'sign_out'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130523145115) do
+ActiveRecord::Schema.define(:version => 20130621175602) do
 
   create_table "books", :force => true do |t|
     t.integer "captain_id"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(:version => 20130523145115) do
     t.string  "invite_message_body"
     t.string  "sharing_preference"
     t.string  "name"
+  end
+
+  create_table "facebooks", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "uid"
+    t.string   "name"
+    t.string   "email"
+    t.string   "oauth_token"
+    t.string   "avatar"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "friends", :force => true do |t|
@@ -78,25 +89,37 @@ ActiveRecord::Schema.define(:version => 20130523145115) do
   end
 
   create_table "users", :force => true do |t|
-    t.string  "email"
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "password"
-    t.string  "billing_address"
-    t.string  "billing_city"
-    t.string  "billing_state"
-    t.string  "billing_phone"
-    t.string  "shipping_address"
-    t.string  "shipping_city"
-    t.string  "shipping_state"
-    t.string  "shipping_phone"
-    t.string  "access_token"
-    t.string  "facebook_id"
-    t.boolean "is_activated"
-    t.string  "full_name"
-    t.string  "provider"
-    t.string  "uid"
-    t.string  "avatar",           :default => "http://www.gravatar.com/avatar/8eac184149444324b77e478ff097386a?size=300&default=https://assets.github.com/images/gravatars/gravatar-140.png"
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "password"
+    t.string   "billing_address"
+    t.string   "billing_city"
+    t.string   "billing_state"
+    t.string   "billing_phone"
+    t.string   "shipping_address"
+    t.string   "shipping_city"
+    t.string   "shipping_state"
+    t.string   "shipping_phone"
+    t.string   "access_token"
+    t.string   "facebook_id"
+    t.boolean  "is_activated"
+    t.string   "full_name"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "avatar",                 :default => "http://www.gravatar.com/avatar/8eac184149444324b77e478ff097386a?size=300&default=https://assets.github.com/images/gravatars/gravatar-140.png"
+    t.string   "encrypted_password",     :default => "",                                                                                                                                             :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

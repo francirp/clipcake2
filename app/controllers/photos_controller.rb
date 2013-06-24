@@ -32,7 +32,7 @@ class PhotosController < ApplicationController
   def create
     if Photo.find_by_id(params[:oldphoto]).present?
       @photo = Photo.find_by_id(params[:oldphoto])
-      @photo.user_id = session[:user_id]
+      @photo.user_id = current_user.id
       @photo.book_id = params[:book_id]
       @photo.page_id = params[:page_id]
       @photo.position = params[:position]
@@ -43,7 +43,7 @@ class PhotosController < ApplicationController
       @photo.is_picked = params[:is_picked]
     else
       @photo = Photo.new
-      @photo.user_id = session[:user_id]
+      @photo.user_id = current_user.id
       @photo.book_id = params[:book_id]
       @photo.page_id = params[:page_id]
       @photo.position = params[:position]

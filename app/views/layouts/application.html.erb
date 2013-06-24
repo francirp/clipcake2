@@ -25,13 +25,15 @@
             <li class="<%= 'active' if current_page?(new_book_url) %>"><a href="#create_book_modal" data-toggle="modal">CREATE A BOOK</a></li>
             <%= render partial: "books/modal" %>
             <li class="<%= 'active' if current_page?(books_url) %>"><a href="<%= books_url %>">MY BOOKS</a></li>
-            <li class="<%= 'active' if current_page?(user_url(session[:user_id])) %>"><a href="<%= user_url(session[:user_id]) %>">MY ACCOUNT</a></li>
+            <li class="<%= 'active' if current_page?(user_url(current_user.id)) %>"><a href="<%= user_url(current_user.id) %>">MY ACCOUNT</a></li>
           <% else %>
           <% end %>
           <% if current_user %>
             <li><a href="<%= sign_out_url %>">SIGN OUT</a></li>
           <% else %>
-            <li class="sign-in"><a href="<%= '/auth/facebook' %>">SIGN IN VIA FACEBOOK</a></li>
+          <li>
+            <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+          </li>
           <% end %>
         </ul>
      </div>

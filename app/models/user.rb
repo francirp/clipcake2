@@ -1,18 +1,30 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook]
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :first_name, :last_name, :full_name
     has_many :books, :through => :roles
     has_many :photos
     has_many :roles
     has_many :texts
     has_many :pages
     has_many :friends
+    has_one :facebook, :dependent => :destroy
 
     # after_create do |user|
     #     email = UserMailer.welcome(@user)
     #     email.deliver
     # end
 
-    def facebook
-      @facebook ||= Facebook.new(access_token,uid,id)
+    def facebook__
+      oauth_token = self.facebook.oauth_token
+      uid = self.facebook.uid
+      @facebook ||= FacebookModel.new(oauth_token,uid,id)
       refresh_caches_after = 7200 # default is 2 hours
       if (ENV['REFRESH_CACHE_AT'])
         refresh_caches_after = ENV['REFRESH_CACHE_AT'].to_i
@@ -21,32 +33,34 @@ class User < ActiveRecord::Base
       @facebook
     end
 
-    def self.create_from_omniauth(auth)
-        if User.where(:uid => auth.uid).present?
-                user = User.where(:uid => auth.uid).first
-                user.access_token = auth.credentials.token
-                user.provider = auth.provider
-                user.first_name = auth.info.first_name
-                user.last_name = auth.info.last_name
-                user.full_name = auth.info.name
-                user.email = auth.info.email
-                user.is_activated = true
-                user.avatar = "#{auth.info.image}&type=large"
-                user.save
-                return user
-        else
-            create! do |user|
-                user.access_token = auth.credentials.token
-                user.provider = auth.provider
-                user.uid = auth.uid
-                user.first_name = auth.info.first_name
-                user.last_name = auth.info.last_name
-                user.full_name = auth.info.name
-                user.email = auth.info.email
-                user.is_activated = true
-                user.avatar = "#{auth.info.image}&type=large"
-            end
-        end
+    def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+      if (signed_in_resource)
+        logger.debug "current user #{signed_in_resource.id}"
+      end
+      facebook = Facebook.where(:uid => auth.uid).first
+      if (not facebook.present?)
+        facebook = Facebook.create(name:auth.extra.raw_info.name,
+                                   uid:auth.uid,
+                                   email:auth.info.email,
+                                   avatar:"#{auth.info.image}&type=large"
+                                   )
+      end
+      # always refresh oauth_token
+      facebook.oauth_token = auth.credentials.token
+      facebook.save
+      user = facebook.user
+      unless user
+        user = User.create(full_name:auth.extra.raw_info.name,
+                           email:auth.info.email,
+                           password:Devise.friendly_token[0,20],
+                           first_name:auth.info.first_name,
+                           last_name:auth.info.last_name,
+                           full_name:auth.info.name
+                           )
+        facebook.user = user
+        facebook.save
+      end
+      user
     end
 
 

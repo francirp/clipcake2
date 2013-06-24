@@ -68,7 +68,7 @@ class PagesController < ApplicationController
     @book = Book.find_by_id(params[:book_id])
     @page.position = @book.pages.count + 1
     @page.book_id = params[:book_id]
-    @page.user_id = session[:user_id]
+    @page.user_id = current_user.id
     @page.layout = params[:layout]
     @page.background_color = params[:background_color]
     @page.background_image_url = params[:background_image_url]
