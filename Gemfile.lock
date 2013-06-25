@@ -95,6 +95,9 @@ GEM
       rack
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
+    omniauth-instagram (1.0.1)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
@@ -168,6 +171,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   omniauth-facebook
+  omniauth-instagram
   omniauth-oauth2
   pg
   rails (= 3.2.13)

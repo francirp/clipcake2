@@ -13,4 +13,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
   end
+
+  def instagram
+    auth_hash = request.env['omniauth.auth']
+    provider = auth_hash.provider
+    token = auth_hash.credentials.token
+    name = auth_hash.name
+    render :text => "Instagram:  #{name} #{provider} #{token}"
+  end
+
+
 end
